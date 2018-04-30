@@ -1,0 +1,11 @@
+{
+  "presets": ["stage-2", "env"],
+  "plugins": [
+    "transform-decorators-legacy",
+    ["flow-runtime", {
+      "assert": true,
+      "annotate": true
+    }],
+	"transform-flow-strip-types"
+  ]
+}
