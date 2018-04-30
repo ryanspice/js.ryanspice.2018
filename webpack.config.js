@@ -18,7 +18,7 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 	resolve: {
-		extensions: ['.js'],
+		extensions: ['.js', '.scss', '.css'],
 		plugins: [],
 		modules: [
 		 './src',
@@ -33,7 +33,24 @@ module.exports = {
 				use: {
 				  loader: "babel-loader"
 				}
-			}
+			},
+			{
+			  test: /bootstrap\.native/,
+			  use: {
+			    loader: 'bootstrap.native-loader'
+			  }
+			},
+			{
+          test: /\.scss$/,
+          use: [{
+              loader: "style-loader" // creates style nodes from JS strings
+          }, {
+              loader: "css-loader" // translates CSS into CommonJS
+							,options:{url:false}
+          }, {
+              loader: "sass-loader" // compiles Sass to CSS
+          }]
+      }
 		]
 	},
 	plugins:[
