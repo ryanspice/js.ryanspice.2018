@@ -1,7 +1,7 @@
 
 /* */
 
-const filename = "babel-flow-webpack4-boilerplate.js";
+const filename = "ryanspice.2018.js";
 
 const webpack = require('webpack');
 const path = require('path');

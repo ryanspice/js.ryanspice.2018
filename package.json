@@ -1,11 +1,12 @@
 {
-	"name": "babel-flow-webpack4-boilerplate.js",
+	"name": "js.ryanspice.2018",
 	"version": "1.0.0",
 	"description": "",
 	"private": true,
 	"author": "Ryan Tyler Spice-Finnie",
 	"scripts": {
 		"dev": "webpack-dev-server",
+		"watch": "webpack --watch",
 		"dash": "webpack-dashboard -- webpack-dev-server",
 		"prod": "webpack"
 	},
