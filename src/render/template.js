@@ -10,124 +10,124 @@ import {default as loop} from './loop';
 //import {default as data} from '../api/data';
 import {default as data} from '../include/data';
 
-interface TemplateElement {
-
-  type: string;
-  value: string;
-
-  renderTo?: string;
-  class?: string;
-  style?: string;
-
-}
-
-interface TemplateItem {
-
-	id:string;
-	value:TemplateElement;
-
-}
-
-interface TemplateScheme {
-
-	id:string;
-	value:TemplateItem;
-
-}
-
-interface HTML5Element extends HTMLElement {
-
-
-	  class?: string;
-	  style: CSSStyleDeclaration;
-		value?:string;
-		renderTo?:any;
-}
-
+import Template from "./template";
 
 type Element = HTML5Element|null;
 
+const templatePicks = [
+	'id',
+	'value',
+	'class',
+	'className',
+	`innerHTML`
+];
 
+
+let elms = [];
 let elements = [];
 let elm:Element;
-
-/*const createTemplateItem = async(item)=>{
-
-	let elm;
-	let template = item.value;
-
-	elm = document.createElement(template.type);
-	elm.style = template.style;
-	elm.value = template.value;
-
-	elements[item.id] = elm;
-
-}*/
-
-let trace = 0;
-
 let templateDefer = [
 
 
 ];
+/*
+export async function asyncRenderPipe(evt:DocumentEvent){
 
-export const iterateTemplate = async (tpl:Array<Object>) => {
+	let context:Document = (evt.currentTarget:any);
 
-	console.log(tpl,typeof tpl);
+	switch(context.readyState){
 
-	if (trace){
+		case 'interactive':
 
-		console.warn(`renderer::`+trace);
+		break;
 
-		return;
+		case 'complete':
+
+
+		//	await iterateTemplate(context.render.template[0]);
+			await iterateTemplate(render.template[0]);
+
+		break;
 	}
 
-	trace++;
+}
+*/
 
+/*
+	AsyncRenderPipe
+		create on onreadystatechange, or whenever you want to render.
+		will render to evt.currentTarget
+*/
 
-	let layers = tpl;
-	let length = layers.length;
+export class AsyncRenderPipe {
 
-	//let elements = tpl;
-	let type, style, value;
-	let pick = 0;
-	let template = null;
+	context:HTMLDocument = document;
+	template:any = Template;
 
-	let templatePicks = [
-		'id',
-		'value',
-		'class',
-		'className',
-		`innerHTML`
-	];
+	constructor(evt:DocumentEvent){
 
+		this.init(evt);
 
-	let elm;
-	let elms = [];
+	}
 
-	/* Establish target based on renderPath */
+	async init(evt:any){
 
-	const createRenderTarget = async(template:TemplateElement)=>{
+		this.context = await evt.currentTarget;
+
+		await this.iterateTemplate(this.template[0])
+
+	}
+
+	check(evt:any){
+
+		if (elms[evt.id])
+		if (elms[evt.id].renderTo)
+			elms[evt.id].renderTo.appendChild(elms[evt.id]);
+
+	}
+	/* generate a reference to the target element, or body if none */
+
+	async createRenderTarget(template:TemplateElement){
 
 		//Verify if rendering target exists
 		if (template.renderTo!=undefined)
-			if (document.querySelectorAll(template.renderTo)[0] == undefined){
+			if (this.context.querySelectorAll(template.renderTo)[0] == undefined){
 
 			return '2430';
 		}
 
 		//Return querySelected element, fallback on body
-		return document.querySelectorAll(template.renderTo)[0] || document.body;
+		//		if (template.renderTo!=undefined)
+		return this.context.querySelectorAll(template.renderTo)[0] || this.context.body;
+	}
+
+	/**/
+
+	createTemplateItem = async (item:any) => {
+
+		let template = item.value;
+		let element = await this.createElementOfType(template);
+
+		if (element!=false){
+
+			elms[item.id] = (elements[item.id]) = element;
+
+		} else {
+
+			// if debugger warning true :: console.log('false')
+
+		}
+
 	}
 
 	/* Create a DOM element in memory */
 
-	const createElementOfType = async(template:TemplateElement)=>{
+	async createElementOfType(template:TemplateElement){
 
-		let elm:any;
+		let elm:HTML5Element;
 
 		const type:string = template.type;
-		const renderTo = await createRenderTarget(template);
+		const renderTo = await this.createRenderTarget(template);
 
 		elm = (await document.createElement(template.type):HTML5Element);
 
@@ -166,64 +166,82 @@ export const iterateTemplate = async (tpl:Array<Object>) => {
 		return elm;
 	}
 
-	/**/
+	/* iterate template data and generate html */
 
-	const createTemplateItem = async(item)=>{
+	async iterateTemplate(tpl:any){
 
-		let template = item.value;
-		let element = await createElementOfType(template);
+		if (trace){
 
-		if (element!=false){
+			console.warn(`renderer::`+trace);
 
-			elms[item.id] = (elements[item.id]) = element;
-
-		} else {
-
-			// if debugger warning true :: console.log('false')
-
+			return;
 		}
 
+		trace++;
+
+
+		let layers = tpl;
+		let length = layers.length;
+
+		//let elements = tpl;
+		let type, style, value;
+		let pick = 0;
+		let template = null;
+
+		let elm;
+
+
+			//await console.log('elms',elms,data);
+
+			await loop(data,this.createTemplateItem);
+
+			/*
+			await loop(data,(evt)=>{
+
+				if (elms[evt.id])
+				if (elms[evt.id].renderTo)
+					elms[evt.id].renderTo.appendChild(elms[evt.id]);
+
+			});
+			*/
+
+			await loop(data,this.check);
+
+			//TODO: recursive
+			elms = templateDefer;
+			await loop([templateDefer],this.createTemplateItem);
+
+			await loop(data,this.check);
+				/*
+
+			await loop(data,(evt)=>{
+
+				if (elms2[evt.id])
+					if (elms2[evt.id].renderTo)
+						elms2[evt.id].renderTo.appendChild(elms2[evt.id]);
+			});
+			*/
+
 	}
-
-	let check = (evt) =>{
-
-		if (elms[evt.id])
-		if (elms[evt.id].renderTo)
-			elms[evt.id].renderTo.appendChild(elms[evt.id]);
-
-	}
-
-	//await console.log('elms',elms,data);
-
-	await loop(data,createTemplateItem);
-
-	/*
-	await loop(data,(evt)=>{
-
-		if (elms[evt.id])
-		if (elms[evt.id].renderTo)
-			elms[evt.id].renderTo.appendChild(elms[evt.id]);
-
-	});
-	*/
-
-	await loop(data,check);
-
-	//TODO: recursive
-	elms = templateDefer;
-	await loop([templateDefer],createTemplateItem);
-
-	await loop(data,check);
-		/*
-
-	await loop(data,(evt)=>{
-
-		if (elms2[evt.id])
-			if (elms2[evt.id].renderTo)
-				elms2[evt.id].renderTo.appendChild(elms2[evt.id]);
-	});
-	*/
 
 }
+
+
+//export {asyncRenderPipe};
+
+/*const createTemplateItem = async(item)=>{
+
+	let elm;
+	let template = item.value;
+
+	elm = document.createElement(template.type);
+	elm.style = template.style;
+	elm.value = template.value;
+
+	elements[item.id] = elm;
+
+}*/
+
+let trace = 0;
 
 export default data;

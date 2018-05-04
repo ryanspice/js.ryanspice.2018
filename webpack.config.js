@@ -56,6 +56,7 @@ module.exports = {
 	plugins:[
 		new CopyWebpackPlugin([
 	        { from: './src/index.html' },
+	        { from: './src/assets', to:'./assets/' },
 	        { from: './src/images', to:'./images/' }
 	    ]),
 		new webpack.NamedModulesPlugin(),
