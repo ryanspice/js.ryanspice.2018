@@ -1,16 +1,7 @@
 //@flow
 
-//var para = document.createElement("p");
-//var nod.  pendChild(node);
-
-//var element = document.getElementById("div1");
-//element.appendChild(para);
-
 import {default as loop} from './loop';
-//import {default as data} from '../api/data';
 import {default as data} from '../include/data';
-
-import Template from "./template";
 
 type Element = HTML5Element|null;
 
@@ -62,7 +53,7 @@ export async function asyncRenderPipe(evt:DocumentEvent){
 export class AsyncRenderPipe {
 
 	context:HTMLDocument = document;
-	template:any = Template;
+	template:any = data;
 
 	constructor(evt:DocumentEvent){
 
@@ -78,11 +69,37 @@ export class AsyncRenderPipe {
 
 	}
 
-	check(evt:any){
+	check = async (evt:any)=>{
 
 		if (elms[evt.id])
-		if (elms[evt.id].renderTo)
+		if (elms[evt.id].renderTo){
+
+			//if (typeof elms[evt.id].renderTo === "string"){
+
+
+//			if (!typeof elms[evt.id].renderTo === "string")
+	//			return;
+
+			console.log(elms[evt.id].renderTo.appendChild,typeof elms[evt.id].renderTo)
+
+			if (typeof elms[evt.id].renderTo === "string"){
+
+				console.log('fuck',elms[evt.id], document.querySelectorAll(elms[evt.id].renderTo))
+				//let el = document.querySelectorAll(elms[evt.id].renderTo);
+				//el.appendChild(elms[evt.id]);
+				elms[evt.id] = await this.createElementOfType(elms[evt.id]);
+
+
+			}
+
+
 			elms[evt.id].renderTo.appendChild(elms[evt.id]);
+			elms[evt.id] = null;
+		//}
+			//templateDefer[evt.id] = null;
+
+		}
+
 
 	}
 	/* generate a reference to the target element, or body if none */
@@ -107,7 +124,7 @@ export class AsyncRenderPipe {
 
 		let template = item.value;
 		let element = await this.createElementOfType(template);
-
+		console.log(element);
 		if (element!=false){
 
 			elms[item.id] = (elements[item.id]) = element;
@@ -129,8 +146,7 @@ export class AsyncRenderPipe {
 		const type:string = template.type;
 		const renderTo = await this.createRenderTarget(template);
 
-		elm = (await document.createElement(template.type):HTML5Element);
-
+					elm = (await document.createElement(template.type):HTML5Element);
 		switch(type){
 
 			case "style":
@@ -148,7 +164,7 @@ export class AsyncRenderPipe {
 
 		}
 
-		if (elm.renderTo=='2430'){
+		if (renderTo=='2430'){
 
 			templateDefer.push(template);
 
@@ -185,42 +201,42 @@ export class AsyncRenderPipe {
 
 		//let elements = tpl;
 		let type, style, value;
-		let pick = 0;
-		let template = null;
-
 		let elm;
 
+		await loop(data,this.createTemplateItem);
+		await loop(data,this.check);
 
-			//await console.log('elms',elms,data);
 
-			await loop(data,this.createTemplateItem);
+		elms = templateDefer;
 
-			/*
-			await loop(data,(evt)=>{
+		console.log(elms);
+		console.log(templateDefer);
+		//console.log(elms = elms.filter(e=>e===null?false:true).length);
 
-				if (elms[evt.id])
-				if (elms[evt.id].renderTo)
-					elms[evt.id].renderTo.appendChild(elms[evt.id]);
+		//TODO: recursive
+		await loop([templateDefer],this.createTemplateItem);
+		await loop(data,this.check);
 
-			});
-			*/
 
-			await loop(data,this.check);
 
-			//TODO: recursive
-			elms = templateDefer;
-			await loop([templateDefer],this.createTemplateItem);
+		elms = templateDefer;
 
-			await loop(data,this.check);
-				/*
+		console.log(elms);
+	//	console.log(elms.filter(e=>e===null?false:true).length);
 
-			await loop(data,(evt)=>{
 
-				if (elms2[evt.id])
-					if (elms2[evt.id].renderTo)
-						elms2[evt.id].renderTo.appendChild(elms2[evt.id]);
-			});
-			*/
+
+
+		//		console.log(elms.filter(e=>e===null?false:true).length);
+		/*
+
+		await loop(data,(evt)=>{
+
+			if (elms2[evt.id])
+				if (elms2[evt.id].renderTo)
+					elms2[evt.id].renderTo.appendChild(elms2[evt.id]);
+		});
+		*/
 
 	}
 

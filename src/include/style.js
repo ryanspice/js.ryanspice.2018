@@ -12,46 +12,6 @@ export default `
 
 }
 
-aside#bar {
-
-	background:black;
-	position:fIxed;
-	left:0px;
-	top:0px;
-	width:2em;
-	height:100%;
-	opacity:0.5;
-    transition: width 0.2s;
-	transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
-}
-
-aside#bar:hover {
-
-	opacity:0.8;
-	width:4em;
-    transition: width 0.2s;
-	transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
-	cursor:pointer;
-
-}
-
-aside span {
-
-	display:block;
-	width:100%;
-	height:64px;
-
-
-}
-
-aside span:hover {
-
-	outline:1px solid rgba(25,25,25,0.25);
-	display:block;
-	width:100%;
-	height:64px;
-
-}
 
 
 
