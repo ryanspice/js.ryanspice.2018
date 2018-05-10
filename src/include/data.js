@@ -52,7 +52,7 @@ export default new Array([
 		id:'secondary-view',
 		className:'hidden',
 		style:`background:transparent;`,
-		innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
+		innerHTML:`<iframe sandbox src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
 
 	},
 	{
@@ -60,7 +60,7 @@ export default new Array([
 		id:'tertiary-view',
 		className:'hidden',
 		style:`background:transparent;`,
-		innerHTML:`<iframe src="http://js.ryanspice.com/"></iframe>`
+		innerHTML:`<iframe sandbox src="http://js.ryanspice.com/"></iframe>`
 
 	},
 
@@ -166,6 +166,7 @@ export default new Array([
 
 	{
 		type:`span`,
+		style:`max-width:48px`,
 		renderTo:'#secondary-column',
 		innerHTML:`<i class="menu" data-feather="map"></i><input class="hidden"></input>`,
 		onclick:(evt)=>{
@@ -187,7 +188,7 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		style:`background:black;`,
+		style:`background:black;overflow:hidden;max-height:48px;`,
 		innerHTML:`<i class="menu" data-feather="layers"></i>
 			<h5 onclick="event.stopPropagation()" >ROOM</h5>
 			<h5 onclick="event.stopPropagation()" >OBJECT</h5>
