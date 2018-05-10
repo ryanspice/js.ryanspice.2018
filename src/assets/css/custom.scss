@@ -1,5 +1,5 @@
 $icon-size: 48px;
-$secondary-column-width: 256px;
+$secondary-column-width: 420px;
 
 $black: rgba(25,25,25,1);
 
@@ -43,8 +43,14 @@ width:0px;
 
 	display:none;
 }
+
+
 html,body, aside {
 
+	background:rgba(125,125,125,1);
+	background:white;
+	color:rgba(255,255,255,0.85);
+	color:black;
 	min-height:494px;
 
 }
@@ -63,6 +69,16 @@ view{
 
 }
 
+iframe {
+
+	width:100%;
+	height:100%;
+	border:none;
+	ouutline:none;
+
+}
+
+
 #hamburger {
 
 max-width:$icon-size;
@@ -72,7 +88,7 @@ background:$black;
 
 #scroll {
 
-background:purple;
+//background:purple;
 min-height:14rem;
 //overflow:hidden;
 overflow-x: hidden;
@@ -125,10 +141,11 @@ aside{
 		position:absolute;
 
 		height:$icon-size;
-		left:$icon-size*1.1;
+		left:$icon-size*1.01;
+		line-height:0px;
 		width:$icon-size;
-					background:transparent !important;
-					border:none;
+		background:transparent !important;
+		border:none;
 
 	}
 	input:focus {
@@ -144,7 +161,6 @@ aside{
 		line-height:64px;
 		margin:0px;
 	}
-
 	span span i, span span svg {
 
 		pointer-events: none;
@@ -171,9 +187,20 @@ aside{
 		top:0px;
 		width:$icon-size;
 
-		&.expand {
-			width:256px;
+		span h5:not(.expand),
+		span svg:not(.expand):nth-of-type(4n+2) {
+			display:none;
 		}
+
+		&.expand {
+			width:$secondary-column-width;
+
+			span h5:not(.expand),
+			span svg:not(.expand):nth-of-type(4n+2) {
+				display:block;
+			}
+		}
+
 		height:100%;
 		//opacity:0.5;
 	    transition: width 0.2s;
@@ -231,8 +258,34 @@ aside{
 
 aside span {
 
-	background:rgba(125,125,125,0.25);
-	background:red;
+	h5 {
+
+		padding: 10px 0;
+		float:left;
+		padding:10px;
+
+		&:hover {
+
+
+			transition: all 0.2s;
+			transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
+			opacity:1;
+			-webkit-filter: drop-shadow( -0px -0px 7px #FFF );
+  		filter: drop-shadow( -0px -0px 7px #FFF );
+
+		}
+
+	}
+
+	span {
+
+		background: transparent;
+		//max-width:$icon-size;
+	}
+
+	//background:rgba(125,125,125,0.25);
+	background:rgba(25,25,25,1);
+	//background:red;
 
 	color:white;
 	display:block;

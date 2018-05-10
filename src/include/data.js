@@ -8,6 +8,32 @@ import {default as loop} from '../render/loop';
 
 import {default as css} from "./style.js";
 
+const switchView = (str,str2)=>{
+
+	document.getElementById(str).classList.toggle('hidden');
+	document.getElementById(str2).classList.toggle('hidden');
+
+};
+
+const toggleExpand = (evt)=>{
+
+	let data = Array.from(document.querySelectorAll('.highlight'));
+	let column = document.querySelectorAll('#secondary-column')[0];
+	let view = document.querySelectorAll('view')[0];
+
+	loop([data],elm=>{
+		console.log(elm.value.className = "");
+	});
+
+	if (evt){
+
+		evt.toElement.className = "highlight";
+		column.classList.toggle("expand");
+
+	}
+
+};
+
 export default new Array([
 
 	{
@@ -24,7 +50,17 @@ export default new Array([
 	{
 		type:`view`,
 		id:'secondary-view',
+		className:'hidden',
 		style:`background:transparent;`,
+		innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
+
+	},
+	{
+		type:`view`,
+		id:'tertiary-view',
+		className:'hidden',
+		style:`background:transparent;`,
+		innerHTML:`<iframe src="http://js.ryanspice.com/"></iframe>`
 
 	},
 
@@ -116,25 +152,7 @@ export default new Array([
 		className:`noselect`,
 		style:`font-size:2rem`,
 		value:`123wds`,
-		onclick:(evt)=>{
-
-			let data = Array.from(document.querySelectorAll('.highlight'));
-			let column = document.querySelectorAll('#secondary-column')[0];
-			let view = document.querySelectorAll('view')[0];
-
-			loop([data],elm=>{
-				console.log(elm.value.className = "");
-			});
-
-			if (evt){
-			evt.toElement.className = "highlight";
-
-
-			column.classList.toggle("expand");
-			//console.log(evt);
-			}
-
-		}
+		onclick:toggleExpand
 	},
 	{
 		type:`span`,
@@ -149,12 +167,20 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		innerHTML:`<i class="menu" data-feather="map"></i><input></input>`
+		innerHTML:`<i class="menu" data-feather="map"></i><input class="hidden"></input>`,
+		onclick:(evt)=>{
+			console.log('eh', switchView);
+		evt.stopPropagation();
+			//toggleExpand(evt);
+			switchView('primary-view', 'secondary-view');
+
+		}
 	},
 
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
+		className:`hidden`,
 		innerHTML:`<i class="menu" data-feather="layers"></i>`
 	},
 
@@ -162,7 +188,12 @@ export default new Array([
 		type:`span`,
 		renderTo:'#secondary-column',
 		style:`background:black;`,
-		innerHTML:`<i class="menu" data-feather="plus"></i>`
+		innerHTML:`<i class="menu" data-feather="layers"></i>
+			<h5 onclick="event.stopPropagation()" >ROOM</h5>
+			<h5 onclick="event.stopPropagation()" >OBJECT</h5>
+			<h5 onclick="event.stopPropagation()" >TILE</h5>
+			<h5 onclick="event.stopPropagation()" >BACKGROUND</h5>
+			`
 	},
 
 	{
@@ -171,34 +202,37 @@ export default new Array([
 		style:``,
 		renderTo:'#secondary-column',
 		innerHTML:`
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style=""><i class="menu" data-feather="file"></i>
+				<h5 onclick="event.stopPropagation()" >ROOM</h5></span>
 
 			`
 	},
 
 	{
 		type:`span`,
-		style:`background:green;`,
 		renderTo:'#scroll',
 		innerHTML:`<i class="menu" data-feather="file"></i>`,
 		//onclick:`console.log('eh')`
 	},
 
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		class:``,
-		style:`position:absolute;bottom:96px;`,
-		innerHTML:`<i class="menu" data-feather="book"></i>`
-	},
 
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
+		style:`position:absolute;bottom:96px;max-width:48px;`,
+		innerHTML:`<i class="menu" data-feather="book"></i>`,
+		onclick:(evt)=>{
+		evt.stopPropagation();
+			//toggleExpand(evt);
+			switchView('primary-view', 'tertiary-view');
+
+		}
+	},
+	{
+		type:`span`,
+		renderTo:'#secondary-column',
 		class:``,
-		style:`position:absolute;bottom:48px;`,
+		style:`position:absolute;bottom:48px;max-width:48px;`,
 		innerHTML:`<i class="menu" data-feather="play"></i>`
 	},
 
@@ -206,7 +240,7 @@ export default new Array([
 		type:`span`,
 		renderTo:'#secondary-column',
 		class:``,
-		style:`position:absolute;bottom:0em;`,
+		style:`position:absolute;bottom:0em;max-width:48px;`,
 		innerHTML:`<i class="menu" data-feather="settings"></i>`
 	},
 

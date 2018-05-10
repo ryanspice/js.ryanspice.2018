@@ -22,7 +22,7 @@ context.onreadystatechange = async function(evt){
 	await FeatherIcons.replace();
 
 	document.body.onresize = async ()=>{
-		document.getElementById('scroll').style.height = (window.innerHeight - (48*7)) + "px";
+		document.getElementById('scroll').style.height = (window.innerHeight - (48*6)) + "px";
 
 	};
 	await document.body.onresize();
