@@ -5,9 +5,8 @@
 	"private": true,
 	"author": "Ryan Tyler Spice-Finnie",
 	"scripts": {
-    "💥": "rm -rf node_modules && rm -rf dist && yarn && yarn dev",
+		"💥": "rm -rf node_modules && rm -rf dist && yarn && yarn dev",
 		"dev": "webpack-dev-server",
-
 		"watch": "webpack --watch",
 		"dash": "webpack-dashboard -- webpack-dev-server",
 		"prod": "webpack"
@@ -24,6 +23,8 @@
 		"bootstrap.native": "^2.0.22",
 		"copy-webpack-plugin": "^4.5.1",
 		"css-loader": "^0.28.11",
+		"feather-icons": "^4.7.0",
+		"flow-bin": "^0.71.0",
 		"flow-runtime": "^0.17.0",
 		"flow-runtime-cli": "^0.17.0",
 		"node-sass": "^4.9.0",
@@ -38,7 +39,6 @@
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
 		"babel-preset-flow": "^6.23.0",
-		"bootstrap.native-loader": "^1.0.7",
-		"flow-bin": "^0.71.0"
+		"bootstrap.native-loader": "^1.0.7"
 	}
 }

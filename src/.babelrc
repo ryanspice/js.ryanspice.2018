@@ -1,16 +1,16 @@
 {
   "presets": [
-		[
+  	"flow",
+	[
 			"env", {
 			"modules": false,
 			"targets": {
 				"browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
 				}
 			}
-		],
-		"flow",
-		"stage-2"
 	],
+	"stage-2"
+],
   "plugins": [
     "transform-decorators-legacy",
     ["flow-runtime", {
