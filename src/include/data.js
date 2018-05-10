@@ -23,7 +23,6 @@ export default new Array([
 	{
 		type:`view`,
 		id:'secondary-view',
-		className:`hidden`,
 		style:`background:transparent;`,
 
 	},
@@ -91,7 +90,7 @@ export default new Array([
 	{
 		type:`aside`,
 		id:'primary-column',
-		className:`noselect`,
+		className:`noselect hidden`,
 		style:``,
 		value:`123wds`
 	},
@@ -140,7 +139,36 @@ export default new Array([
 		id:`scroll`,
 		style:``,
 		renderTo:'#secondary-column',
-		innerHTML:``,
+		innerHTML:`
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
+			`,
 		onclick:`console.log('eh')`
 	},
 
@@ -149,7 +177,7 @@ export default new Array([
 		style:`background:green;`,
 		renderTo:'#scroll',
 		innerHTML:`<i class="menu" data-feather="file"></i>`,
-		onclick:`console.log('eh')`
+		//onclick:`console.log('eh')`
 	},
 
 	{

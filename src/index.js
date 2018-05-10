@@ -23,6 +23,7 @@ context.onreadystatechange = async function(evt){
 
 	document.body.onresize = async ()=>{
 		document.getElementById('scroll').style.height = (window.innerHeight - (62.5*5)) + "px";
+
 	};
 	await document.body.onresize();
 
