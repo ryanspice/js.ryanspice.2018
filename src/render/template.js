@@ -161,8 +161,14 @@ export class AsyncRenderPipe {
 
 			default:
 
-				//if (template.onclick)
-				elm.onclick = (evt)=>{evt.stopPropagation(); console.log(template);  template.onclick(); return false;};
+				if (template.onclick)
+					elm.addEventListener('click',(evt)=>{
+						evt.stopPropagation();
+						if (typeof template.onclick == 'function'){
+							template.onclick();}
+							else{
+						eval(template.onclick);}
+					});
 				elm.style = template.style;
 				elm.value = template.value;
 				elm.renderTo = renderTo; //await createRenderTarget(template);

@@ -3,6 +3,7 @@
 //var css = require("style-loader??css-loader??./style.scss");
 //var css = require("./style.js");
 
+import {default as loop} from '../render/loop';
 //console.log(css);
 
 import {default as css} from "./style.js";
@@ -25,6 +26,19 @@ export default new Array([
 		id:'secondary-view',
 		style:`background:transparent;`,
 
+	},
+
+
+	{
+		type:`breadcrumbs`,
+		renderTo:`#primary-view`,
+		style:`background:transparent;`,
+		innerHTML:`<ul class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Pictures</a></li>
+  <li><a href="#">Summer 15</a></li>
+  <li>Italy</li>
+</ul>`
 	},
 
 	{
@@ -87,6 +101,8 @@ export default new Array([
 `
 	},
 
+	//Columns
+
 	{
 		type:`aside`,
 		id:'primary-column',
@@ -99,25 +115,33 @@ export default new Array([
 		id:'secondary-column',
 		className:`noselect`,
 		style:`font-size:2rem`,
-		value:`123wds`
-	},
-	{
-		type:`search`,
-		style:`font-size:2rem`,
-		value:`123wds`
-	},
-	{
-		type:`input`,
-		renderTo:`search`,
-		style:`font-size:2rem`,
-		value:`123wds`
+		value:`123wds`,
+		onclick:(evt)=>{
+
+			let data = Array.from(document.querySelectorAll('.highlight'));
+			let column = document.querySelectorAll('#secondary-column')[0];
+			let view = document.querySelectorAll('view')[0];
+
+			loop([data],elm=>{
+				console.log(elm.value.className = "");
+			});
+
+			if (evt){
+			evt.toElement.className = "highlight";
+
+
+			column.classList.toggle("expand");
+			//console.log(evt);
+			}
+
+		}
 	},
 	{
 		type:`span`,
-		id:`test-blue`,
+		id:`hamburger`,
 		renderTo:'#secondary-column',
 		className:``,
-		style:`background:blue;text-align:center;line-height:64px;color:white;`,
+		style:`text-align:center;line-height:64px;color:white;`,
 		value:`32`,
 		innerHTML:`<i class="menu" data-feather="menu"></i>`
 	},
@@ -125,13 +149,20 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		innerHTML:`<i class="menu" data-feather="map"></i>`
+		innerHTML:`<i class="menu" data-feather="map"></i><input></input>`
 	},
 
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
 		innerHTML:`<i class="menu" data-feather="layers"></i>`
+	},
+
+	{
+		type:`span`,
+		renderTo:'#secondary-column',
+		style:`background:black;`,
+		innerHTML:`<i class="menu" data-feather="plus"></i>`
 	},
 
 	{
@@ -143,33 +174,8 @@ export default new Array([
 			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
 			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
 			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			<span style="background: green;"><i class="menu" data-feather="file"></i></span>
-			`,
-		onclick:`console.log('eh')`
+
+			`
 	},
 
 	{
@@ -184,7 +190,7 @@ export default new Array([
 		type:`span`,
 		renderTo:'#secondary-column',
 		class:``,
-		style:`position:absolute;bottom:4em;`,
+		style:`position:absolute;bottom:96px;`,
 		innerHTML:`<i class="menu" data-feather="book"></i>`
 	},
 
@@ -192,7 +198,7 @@ export default new Array([
 		type:`span`,
 		renderTo:'#secondary-column',
 		class:``,
-		style:`position:absolute;bottom:2em;`,
+		style:`position:absolute;bottom:48px;`,
 		innerHTML:`<i class="menu" data-feather="play"></i>`
 	},
 
@@ -204,4 +210,15 @@ export default new Array([
 		innerHTML:`<i class="menu" data-feather="settings"></i>`
 	},
 
+	{
+		type:`search`,
+		style:`font-size:2rem`,
+		value:`123wds`
+	},
+	{
+		type:`input`,
+		renderTo:`search`,
+		style:`font-size:2rem`,
+		value:`123wds`
+	}
 ]);

@@ -1,4 +1,7 @@
-$icon-size: 2em;
+$icon-size: 48px;
+$secondary-column-width: 256px;
+
+$black: rgba(25,25,25,1);
 
 *:hover {
 
@@ -31,7 +34,10 @@ width:0px;
 }
 
 
-
+.highlight:not(#scroll) {
+	opacity:1 !important;
+	border:1px solid white;
+}
 
 .hidden{
 
@@ -41,6 +47,8 @@ html,body, aside {
 
 	min-height:494px;
 
+}
+html,body {
 
 }
 
@@ -53,6 +61,13 @@ view{
 	display:block;
 	background:rgba(25,25,25,0.25);
 
+}
+
+#hamburger {
+
+max-width:$icon-size;
+background:transparent;
+background:$black;
 }
 
 #scroll {
@@ -98,14 +113,54 @@ aside{
 	.menu {
 
 		float:left;
-		margin:5px;
-		margin-left:14px;
-		margin-top:0.5em;
+		//margin:0px;
+		margin:$icon-size/5;
+		//margin-top:0.5em;
+		pointer-events: none;
 
 	}
 
+	input {
+		display:none;
+		position:absolute;
+
+		height:$icon-size;
+		left:$icon-size*1.1;
+		width:$icon-size;
+					background:transparent !important;
+					border:none;
+
+	}
+	input:focus {
 
 
+		width:$icon-size*2;
+		//width:100%;
+		background:transparent !important;
+	}
+
+	span p{
+		display:none;
+		line-height:64px;
+		margin:0px;
+	}
+
+	span span i, span span svg {
+
+		pointer-events: none;
+	}
+
+	span span:hover {
+		width:$secondary-column-width;
+		svg {
+
+
+			&:not(.feather-menu){
+				//width:$icon-size;
+			}
+
+		}
+	}
 
 	&#primary-column,
 	&#secondary-column {
@@ -114,24 +169,45 @@ aside{
 		position:fIxed;
 		left:0px;
 		top:0px;
-		width:2em;
+		width:$icon-size;
+
+		&.expand {
+			width:256px;
+		}
 		height:100%;
-		opacity:0.5;
+		//opacity:0.5;
 	    transition: width 0.2s;
 	    transition: opacity 0.2s;
 		transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 
 
+		background:transparent;
+	}
+
+
+	&#primary:hover,
+	&#secondary-column:hover {
+
+		input {
+			display:block;
+			width:$icon-size*4.25;
+		}
+
+		span p{
+			display:block;
+			line-height:0px;
+			margin:0px;
+		}
+
 	}
 	&#secondary-column:hover {
 
-
-	opacity:1;
-	//width:4em;
-	transition: opacity 0.2s;
-    transition: width 0.2s;
-	transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
-	cursor:pointer;
+		opacity:1;
+		//width:$secondary-column-width;
+		transition: opacity 0.2s;
+		transition: width 0.2s;
+		transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
+		cursor:pointer;
 
 	}
 
@@ -142,7 +218,6 @@ aside{
 		font-size:2rem
 	}
 	&#primary-column:hover	{
-
 
 		opacity:1;
 		//width:8em;
@@ -166,20 +241,19 @@ aside span {
 
 	//>svg {
 
-	    transition: all 0.2s;
+		transition: all 0.2s;
 		transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 		opacity:0.8;
-		   -webkit-filter: none;
-            filter: none;
-
+		-webkit-filter: none;
+		filter: none;
 
 		&:hover{
 
-		    transition: all 0.2s;
+			transition: all 0.2s;
 			transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 			opacity:1;
-   			-webkit-filter: drop-shadow( -0px -0px 7px #000 );
-            filter: drop-shadow( -0px -0px 7px #000 );
+			-webkit-filter: drop-shadow( -0px -0px 7px #000 );
+  		filter: drop-shadow( -0px -0px 7px #000 );
 		}
 
 		&:active{
@@ -187,30 +261,38 @@ aside span {
 			transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 			opacity:0.9;
 		}
+
+
+
 	//}
 
 	>svg {
 
-	    transition: all 0.2s;
+		transition: all 0.2s;
 		transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 		opacity:0.8;
-		   -webkit-filter: none;
-            filter: none;
+		-webkit-filter: none;
+		filter: none;
 
 		&:hover{
 
-		    transition: all 0.2s;
+			transition: all 0.2s;
 			transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 			opacity:1;
-   			-webkit-filter: drop-shadow( -0px -0px 5px #666 );
-            filter: drop-shadow( -0px -0px 5px #666 );
+			-webkit-filter: drop-shadow( -0px -0px 5px #666 );
+			filter: drop-shadow( -0px -0px 5px #666 );
+
 		}
+
 		&:active{
 
 			transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 			opacity:0.9;
+
 		}
+
 	}
+
 }
 
 aside span:hover {
