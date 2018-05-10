@@ -7,4 +7,13 @@ require(`./assets/css/global.scss`);
 import * as Template from "./render/template";
 
 const context:HTMLDocument = document;
+
 context.onreadystatechange = evt => new Template.AsyncRenderPipe(evt);
+
+setTimeout(()=>{
+
+const FeatherIcons = require('feather-icons');
+FeatherIcons.replace();
+
+
+},400)

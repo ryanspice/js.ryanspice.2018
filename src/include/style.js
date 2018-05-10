@@ -6,11 +6,6 @@ export default `
 
 /* ryanspice renderer */
 
-* {
-
-	background:rgba(25,25,25,0.05);
-
-}
 
 
 
