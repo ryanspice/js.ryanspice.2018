@@ -2,18 +2,29 @@
 
 //import * as bootstrap from 'bootstrap.native/dist/bootstrap-native-v4';
 
-require(`./assets/css/global.scss`);
-
 import * as Template from "./render/template";
+
+require(`./assets/css/global.scss`);
 
 const context:HTMLDocument = document;
 
-context.onreadystatechange = evt => new Template.AsyncRenderPipe(evt);
+let template;
+let state = 0;
+context.onreadystatechange = async function(evt){
 
-setTimeout(()=>{
+	if (state==0)
+	template = await new Template.AsyncRenderPipe(evt);
 
-const FeatherIcons = require('feather-icons');
-FeatherIcons.replace();
+	console.log(template)
+	if (state==1)
+		return;
+	const FeatherIcons = await require('feather-icons');
+	await FeatherIcons.replace();
 
+	document.body.onresize = async ()=>{
+		document.getElementById('scroll').style.height = (window.innerHeight - (62.5*5)) + "px";
+	};
+	await document.body.onresize();
 
-},400)
+	state++;
+};

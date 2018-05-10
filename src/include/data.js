@@ -124,13 +124,6 @@ export default new Array([
 	},
 
 	{
-		type:`div`,
-		renderTo:'#test-blue',
-		class:``,
-		style:`background:green;color:limegreen`,
-		value:`10`
-	},
-	{
 		type:`span`,
 		renderTo:'#secondary-column',
 		innerHTML:`<i class="menu" data-feather="map"></i>`
@@ -140,6 +133,23 @@ export default new Array([
 		type:`span`,
 		renderTo:'#secondary-column',
 		innerHTML:`<i class="menu" data-feather="layers"></i>`
+	},
+
+	{
+		type:`span`,
+		id:`scroll`,
+		style:``,
+		renderTo:'#secondary-column',
+		innerHTML:``,
+		onclick:`console.log('eh')`
+	},
+
+	{
+		type:`span`,
+		style:`background:green;`,
+		renderTo:'#scroll',
+		innerHTML:`<i class="menu" data-feather="file"></i>`,
+		onclick:`console.log('eh')`
 	},
 
 	{

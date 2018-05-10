@@ -10,6 +10,9 @@ const templatePicks = [
 	'value',
 	'class',
 	'className',
+	'onclick',
+	'click',
+	'onresize',
 	`innerHTML`
 ];
 
@@ -158,6 +161,8 @@ export class AsyncRenderPipe {
 
 			default:
 
+				//if (template.onclick)
+				elm.onclick = (evt)=>{evt.stopPropagation(); console.log(template);  template.onclick(); return false;};
 				elm.style = template.style;
 				elm.value = template.value;
 				elm.renderTo = renderTo; //await createRenderTarget(template);

@@ -8,7 +8,7 @@ $icon-size: 2em;
 
 html,body, aside {
 
-	min-height:320px;
+	min-height:494px;
 }
 
 view{
@@ -19,6 +19,13 @@ view{
 	margin-left:8.5rem;
 	display:block;
 	background:rgba(25,25,25,0.25);
+
+}
+
+#scroll {
+
+background:purple;
+min-height:14rem;
 
 }
 /*
