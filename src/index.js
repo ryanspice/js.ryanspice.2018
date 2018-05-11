@@ -6,6 +6,7 @@ import * as Template from "./render/template";
 
 require(`./assets/css/global.scss`);
 
+const FeatherIcons = require('feather-icons');
 const context:HTMLDocument = document;
 
 let template;
@@ -18,11 +19,10 @@ context.onreadystatechange = async function(evt){
 	console.log(template)
 	if (state==1)
 		return;
-	const FeatherIcons = await require('feather-icons');
-	await FeatherIcons.replace();
 
 	document.body.onresize = async ()=>{
 		document.getElementById('scroll').style.height = (window.innerHeight - (48*6)) + "px";
+		await FeatherIcons.replace();
 
 	};
 	await document.body.onresize();

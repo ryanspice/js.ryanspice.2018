@@ -34,41 +34,112 @@ const toggleExpand = (evt)=>{
 
 };
 
+
+class Controller {
+
+	_column;
+
+	views:Array<any> = [
+		{
+			link:this,
+			type:`view`,
+			id:'primary-view',
+			style:`background:transparent;`,
+			onclick:()=>{
+				controller.clearColumn();
+				//controller.each(e=>e.value.classList.add('hidden'));
+			},
+			value:`123wds`
+		},
+
+		{
+			link:this,
+			type:`view`,
+			id:'secondary-view',
+			className:'hidden',
+			style:`background:transparent;`,
+			innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
+
+		},
+		{
+			link:this,
+			type:`view`,
+			id:'tertiary-view',
+			className:'hidden',
+			style:`background:transparent;`,
+			innerHTML:`<iframe sandbox src="http://js.ryanspice.com/"></iframe>`
+
+		},
+		{
+			link:this,
+			type:`view`,
+			id:'settings-view',
+			className:'hidden',
+			style:`background:transparent;`,
+			innerHTML:`settings`
+
+		}
+	]
+
+	clearColumn = ()=>{
+
+		if (!this._column)
+			this._column = document.querySelectorAll('#secondary-column')[0];
+
+		this._column.classList.remove("expand");
+
+	}
+
+	each = (f)=>{
+
+		let data = Array.from(document.querySelectorAll('view'));
+
+		loop([data],elm=>{
+			f(elm);
+		});
+	}
+
+	goTo = (str) => {
+
+		controller.each(e=>{
+			console.log(e.value.id==str+'-view')
+			if (e.value.id==str+'-view')
+			e.value.classList.remove('hidden');
+			else
+			e.value.classList.add('hidden');
+
+		});
+		//document.getElementById(str+'-view').classList.remove('hidden');
+		//console.log()
+		/*
+		controller.each(e=>e.id=="#settings-view"?e.classList.add('show'):e.classList.add('hidden'));
+		*/
+		/*
+		let data = Array.from(document.querySelectorAll('#'+str+'-view'));
+		loop([data],elm=>{
+			elm.value.classList.toggle('hidden');
+		});
+		*/
+
+	}
+
+}
+
+const controller = new Controller();
+
 export default new Array([
 
 	{
 		type:`style`,
 		value:css
 	},
-	{
-		type:`view`,
-		id:'primary-view',
-		style:`background:transparent;`,
-		value:`123wds`
-	},
-
-	{
-		type:`view`,
-		id:'secondary-view',
-		className:'hidden',
-		style:`background:transparent;`,
-		innerHTML:`<iframe sandbox src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
-
-	},
-	{
-		type:`view`,
-		id:'tertiary-view',
-		className:'hidden',
-		style:`background:transparent;`,
-		innerHTML:`<iframe sandbox src="http://js.ryanspice.com/"></iframe>`
-
-	},
+	...controller.views,
 
 
 	{
 		type:`breadcrumbs`,
 		renderTo:`#primary-view`,
-		style:`background:transparent;`,
+		style:`background:transparent;display:none`,
 		innerHTML:`<ul class="breadcrumb">
   <li><a href="#">Home</a></li>
   <li><a href="#">Pictures</a></li>
@@ -90,7 +161,7 @@ export default new Array([
 		renderTo:`#primary-view`,
 		id:`page-home`,
 		style:`background:transparent;`,
-		innerHTML:`<h2>Hello World</h2>`
+		innerHTML:`<h2>SpiceJS 0.9.0</h2>`
 	},
 
 	{
@@ -170,10 +241,10 @@ export default new Array([
 		renderTo:'#secondary-column',
 		innerHTML:`<i class="menu" data-feather="map"></i><input class="hidden"></input>`,
 		onclick:(evt)=>{
-			console.log('eh', switchView);
-		evt.stopPropagation();
+
+			evt.stopPropagation();
 			//toggleExpand(evt);
-			switchView('primary-view', 'secondary-view');
+			controller.goTo('primary')
 
 		}
 	},
@@ -223,9 +294,11 @@ export default new Array([
 		style:`position:absolute;bottom:96px;max-width:48px;`,
 		innerHTML:`<i class="menu" data-feather="book"></i>`,
 		onclick:(evt)=>{
-		evt.stopPropagation();
+
+	if (evt)
+			evt.stopPropagation();
 			//toggleExpand(evt);
-			switchView('primary-view', 'tertiary-view');
+			controller.goTo('tertiary')
 
 		}
 	},
@@ -234,7 +307,14 @@ export default new Array([
 		renderTo:'#secondary-column',
 		class:``,
 		style:`position:absolute;bottom:48px;max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="play"></i>`
+		innerHTML:`<i class="menu" data-feather="play"></i>`,
+		onclick:(evt)=>{
+			if (evt)
+			evt.stopPropagation();
+			controller.goTo('secondary')
+			//toggleExpand(evt);
+
+		}
 	},
 
 	{
@@ -242,7 +322,12 @@ export default new Array([
 		renderTo:'#secondary-column',
 		class:``,
 		style:`position:absolute;bottom:0em;max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="settings"></i>`
+		innerHTML:`<i class="menu" data-feather="settings"></i>`,
+		onclick:(evt)=>{
+			if (evt)
+			evt.stopPropagation();
+			controller.goTo('settings')
+		}
 	},
 
 	{

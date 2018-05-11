@@ -83,11 +83,11 @@ export class AsyncRenderPipe {
 //			if (!typeof elms[evt.id].renderTo === "string")
 	//			return;
 
-			console.log(elms[evt.id].renderTo.appendChild,typeof elms[evt.id].renderTo)
+			//console.log(elms[evt.id].renderTo.appendChild,typeof elms[evt.id].renderTo)
 
 			if (typeof elms[evt.id].renderTo === "string"){
 
-				console.log('fuck',elms[evt.id], document.querySelectorAll(elms[evt.id].renderTo))
+				//console.log('fuck',elms[evt.id], document.querySelectorAll(elms[evt.id].renderTo))
 				//let el = document.querySelectorAll(elms[evt.id].renderTo);
 				//el.appendChild(elms[evt.id]);
 				elms[evt.id] = await this.createElementOfType(elms[evt.id]);
@@ -127,7 +127,7 @@ export class AsyncRenderPipe {
 
 		let template = item.value;
 		let element = await this.createElementOfType(template);
-		console.log(element);
+		//console.log(element);
 		if (element!=false){
 
 			elms[item.id] = (elements[item.id]) = element;
@@ -161,7 +161,9 @@ export class AsyncRenderPipe {
 
 			default:
 
-				if (template.onclick)
+				if (template.onclick){
+					/*
+					elm.removeEventListener('click');
 					elm.addEventListener('click',(evt)=>{
 						evt.stopPropagation();
 						if (typeof template.onclick == 'function'){
@@ -169,6 +171,15 @@ export class AsyncRenderPipe {
 							else{
 						eval(template.onclick);}
 					});
+					*/
+					elm.onclick = (evt)=>{
+						evt.stopPropagation();
+						if (typeof template.onclick == 'function'){
+							template.onclick();}
+							else{
+						eval(template.onclick);}
+					};
+				}
 				elm.style = template.style;
 				elm.value = template.value;
 				elm.renderTo = renderTo; //await createRenderTarget(template);
@@ -199,7 +210,7 @@ export class AsyncRenderPipe {
 
 		if (trace){
 
-			console.warn(`renderer::`+trace);
+			//console.warn(`renderer::`+trace);
 
 			return;
 		}
@@ -220,10 +231,6 @@ export class AsyncRenderPipe {
 
 		elms = templateDefer;
 
-		console.log(elms);
-		console.log(templateDefer);
-		//console.log(elms = elms.filter(e=>e===null?false:true).length);
-
 		//TODO: recursive
 		await loop([templateDefer],this.createTemplateItem);
 		await loop(data,this.check);
@@ -232,42 +239,9 @@ export class AsyncRenderPipe {
 
 		elms = templateDefer;
 
-		console.log(elms);
-	//	console.log(elms.filter(e=>e===null?false:true).length);
-
-
-
-
-		//		console.log(elms.filter(e=>e===null?false:true).length);
-		/*
-
-		await loop(data,(evt)=>{
-
-			if (elms2[evt.id])
-				if (elms2[evt.id].renderTo)
-					elms2[evt.id].renderTo.appendChild(elms2[evt.id]);
-		});
-		*/
-
 	}
 
 }
-
-
-//export {asyncRenderPipe};
-
-/*const createTemplateItem = async(item)=>{
-
-	let elm;
-	let template = item.value;
-
-	elm = document.createElement(template.type);
-	elm.style = template.style;
-	elm.value = template.value;
-
-	elements[item.id] = elm;
-
-}*/
 
 let trace = 0;
 
