@@ -43,8 +43,14 @@ class ViewSettings {
 			type:`view`,
 			id:'settings-view',
 			className:'slide',
-			style:`background:rgba(25,25,25,0.25);`,
-			innerHTML:`settings`,
+			style:`background:transparent;margin-top:10%;`,
+			innerHTML:`<center>
+				<i class="menu" data-feather="sliders" style="margin:125px;transform:scale(5);transform-origin:center;"></i>
+				<i class="menu" data-feather="activity" style="margin:125px;transform:scale(5);transform-origin:center;"></i>
+				<br/>
+								<i class="menu" data-feather="archive" style="margin:125px;transform:scale(5);transform-origin:center;"></i>
+								<i class="menu" data-feather="bookmark" style="margin:125px;transform:scale(5);transform-origin:center;"></i>
+			</center>`,
 			onclick:this.click
 		}
 
@@ -160,7 +166,7 @@ export default new Array([
 		type:`ribbon`,
 		renderTo:`#primary-view`,
 		style:``,
-		innerHTML:`<h4>untitled</h4>`
+		innerHTML:`<h3>untitled</h3>`
 	},
 
 
