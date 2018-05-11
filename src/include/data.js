@@ -34,6 +34,28 @@ const toggleExpand = (evt)=>{
 
 };
 
+class ViewSettings {
+
+	constructor(ref){
+
+		return {
+			link:this,
+			type:`view`,
+			id:'settings-view',
+			className:'slide',
+			style:`background:rgba(25,25,25,0.25);`,
+			innerHTML:`settings`,
+			onclick:this.click
+		}
+
+	}
+
+	click(){
+
+
+	}
+
+}
 
 class Controller {
 
@@ -44,9 +66,15 @@ class Controller {
 			link:this,
 			type:`view`,
 			id:'primary-view',
+			className:'slide',
 			style:`background:transparent;`,
 			onclick:()=>{
 				controller.clearColumn();
+					let data = Array.from(document.querySelectorAll('.highlight'));
+						loop([data],elm=>{
+							console.log(elm.value.className = "");
+						});
+
 				//controller.each(e=>e.value.classList.add('hidden'));
 			},
 			value:`123wds`
@@ -56,7 +84,7 @@ class Controller {
 			link:this,
 			type:`view`,
 			id:'secondary-view',
-			className:'hidden',
+			className:'slide',
 			style:`background:transparent;`,
 			innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
 
@@ -65,20 +93,12 @@ class Controller {
 			link:this,
 			type:`view`,
 			id:'tertiary-view',
-			className:'hidden',
+			className:'slide',
 			style:`background:transparent;`,
 			innerHTML:`<iframe sandbox src="http://js.ryanspice.com/"></iframe>`
 
 		},
-		{
-			link:this,
-			type:`view`,
-			id:'settings-view',
-			className:'hidden',
-			style:`background:transparent;`,
-			innerHTML:`settings`
-
-		}
+		new ViewSettings(this)
 	]
 
 	clearColumn = ()=>{
@@ -104,9 +124,9 @@ class Controller {
 		controller.each(e=>{
 			console.log(e.value.id==str+'-view')
 			if (e.value.id==str+'-view')
-			e.value.classList.remove('hidden');
+			e.value.classList.remove('slide');
 			else
-			e.value.classList.add('hidden');
+			e.value.classList.add('slide');
 
 		});
 		//document.getElementById(str+'-view').classList.remove('hidden');
@@ -126,7 +146,7 @@ class Controller {
 }
 
 const controller = new Controller();
-
+window.controller = controller;
 export default new Array([
 
 	{
@@ -159,54 +179,34 @@ export default new Array([
 	{
 		type:`section`,
 		renderTo:`#primary-view`,
-		id:`page-home`,
-		style:`background:transparent;`,
-		innerHTML:`<h2>SpiceJS 0.9.0</h2>`
-	},
-
-	{
-		type:`section`,
-		renderTo:`#primary-view`,
 		id:`page-home-test`,
-		style:``,
-		innerHTML:`<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. </p>
+		style:`margin:64px;`,
+		innerHTML:`<h2>SpiceJS 0.9.0</h2><div id="contentMiddle" style=" opacity: 10;">
 
-<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit</i>. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. <b>Vestibulum lacinia arcu eget nulla</b>. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit</i>. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. </p>
+            <div id="sideBar">
+                <h6></h6><br>
+                <p class="sideBarNav">home</p>
+                <p class="sideBarNav">documentation</p>
+                <p class="sideBarNav">about </p>
+                <p class="sideBarNav">develop </p>
+                <p class="sideBarNav">publish </p>
+                <p class="sideBarNav">community </p>
+                <p class="sideBarNav">download</p>
+            </div>
 
-<p><b>Aenean quam</b>. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. <b>Sed dignissim lacinia nunc</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. <b>Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa</b>. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. </p>
+            <p>
+                </p><h1><span class="pageTitle0" style="position: relative; opacity: 11;">latest version</span></h1>
 
-<p>Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. <b>Etiam ultrices</b>. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. </p>
+            <p></p>
 
-<p>Ut ultrices ultrices enim. <b>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui</b>. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. <i>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</i>. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet. <i>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui</i>. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. </p>
+
+
+
+        </div>
 
 `
 	},
 
-	{
-		type:`section`,
-		renderTo:`#primary-view`,
-		id:`page-home`,
-		style:`background:transparent;`,
-		innerHTML:`<h5>Hello World</h5>`
-	},
-
-	{
-		type:`section`,
-		renderTo:`#primary-view`,
-		id:`page-home-test`,
-		style:``,
-		innerHTML:`<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. </p>
-
-<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit</i>. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. <b>Vestibulum lacinia arcu eget nulla</b>. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit</i>. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. </p>
-
-<p><b>Aenean quam</b>. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. <b>Sed dignissim lacinia nunc</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. <b>Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa</b>. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. </p>
-
-<p>Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. <b>Etiam ultrices</b>. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. </p>
-
-<p>Ut ultrices ultrices enim. <b>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui</b>. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. <i>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</i>. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet. <i>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui</i>. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. </p>
-
-`
-	},
 
 	//Columns
 
