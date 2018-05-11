@@ -69,6 +69,16 @@ html {
 //	background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
+ribbon{
+
+	position:absolute;top:0px;
+	left:48px;
+	width:100%;
+	height:48px;
+	background:rgba(25,25,25,0.25);
+
+}
+
 view{
 
 	opacity:1;
@@ -400,11 +410,24 @@ aside span:hover {
 hero {
 		width:100%;
 
-	img {
+	div {
 
 		width:100%;
 		height:320px;
-		border:1px solid black;
+		//border:1px solid black;
+		border:0px;
+		outline:none;
+				outline:none;
+				border:none;
+
+		    background-image: url("https://cdn.pixabay.com/photo/2016/10/11/21/43/banner-1732847_960_720.jpg");
+		    background-size: length;
+		    background-repeat: no-repeat;
+		    background-position: 50% 50%;/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
+		background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 
 	}
 }

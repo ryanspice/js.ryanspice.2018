@@ -157,6 +157,14 @@ export default new Array([
 
 
 	{
+		type:`ribbon`,
+		renderTo:`#primary-view`,
+		style:``,
+		innerHTML:`<h4>untitled</h4>`
+	},
+
+
+	{
 		type:`breadcrumbs`,
 		renderTo:`#primary-view`,
 		style:`background:transparent;display:none`,
@@ -173,7 +181,7 @@ export default new Array([
 		renderTo:`#primary-view`,
 		id:`page-home`,
 		style:`background:transparent;`,
-		innerHTML:`<img src="" />`
+		innerHTML:`<div style="background-position:0 100%;width:100%;height:150px;" />`
 	},
 
 	{
