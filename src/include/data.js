@@ -45,11 +45,11 @@ class ViewSettings {
 			className:'slide',
 			style:`background:transparent;margin-top:10%;`,
 			innerHTML:`<center>
-				<i class="menu" data-feather="sliders" style="margin:125px;transform:scale(5);transform-origin:center;"></i>
-				<i class="menu" data-feather="activity" style="margin:125px;transform:scale(5);transform-origin:center;"></i>
+				<i class="menu" data-feather="sliders" style="transform:scale(5);transform-origin:center;"></i>
+				<i class="menu" data-feather="activity" style="transform:scale(5);transform-origin:center;"></i>
 				<br/>
-								<i class="menu" data-feather="archive" style="margin:125px;transform:scale(5);transform-origin:center;"></i>
-								<i class="menu" data-feather="bookmark" style="margin:125px;transform:scale(5);transform-origin:center;"></i>
+				<i class="menu" data-feather="archive" style="transform:scale(5);transform-origin:center;"></i>
+				<i class="menu" data-feather="bookmark" style="transform:scale(5);transform-origin:center;"></i>
 			</center>`,
 			onclick:this.click
 		}
@@ -73,6 +73,7 @@ class Controller {
 			type:`view`,
 			id:'primary-view',
 			className:'slide',
+
 			style:`background:transparent;`,
 			onclick:()=>{
 				controller.clearColumn();
