@@ -34,34 +34,7 @@ const toggleExpand = (evt)=>{
 
 };
 
-class ViewSettings {
-
-	constructor(ref){
-
-		return {
-			link:this,
-			type:`view`,
-			id:'settings-view',
-			className:'slide',
-			style:`background:transparent;margin-top:10%;`,
-			innerHTML:`<center>
-				<i class="menu" data-feather="sliders" style="transform:scale(5);transform-origin:center;"></i>
-				<i class="menu" data-feather="activity" style="transform:scale(5);transform-origin:center;"></i>
-				<br/>
-				<i class="menu" data-feather="archive" style="transform:scale(5);transform-origin:center;"></i>
-				<i class="menu" data-feather="bookmark" style="transform:scale(5);transform-origin:center;"></i>
-			</center>`,
-			onclick:this.click
-		}
-
-	}
-
-	click(){
-
-
-	}
-
-}
+import Settings from "../modules/settings/settings";
 
 class Controller {
 
@@ -105,7 +78,7 @@ class Controller {
 			innerHTML:`<iframe sandbox src="http://js.ryanspice.com/"></iframe>`
 
 		},
-		new ViewSettings(this)
+		new Settings(this)
 	]
 
 	clearColumn = ()=>{

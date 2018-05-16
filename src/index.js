@@ -14,9 +14,8 @@ let state = 0;
 context.onreadystatechange = async function(evt){
 
 	if (state==0)
-	template = await new Template.AsyncRenderPipe(evt);
+		template = await new Template.AsyncRenderPipe(evt);
 
-	console.log(template)
 	if (state==1)
 		return;
 
@@ -25,7 +24,7 @@ context.onreadystatechange = async function(evt){
 		await FeatherIcons.replace();
 	};
 	await document.body.onresize();
-	window.controller.goTo('primary');
+	window.controller.goTo('settings');
 
 	state++;
 };

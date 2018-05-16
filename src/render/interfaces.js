@@ -1,3 +1,5 @@
+//@flow
+
 interface TemplateElement {
 
   type: string;
@@ -23,13 +25,32 @@ interface TemplateScheme {
 
 }
 
-interface HTML5Element extends HTMLElement {
+export interface HTML5Element extends HTMLElement {
 
 
 	  class?: string;
-	  style: CSSStyleDeclaration;
+	  style?: CSSStyleDeclaration;
 		value?:string;
 		renderTo?:any;
+}
+
+
+export interface ViewSchema {
+
+	type:string;
+
+	id:string;
+	style?:string;
+
+	link?:HTML5Element;
+
+	ref?:HTML5Element;
+
+	className:string;
+	innerHTML:string;
+
+	onclick?:any;
+
 }
 
 

@@ -5,7 +5,7 @@
 	"private": true,
 	"author": "Ryan Tyler Spice-Finnie",
 	"scripts": {
-		"💥": "rm -rf node_modules && rm -rf dist && yarn && yarn dev",
+		"💥": "sudo rm -rf node_modules && yarn && yarn dev",
 		"dev": "webpack-dev-server",
 		"watch": "webpack --watch",
 		"dash": "webpack-dashboard -- webpack-dev-server",
