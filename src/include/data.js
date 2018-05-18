@@ -35,6 +35,7 @@ const toggleExpand = (evt)=>{
 };
 
 import Settings from "../modules/settings/settings";
+import {Info} from "../modules/settings/settings";
 
 class Controller {
 
@@ -78,7 +79,8 @@ class Controller {
 			innerHTML:`<iframe sandbox src="http://js.ryanspice.com/"></iframe>`
 
 		},
-		new Settings(this)
+		new Settings(this),
+		new Info(this)
 	]
 
 	clearColumn = ()=>{
@@ -135,14 +137,14 @@ export default new Array([
 	},
 	...controller.views,
 
-
+/*
 	{
 		type:`ribbon`,
 		renderTo:`#primary-view`,
 		style:``,
-		innerHTML:`<h3>untitled</h3>`
+		innerHTML:`<h3>SpiceJS 0.9.0</h3>`
 	},
-
+*/
 
 	{
 		type:`breadcrumbs`,
@@ -161,34 +163,40 @@ export default new Array([
 		renderTo:`#primary-view`,
 		id:`page-home`,
 		style:`background:transparent;`,
-		innerHTML:`<div style="background-position:0 100%;width:100%;height:150px;" />`
+		innerHTML:`<div style="background-position:0 100%;width:100%;padding-left:64px;margin-right:-64px;" >
+			<h2 style="width:264px;">SpiceEdit 0.1.0</h2>
+			<h4 style="width:100px;position:relative;top:-48px;left:128px;">Preview</h4>
+		</div>`
 	},
 
 	{
 		type:`section`,
 		renderTo:`#primary-view`,
 		id:`page-home-test`,
-		style:`margin:64px;`,
-		innerHTML:`<h2>SpiceJS 0.9.0</h2><div id="contentMiddle" style=" opacity: 10;">
-
+		style:`margin: 0px 70px;`,
+		innerHTML:`
+			<div id="contentMiddle" style=" opacity: 10;">
+				<h3><span class="pageTitle0" style="position: relative; opacity: 11;">getting started</span></h3>
             <div id="sideBar">
-                <h6></h6><br>
-                <p class="sideBarNav">home</p>
-                <p class="sideBarNav">documentation</p>
-                <p class="sideBarNav">about </p>
-                <p class="sideBarNav">develop </p>
-                <p class="sideBarNav">publish </p>
-                <p class="sideBarNav">community </p>
-                <p class="sideBarNav">download</p>
+                <p class="sideBarNav"><a href="#">home</a></p>
+                <p class="sideBarNav"><a href="#">documentation</a></p>
+                <p class="sideBarNav"><a href="#">about</a> </p>
+                <p class="sideBarNav"><a href="#">develop</a> </p>
+                <p class="sideBarNav"><a href="#">publish</a> </p>
+                <p class="sideBarNav"><a href="#">community</a> </p>
+                <p class="sideBarNav"><a href="#">download</a></p>
             </div>
 
             <p>
-                </p><h1><span class="pageTitle0" style="position: relative; opacity: 11;">latest version</span></h1>
+			</p>
+			<h3><span class="pageTitle0" style="position: relative; opacity: 11;">latest version</span></h3>
 
-            <p></p>
+            <p><a href="https://github.com/ryanspice/spice.js">https://github.com/ryanspice/spice.js</a></p>
 
 
-
+			<br/>
+			<br/>
+			<br/>
 
         </div>
 

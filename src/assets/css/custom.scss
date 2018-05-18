@@ -16,6 +16,10 @@ $black: rgba(25,25,25,1);
     @else if $media == tablet-landscape-desktop {
         @media (min-width: 768px) and (max-width: 979px) { @content; }
     }
+    /* Portrait tablet and up */
+    @else if $media == general {
+        @media (min-width: 768px) { @content; }
+    }
     /* Large desktop */
     @else if $media == large-desktop {
         @media (min-width: 1200px) { @content; }
@@ -90,7 +94,7 @@ html,body, aside {
 	background:white;
 	color:rgba(255,255,255,0.85);
 	color:black;
-	min-height:494px;
+	//min-height:494px;
 
 }
 html,body {
@@ -103,7 +107,8 @@ html {
 
 ribbon{
 
-	position:absolute;top:0px;
+	position:fixed;top:0px;
+	margin:0px;
 	left:48px;
 	width:100%;
 	height:48px;
@@ -117,7 +122,6 @@ ribbon{
 }
 
 view{
-
 	opacity:1;
 	transition: all 0.2s;
 	transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
@@ -177,21 +181,104 @@ spread {
 }
 */
 
+#settings-view {
 
+	 margin: 0px auto;
+
+	 //padding-top:0px;
+	width:100%;
+		section{
+
+		width:100%;
+
+		}
+	@include respond-to(phone){
+
+	}
+	@include respond-to(tablet-portrait){
+	}
+
+	@include respond-to(general){
+	//width: 827px;
+	width:540px;
+		section{
+
+		width:270px;
+
+		}
+	}
+
+}
 
 
 spread {
 
-	@include respond-to(tablet-portrait){
+    //  width: 100%;
+    /* height: 64px; */
+    /* display: block; */
+    /* float: left; */
+ //   padding: 6.5em;
 
-		width:100%;
+	section {
+
+			&:hover{
+			}
+		width:270px;
+		float: left;
+
+		padding:16px;
+			 padding-top:32px;
+		user-select: none;
+		text-align:center;
+		justify-content:center;
+
+		display:block;
+		margin:0px auto;
+		//clear:both;
+
+
+
+		svg {
+
+      stroke-width: 1px;
+    transform: scale(2);
+
+			position: relative;
+			line-height: 64px;
+			top: -6px;
+			display:block;
+			margin:0px auto;
+			//clear:both;
+		}
+
+		span {
+		display:block;
+		//margin:0px auto;
+		//clear:both;
+			line-height:64px;
+			text-transform: uppercase;
+			font-size:32px;
+
+		}
+
+		&:hover{
+
+			cursor:pointer;
+			outline:1px solid rgba(25,25,25,0.25);
+			background: rgba(25,25,25,0.025);
+		}
+
+		&:active{
+
+			opacity:0.5;
+			cursor:pointer;
+			outline:1px solid rgba(25,25,25,0.25);
+			background: rgba(25,25,25,0.0025);
+
+		}
 
 	}
 
-//	padding:10vw;
-display:block;
-float:left;
-padding:6.5em;
 
 }
 
@@ -497,8 +584,11 @@ aside span:hover {
 }
 
 hero {
+	margin:0px;
 		width:100%;
-
+-moz-box-shadow: inset 5px 0 7px -5px #a4a4a4, inset -5px 0 7px -5px #a4a4a4;
+-webkit-box-shadow: inset 5px 0 5px -5px #a4a4a4, inset -5px 0 5px -5px #a4a4a4;
+box-shadow: inset 5px 0 7px -5px #a4a4a4, inset -5px 0 7px -5px #a4a4a4;
 	div {
 
 		width:100%;
@@ -508,10 +598,12 @@ hero {
 		outline:none;
 				outline:none;
 				border:none;
+				border-bottom:1px solid rgba(25,25,25,0.025);
 
 		    //background-image: url("https://cdn.pixabay.com/photo/2016/10/11/21/43/banner-1732847_960_720.jpg");
+		    background-image: url("assets/images/what-the-hex.png");
 		    background-size: length;
-		    background-repeat: no-repeat;
+		    background-repeat: repeat;
 		    background-position: 50% 50%;/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
 		//background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
 		//background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */

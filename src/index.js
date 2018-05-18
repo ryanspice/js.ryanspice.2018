@@ -24,7 +24,7 @@ context.onreadystatechange = async function(evt){
 		await FeatherIcons.replace();
 	};
 	await document.body.onresize();
-	window.controller.goTo('settings');
+	window.controller.goTo('primary');
 
 	state++;
 };
