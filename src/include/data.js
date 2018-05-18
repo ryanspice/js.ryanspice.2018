@@ -35,7 +35,10 @@ const toggleExpand = (evt)=>{
 };
 
 import Settings from "../modules/settings/settings";
-import {Info} from "../modules/settings/settings";
+import {
+	Info,
+	DefaultSettings
+} from "../modules/settings/settings";
 
 class Controller {
 
@@ -80,7 +83,8 @@ class Controller {
 
 		},
 		new Settings(this),
-		new Info(this)
+		new Info(this),
+		new DefaultSettings(this)
 	]
 
 	clearColumn = ()=>{
@@ -175,7 +179,7 @@ export default new Array([
 		id:`page-home-test`,
 		style:`margin: 0px 70px;`,
 		innerHTML:`
-			<div id="contentMiddle" style=" opacity: 10;">
+			<column id="contentMiddle" class="col-md-12" style=" opacity: 10;">
 				<h3><span class="pageTitle0" style="position: relative; opacity: 11;">getting started</span></h3>
             <div id="sideBar">
                 <p class="sideBarNav"><a href="#">home</a></p>
@@ -198,8 +202,11 @@ export default new Array([
 			<br/>
 			<br/>
 
-        </div>
-
+        </column>
+				<column class='col-md-6 pull-right'>
+					<h2>Getting Started</h2>
+					<span class="indent pageParagraph0" id="pageParagraph0"> <p><span id="b">B</span>efore you start developing your App in SpiceJS, it is reccomended to have some knowledge of <b><a href="http://www.htmlgoodies.com/beyond/javascript/object.create-the-new-way-to-create-objects-in-javascript.html">Object.create</a></b> and <a>Prototype</a> javascript notation. </p> <p><span id="b">S</span>piceJS, designed heavily on the <a>Canvas API</a>, has support across most popular devices and browsers. Any device which supports Html5 and Html5 Hardware Accelleration will have a nice time.</p><p><span id="b">T</span>he framework is designed on providing you the most efficient way to develop a cross platform, multi touch, and multi resolution application with ease. </p> <p><span id="b">P</span>rior to recent times developers had to rely on functions such as <a>setTimeout()</a>, however, up to date browsers can support a new feature called <a>requestAnimationFrame()</a> which can provide a high calculation of Frame Rate. This allows developers to create extensive programs, and fully animated games. </p></span>
+				</column>
 `
 	},
 
