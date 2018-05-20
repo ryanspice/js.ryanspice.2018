@@ -35,6 +35,7 @@ const toggleExpand = (evt)=>{
 };
 
 import Settings from "../modules/settings/settings";
+import New from "../modules/project/new";
 import {
 	Info,
 	DefaultSettings
@@ -51,7 +52,7 @@ class Controller {
 			id:'primary-view',
 			className:'slide',
 
-			style:`background:transparent;`,
+			style:``,
 			onclick:()=>{
 				controller.clearColumn();
 					let data = Array.from(document.querySelectorAll('.highlight'));
@@ -84,7 +85,8 @@ class Controller {
 		},
 		new Settings(this),
 		new Info(this),
-		new DefaultSettings(this)
+		new DefaultSettings(this),
+		new New(this)
 	]
 
 	clearColumn = ()=>{
@@ -140,7 +142,7 @@ export default new Array([
 		value:css
 	},
 	...controller.views,
-
+	{type:`overlay`},
 /*
 	{
 		type:`ribbon`,
@@ -260,10 +262,6 @@ export default new Array([
 
 </code>
 					</pre>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
 			</column>
 
 			<column class='col-md-4 pull-right'>
@@ -282,6 +280,7 @@ export default new Array([
 								<li>archive - <a href="">spice.js.7z</a></li>
 
 			</column>
+
 		`
 	},
 
@@ -315,9 +314,10 @@ export default new Array([
 
 	{
 		type:`span`,
+		className:`highlight`,
 		style:`max-width:48px`,
 		renderTo:'#secondary-column',
-		innerHTML:`<i class="menu" data-feather="map"></i><input class="hidden"></input>`,
+		innerHTML:`<i class="menu " data-feather="home"></i><input class="hidden"></input>`,
 		onclick:(evt)=>{
 
 			evt.stopPropagation();
@@ -330,14 +330,22 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		className:`hidden`,
-		innerHTML:`<i class="menu" data-feather="layers"></i>`
+		className:``,
+		//innerHTML:`<i class="menu" data-feather="layers"></i>`
+		innerHTML:`<i class="menu" data-feather="plus"></i>	`,
+		onclick:(evt)=>{
+
+			evt.stopPropagation();
+			//toggleExpand(evt);
+			controller.goTo('new')
+
+		}
 	},
 
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		style:`background:black;overflow:hidden;max-height:48px;`,
+		style:`display:none;background:black;overflow:hidden;max-height:48px;`,
 		innerHTML:`<i class="menu" data-feather="layers"></i>
 			<h5 onclick="event.stopPropagation()" >ROOM</h5>
 			<h5 onclick="event.stopPropagation()" >OBJECT</h5>
@@ -349,7 +357,7 @@ export default new Array([
 	{
 		type:`span`,
 		id:`scroll`,
-		style:``,
+		style:`display:none;`,
 		renderTo:'#secondary-column',
 		innerHTML:`
 			<span style=""><i class="menu" data-feather="file"></i>
@@ -360,6 +368,7 @@ export default new Array([
 
 	{
 		type:`span`,
+		style:`display:none;`,
 		renderTo:'#scroll',
 		innerHTML:`<i class="menu" data-feather="file"></i>`,
 		//onclick:`console.log('eh')`
@@ -369,6 +378,7 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
+		style:`display:none;`,
 		style:`position:absolute;bottom:96px;max-width:48px;`,
 		innerHTML:`<i class="menu" data-feather="book"></i>`,
 		onclick:(evt)=>{
@@ -384,7 +394,7 @@ export default new Array([
 		type:`span`,
 		renderTo:'#secondary-column',
 		class:``,
-		style:`position:absolute;bottom:48px;max-width:48px;`,
+		style:`position:absolute;bottom:48px;max-width:48px;pointer-events:none;opacity:0.5;`,
 		innerHTML:`<i class="menu" data-feather="play"></i>`,
 		onclick:(evt)=>{
 			if (evt)

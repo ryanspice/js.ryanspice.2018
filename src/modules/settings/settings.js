@@ -15,7 +15,7 @@ export default class Settings extends View {
 			type:`view`,
 			id:'settings-view',
 			className:'slide',
-			style:`background:transparent;margin-top:10%;margin-left:10%;margin:0px auto;`,
+			style:`margin-top:10%;margin-left:10%;margin:0px auto;`,
 			innerHTML:`
 				<center>
 					<h2>Settings</h2>
@@ -194,7 +194,7 @@ export class DefaultSettings extends View {
 		</column>
 			<column class='col-md-6 pull-right'>
 				<h2></h2>
-				
+
 			</column>
 			`,
 			onclick:this.click
