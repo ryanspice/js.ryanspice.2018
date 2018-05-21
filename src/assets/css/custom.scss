@@ -3,6 +3,58 @@ $secondary-column-width: 420px;
 
 $black: rgba(25,25,25,1);
 
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:after, *:before {
+    box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: none;
+}
+
+body {
+
+	font-weight:light;
+font-family:WeblySleek UI !important;
+  font-family: "Segoe UI", "Microsoft YaHei", "Open Sans", sans-serif, "Hiragino Sans GB", Arial, "Lantinghei SC", "5FAE8F6F96C59ED1", "STHeiti", "WenQuanYi Micro Hei", SimSun;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input, textarea {
+  box-shadow: none;
+  border-radius: none;
+}
+
+* {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+*::-webkit-scrollbar {
+  -webkit-appearance: none
+}
+
+*::-webkit-scrollbar:vertical {
+  width: 6px;
+}
+
+*::-webkit-scrollbar:horizontal {
+  height: 6px
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(95, 95, 95, 0.5);
+}
+
+
 @mixin respond-to($media) {
     /* Landscape phones and down */
     @if $media == phone {
@@ -45,12 +97,6 @@ $black: rgba(25,25,25,1);
 	transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 }
 
-* {
-
-	font-weight:light;
-	font-family:WeblySleek UI !important;
-
-}
 /** Hover **/
 
 *:hover {
@@ -102,7 +148,7 @@ width:0px;
 
 /* Elements */
 
-html,body, aside {
+html,body {
 
 	background:rgba(125,125,125,1);
 	background:white;
@@ -111,12 +157,7 @@ html,body, aside {
 	//min-height:494px;
 
 }
-html,body {
 
-}
-html {
-
-}
 overlay {
 
 
@@ -130,13 +171,13 @@ overlay {
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 
 }
-	column {
+column {
 
 	padding-bottom:64px;
 		li {
 		list-style:none;
 		}
-	}
+}
 
 
 ribbon{
@@ -190,8 +231,8 @@ view{
 	}
 	min-width:256px;
 	min-height:256px;
-//	margin:4.5rem;
-//	margin-left:0.5rem;
+	//	margin:4.5rem;
+	//	margin-left:0.5rem;
 	//display:block;
 	background:rgba(25,25,25,0.25);
 		background:transparent;
@@ -199,25 +240,25 @@ view{
 }
 
 
-/*
-spread {
-  display: inline-grid !important;
-  grid-template-rows: 16vh 16vh 16vh;
-  grid-template-columns: 16vw 16vw 16vw;
-  grid-gap: 3px;
-	margin:0px auto;
-	text-align:center;
-	section {
-	  display: flex !important;
+	/*
+	spread {
+	  display: inline-grid !important;
+	  grid-template-rows: 16vh 16vh 16vh;
+	  grid-template-columns: 16vw 16vw 16vw;
+	  grid-gap: 3px;
+		margin:0px auto;
 		text-align:center;
-	  justify-content: center;
-	  align-items: center;
-	  border: 2px solid black;
-	  font-size: 3em;
-	}
+		section {
+		  display: flex !important;
+			text-align:center;
+		  justify-content: center;
+		  align-items: center;
+		  border: 2px solid black;
+		  font-size: 3em;
+		}
 
-}
-*/
+	}
+	*/
 
 #settings-view {
 
@@ -346,14 +387,6 @@ overflow-y: auto;
 
 }
 
-body, html {
-
-	//background: black;
-	//color:White;
-
-}
-
-
 #primary-view {
 
 	float:left;
@@ -411,7 +444,54 @@ search {
 }
 
 
+innerlay {
+
+
+
+      position: absolute;
+    display: block;
+    left: 0px;
+    top: 0px;
+    background: url(assets/images/acrylic.png) left top/cover no-repeat fixed;
+
+    width: 100%;
+    height: 100%;
+  background-attachment: fixed;
+  opacity: 0.5;
+  //-webkit-filter: hue-rotate(222); /*sepia, hue-rotate, invert....*/
+//-webkit-filter: brightness(50%);
+-webkit-filter: blur(1px);
+
+}
+aside span {
+
+
+&::before{
+
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  -moz-filter: blur(8px);
+  -o-filter: blur(8px);
+  -ms-filter: blur(8px);
+  background-blend-mode: exclusion;
+}
+&::after {
+  background-image: url(data:image/png;base64,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);
+
+}
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  -moz-filter: blur(8px);
+  -o-filter: blur(8px);
+  -ms-filter: blur(8px);
+  background-blend-mode: exclusion;
+background: url(assets/images/acrylic.png) left top/cover no-repeat fixed;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
 aside{
+	
 	border:none !important;
 	.menu {
 
@@ -470,11 +550,12 @@ aside{
 	&#primary-column,
 	&#secondary-column {
 
-		background:black;
+		//background:black;
 		position:fIxed;
 		left:0px;
 		top:0px;
 		width:$icon-size;
+
 
 		span h5:not(.expand),
 		span svg:not(.expand):nth-of-type(4n+2) {
@@ -497,7 +578,7 @@ aside{
 		transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 
 
-		background:transparent;
+		//background:transparent;
 	}
 
 
@@ -546,7 +627,9 @@ aside{
 }
 
 aside span {
+
 	overflow:hidden;
+
 	h5 {
 
 		padding: 10px 0;
@@ -573,7 +656,7 @@ aside span {
 	}
 
 	//background:rgba(125,125,125,0.25);
-	background:rgba(25,25,25,1);
+//background:rgba(25,25,25,1);
 	//background:red;
 
 	color:white;

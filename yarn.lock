@@ -3826,9 +3826,9 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jquery@^2.1.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
+jquery@^3.1.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.3"
@@ -7085,12 +7085,12 @@ window-size@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.2.0.tgz#b4315bb4214a3d7058ebeee892e13fa24d98b075"
 
-winstrap@^0.5.11:
-  version "0.5.11"
-  resolved "https://registry.yarnpkg.com/winstrap/-/winstrap-0.5.11.tgz#dd4908914262814f389ae26d569264d67b3e460e"
+winstrap@^0.5.12:
+  version "0.5.12"
+  resolved "https://registry.yarnpkg.com/winstrap/-/winstrap-0.5.12.tgz#cf6f0c31416b58e82b2b7b71b0ac6cbf80439007"
   dependencies:
     bootstrap-sass "3.3.7"
-    jquery "^2.1.4"
+    jquery "^3.1.1"
 
 wordwrap@0.0.2:
   version "0.0.2"

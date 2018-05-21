@@ -306,7 +306,7 @@ export default new Array([
 		type:`span`,
 		id:`hamburger`,
 		renderTo:'#secondary-column',
-		className:``,
+		className:`hidden`,
 		style:`text-align:center;line-height:64px;color:white;`,
 		value:`32`,
 		innerHTML:`<i class="menu" data-feather="menu"></i>`
@@ -323,6 +323,22 @@ export default new Array([
 			evt.stopPropagation();
 			//toggleExpand(evt);
 			controller.goTo('primary')
+
+		}
+	},
+
+	{
+		type:`span`,
+		renderTo:'#secondary-column',
+		style:`display:none;`,
+		style:`max-width:48px`,
+		innerHTML:`<i class="menu" data-feather="book"></i>`,
+		onclick:(evt)=>{
+
+	if (evt)
+			evt.stopPropagation();
+			//toggleExpand(evt);
+			controller.goTo('tertiary')
 
 		}
 	},
@@ -378,22 +394,7 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		style:`display:none;`,
-		style:`position:absolute;bottom:96px;max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="book"></i>`,
-		onclick:(evt)=>{
-
-	if (evt)
-			evt.stopPropagation();
-			//toggleExpand(evt);
-			controller.goTo('tertiary')
-
-		}
-	},
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		class:``,
+		className:``,
 		style:`position:absolute;bottom:48px;max-width:48px;pointer-events:none;opacity:0.5;`,
 		innerHTML:`<i class="menu" data-feather="play"></i>`,
 		onclick:(evt)=>{
@@ -408,7 +409,7 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		class:``,
+		className:``,
 		style:`position:absolute;bottom:0em;max-width:48px;`,
 		innerHTML:`<i class="menu" data-feather="settings"></i>`,
 		onclick:(evt)=>{
