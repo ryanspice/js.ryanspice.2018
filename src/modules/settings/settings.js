@@ -18,7 +18,7 @@ export default class Settings extends View {
 			style:`margin-top:10%;margin-left:10%;margin:0px auto;`,
 			innerHTML:`
 				<center>
-					<h2>Settings</h2>
+					<h2>settings</h2>
 					<input style="opacity:0;"></input>
 				</center>
 				<br/>
@@ -62,8 +62,10 @@ export class Info extends View {
 			className:'slide',
 			style:`background:transparent;margin-top:10%;margin-left:10%;margin:0px auto;width:75%;`,
 			innerHTML:`
-				<h2>About</h2>
-				<h4>Webpack 4.0.3</h4>
+				<h2>about</h2>
+				<h4>webpack 4.0.3</h4>
+				<h4>winstrap 0.5.12</h4>
+				<h4>babel 6.x</h4>
 				<p></p>
 			`,
 			onclick:this.click
@@ -194,7 +196,70 @@ export class DefaultSettings extends View {
 		</column>
 			<column class='col-md-6 pull-right'>
 				<h2></h2>
-
+<div class="entity-list">
+        <div class="entity-list-item">
+            <div class="item-icon">
+                <span class="glyph glyph-mail"></span>
+            </div>
+            <div class="item-content-secondary">
+                <button type="button" data-toggle="button" class="btn btn-toggle-switch" autocomplete="off" aria-pressed="false">
+            </div>
+            <div class="item-content-primary">
+                <div class="content-text-primary">Mail and Calendar</div>
+                <div class="content-text-secondary">Microsoft Corporation</div>
+            </div>
+        </div>
+        <div class="entity-list-item">
+            <div class="item-icon">
+                <span class="glyph glyph-camera"></span>
+            </div>
+            <div class="item-content-secondary">
+                <button type="button" data-toggle="button" class="btn btn-toggle-switch" autocomplete="off" aria-pressed="false">
+            </div>
+            <div class="item-content-primary">
+                <div class="content-text-primary">Camera</div>
+                <div class="content-text-secondary">Microsoft Corporation</div>
+            </div>
+        </div>
+        <div class="entity-list-item">
+            <div class="item-icon">
+                <span class="glyph glyph-report-hacked"></span>
+            </div>
+            <div class="item-content-secondary">
+                <button type="button" data-toggle="button" class="btn btn-toggle-switch" autocomplete="off" aria-pressed="false">
+            </div>
+            <div class="item-content-primary">
+                <div class="content-text-primary">Defender</div>
+                <div class="content-text-secondary">Microsoft Corporation</div>
+            </div>
+        </div>
+        <div class="entity-list-item">
+            <div class="item-icon">
+                <span class="glyph glyph-mail"></span>
+            </div>
+            <div class="item-content-primary">
+                <div class="content-text-primary">Mail and Calendar</div>
+                <div class="content-text-secondary">Microsoft Corporation</div>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        <span class="sr-only">60%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="entity-list-item">
+            <div class="item-icon">
+                <img src=""/>
+            </div>
+            <div class="item-content-secondary">
+                <div  class="content-text-primary">Unavailable</div>
+            </div>
+            <div class="item-content-primary">
+                <div class="content-text-primary">App</div>
+                <div class="content-text-secondary">Microsoft Corporation</div>
+            </div>
+        </div>
+    </div>
 			</column>
 			`,
 			onclick:this.click

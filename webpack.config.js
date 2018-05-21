@@ -50,7 +50,11 @@ module.exports = {
           }, {
               loader: "sass-loader" // compiles Sass to CSS
           }]
-      }
+      },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                use:[{loader: 'file?name=public/fonts/[name].[ext]'}]
+            }
 		]
 	},
 	plugins:[

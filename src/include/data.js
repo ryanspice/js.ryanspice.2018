@@ -80,7 +80,7 @@ class Controller {
 			id:'tertiary-view',
 			className:'slide',
 			style:`background:transparent;`,
-			innerHTML:`<iframe sandbox src="http://js.ryanspice.com/"></iframe>`
+			innerHTML:`<center><h2>documentation</h2></center>`
 
 		},
 		new Settings(this),
@@ -201,8 +201,8 @@ export default new Array([
 
 				<h3 style="">spice.js editor <span class="hidden-xs">0.0.2</span></h3>
 				<h4 class="hidden-xs" style="width:100px;position:relative;top:-48px;left:128px;">Preview</h4>
-				<li>git - <a href="https://github.com/ryanspice/spice.js">https://github.com/ryanspice/spice.js</a></li>
-				<li>archive - <a href="">spice.js.7z</a></li>
+				<li><a href="https://github.com/ryanspice/spice.js">github</a></li>
+				<li><a href="">spice.js.7z</a></li>
 
 
 				<h4>getting started </h4>
@@ -276,8 +276,8 @@ export default new Array([
 				<hr style="opacity:0;" />
 								<h5><span class="pageTitle0" >latest version - coming soon</span></h5>
 
-								<li>git - <a href="https://github.com/ryanspice/spice.js">https://github.com/ryanspice/spice.js</a></li>
-								<li>archive - <a href="">spice.js.7z</a></li>
+				<li><a href="https://github.com/ryanspice/spice.js">github</a></li>
+				<li><a href="">spice.js.7z</a></li>
 
 			</column>
 
