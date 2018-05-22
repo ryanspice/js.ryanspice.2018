@@ -408,7 +408,16 @@ innerlay {
     //-webkit-filter: brightness(50%);
     -webkit-filter: blur(1px);
 }
+aside span:nth-child(1),
+aside span:nth-child(2),
+aside span:nth-child(3),
+aside span:nth-child(4)
+{
 
+	//	position:relative;
+	//	left:48px;
+	//	top:48px;
+}
 aside span {
     &::before {
         filter: blur(8px);
@@ -600,7 +609,8 @@ hero {
     box-shadow: inset 5px 0 7px -5px #a4a4a4, inset -5px 0 7px -5px #a4a4a4;
     div {
         width: 100%;
-        height: 320px; //border:1px solid black;
+        //height: 320px; //border:1px solid black;
+        height: 144px; //border:1px solid black;
         border: 0px;
         outline: none;
         outline: none;
@@ -610,6 +620,7 @@ hero {
         background-size: length;
         background-repeat: repeat;
         background-position: 50% 50%;
+		background-attachment: fixed;
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
         //background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
         //background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
