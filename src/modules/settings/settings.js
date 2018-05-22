@@ -23,7 +23,7 @@ export default class Settings extends View {
 				<spread>
 					${Setting('sliders', '<strike style="opacity:0.5;">Defaults</strike>',function(){
 
-						//window.controller.goTo('default-settings');
+						window.controller.goTo('default-settings');
 
 					})}
 					${Setting('info', 'About',()=>{
@@ -95,13 +95,13 @@ export class DefaultSettings extends View {
             className: 'slide',
             style: `background:transparent;margin-top:10%;margin-left:10%;margin:0px auto;padding:64px;`,
             innerHTML: `
-				<column class='col-md-14'>
-									<h2>Defaults</h2>
-									<p>
-									<div class="btn-group">
-									        <button type="button" data-toggle="button" class="btn btn-toggle-switch" autocomplete="off" aria-pressed="false">
-									            <span class="stateLabel stateLabel-on">On</span>
-									            <span class="stateLabel stateLabel-off">Off</span>
+				<column class='col-md-12'>
+					<h2>defaults</h2>
+					<p>
+					<div class="btn-group">
+					        <button type="button" data-toggle="button" class="btn btn-toggle-switch" autocomplete="off" aria-pressed="false">
+					            <span class="stateLabel stateLabel-on">Do load previous project on load</span>
+									            <span class="stateLabel stateLabel-off">Do not load previous project on load</span>
 									        </button>
 									    </div>
 											<br/>
@@ -113,7 +113,7 @@ export class DefaultSettings extends View {
 					    </div>
 							<br/>
 							<br/>
-							<form>
+							<form class="hidden">
 					        <div class="form-group">
 					            <label for="exampleInputEmail1">Email address</label>
 					            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
@@ -124,7 +124,7 @@ export class DefaultSettings extends View {
 					            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 					        </div>
 
-					        <div class="form-group">
+					        <div class="form-group hidden">
 					            <label for="exampleInputFile">File input</label>
 					            <input type="file" id="exampleInputFile">
 					            <p class="help-block">Example block-level help text here.</p>
@@ -192,8 +192,8 @@ export class DefaultSettings extends View {
 					    </form>
 									</p>
 		</column>
-			<column class='col-md-6 pull-right'>
-				<h2></h2>
+			<column class='col-md-12'>
+				<h2>extensions</h2>
 <div class="entity-list">
         <div class="entity-list-item">
             <div class="item-icon">

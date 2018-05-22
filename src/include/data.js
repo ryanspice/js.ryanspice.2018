@@ -39,6 +39,7 @@ import Documentation from "../modules/documentation/documentation";
 
 import Settings from "../modules/settings/settings";
 import New from "../modules/project/new";
+import Load from "../modules/project/load";
 import {
 	Info,
 	DefaultSettings
@@ -81,7 +82,8 @@ class Controller {
 		new Settings(this),
 		new Info(this),
 		new DefaultSettings(this),
-		new New(this)
+		new New(this),
+		new Load(this)
 	]
 
 	clearColumn = ()=>{
@@ -296,6 +298,9 @@ export default new Array([
 		value:`123wds`,
 		onclick:toggleExpand
 	},
+
+	//Hamburger
+
 	{
 		type:`span`,
 		id:`hamburger`,
@@ -321,18 +326,17 @@ export default new Array([
 		}
 	},
 
+
+	// NEW SCREEN //
+
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		style:`display:none;`,
-		style:`max-width:48px`,
-		innerHTML:`<i class="menu" data-feather="book"></i>`,
+		style:`max-width:48px;display:none`,
+		innerHTML:`<i class="menu" data-feather="globe"></i>	`,
 		onclick:(evt)=>{
 
-	if (evt)
 			evt.stopPropagation();
-			//toggleExpand(evt);
-			controller.goTo('tertiary')
 
 		}
 	},
@@ -340,15 +344,40 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		className:``,
-		//innerHTML:`<i class="menu" data-feather="layers"></i>`
+		style:`max-width:48px;`,
+		innerHTML:`<i class="menu" data-feather="hard-drive"></i>	`,
+		onclick:(evt)=>{
+
+			evt.stopPropagation();
+			controller.goTo('load')
+
+		}
+	},
+
+	{
+		type:`span`,
+		renderTo:'#secondary-column',
+		style:`max-width:48px;`,
 		innerHTML:`<i class="menu" data-feather="plus"></i>	`,
 		onclick:(evt)=>{
 
 			evt.stopPropagation();
-			//toggleExpand(evt);
 			controller.goTo('new')
 
+		}
+	},
+
+	// NEW SCREEN END //
+	// INGAME //
+
+	{
+		type:`span`,
+		renderTo:'#secondary-column',
+		className:`hidden`,
+		innerHTML:`<i class="menu" data-feather="layers"></i>`,
+		onclick:(evt)=>{
+
+			//toggleExpand(evt);
 		}
 	},
 
@@ -384,7 +413,7 @@ export default new Array([
 		//onclick:`console.log('eh')`
 	},
 
-
+	/*BOTTOM */
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
@@ -404,7 +433,7 @@ export default new Array([
 		type:`span`,
 		renderTo:'#secondary-column',
 		className:``,
-		style:`position:absolute;bottom:0em;max-width:48px;`,
+		style:`position:absolute;bottom:0px;max-width:48px;`,
 		innerHTML:`<i class="menu" data-feather="settings"></i>`,
 		onclick:(evt)=>{
 			if (evt)
@@ -414,10 +443,42 @@ export default new Array([
 	},
 
 	{
+		type:`span`,
+		renderTo:'#secondary-column',
+		style:`position:absolute;bottom:96px;max-width:48px;`,
+		innerHTML:`<i class="menu" data-feather="book"></i>`,
+		onclick:(evt)=>{
+
+	if (evt)
+			evt.stopPropagation();
+			//toggleExpand(evt);
+			controller.goTo('tertiary')
+
+		}
+	},
+	{
+		type:`span`,
+		renderTo:'#secondary-column',
+		style:`position:absolute;bottom:144px;max-width:48px;display:none;`,
+		innerHTML:`<i class="menu" data-feather="github"></i>`,
+		onclick:(evt)=>{
+
+	if (evt)
+			evt.stopPropagation();
+			//toggleExpand(evt);
+			controller.goTo('tertiary')
+
+		}
+	},
+
+	/* END BOTTOM */
+
+	{
 		type:`search`,
 		style:`font-size:2rem`,
 		value:`123wds`
 	},
+
 	{
 		type:`input`,
 		renderTo:`search`,
