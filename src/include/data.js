@@ -34,6 +34,9 @@ const toggleExpand = (evt)=>{
 
 };
 
+//import Home from "../modules/Home/Home";
+import Documentation from "../modules/documentation/documentation";
+
 import Settings from "../modules/settings/settings";
 import New from "../modules/project/new";
 import {
@@ -74,15 +77,7 @@ class Controller {
 			innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
 
 		},
-		{
-			link:this,
-			type:`view`,
-			id:'tertiary-view',
-			className:'slide',
-			style:`background:transparent;`,
-			innerHTML:`<center><h2>documentation</h2></center>`
-
-		},
+		new Documentation(this),
 		new Settings(this),
 		new Info(this),
 		new DefaultSettings(this),
@@ -143,14 +138,13 @@ export default new Array([
 	},
 	...controller.views,
 	{type:`overlay`},
-/*
+
 	{
 		type:`ribbon`,
 		renderTo:`#primary-view`,
 		style:``,
-		innerHTML:`<h3>SpiceJS 0.9.0</h3>`
+		innerHTML:`<h3">SpiceJS 0.9.0</h3>`
 	},
-*/
 
 	{
 		type:`breadcrumbs`,
@@ -169,7 +163,7 @@ export default new Array([
 		renderTo:`#primary-view`,
 		id:`page-home`,
 		style:`background:transparent;`,
-		innerHTML:`<div style="background-position:0 100%;width:100%;padding-left:64px;margin-right:-64px;" >
+		innerHTML:`<div style="background-position:0 100%;width:100%;" >
 
 		</div>`
 	},

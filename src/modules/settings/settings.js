@@ -1,102 +1,100 @@
 //@flow
 
 import View from "../view";
-
-const Setting = (Setting, Text, Action) => `<section onclick="(${Action})()"><i data-feather="${Setting}" ></i><span><h3>${Text}</h3></span></section>`;
-
+require('./settings.scss');
 export default class Settings extends View {
 
-	constructor(ref?:HTML5Element){
+    constructor(ref ? : HTML5Element) {
 
-		super(ref)
+        super(ref)
 
-		return {
-			link:this,
-			type:`view`,
-			id:'settings-view',
-			className:'slide',
-			style:`margin-top:10%;margin-left:10%;margin:0px auto;`,
-			innerHTML:`
-				<center>
+        const Setting = (Setting, Text, Action) => `<section onclick="(${Action})()"><i data-feather="${Setting}" ></i><span><h3>${Text}</h3></span></section>`;
+
+        return {
+            link: this,
+            type: `view`,
+            id: 'settings-view',
+            className: 'slide',
+            style: `margin-top:10%;margin-left:10%;margin:0px auto;text-align: center;`,
+            innerHTML: `
 					<h2>settings</h2>
 					<input style="opacity:0;"></input>
-				</center>
 				<br/>
 				<spread>
-					${Setting('sliders', 'Defaults',function(){
+					${Setting('sliders', '<strike style="opacity:0.5;">Defaults</strike>',function(){
 
-						window.controller.goTo('default-settings');
+						//window.controller.goTo('default-settings');
 
 					})}
-					${Setting('info', 'About',function(){
+					${Setting('info', 'About',()=>{
 
 						window.controller.goTo('info-settings');
 					})}
 				</spread>
 			`,
-			onclick:this.click
-		}
+            onclick: this.click
+        }
 
-	}
+    }
 
-	click(evt){
+    click(evt) {
 
-		evt.stopPropagation();
+        evt.stopPropagation();
 
 
-	}
+    }
 
 }
 
 export class Info extends View {
 
 
-	constructor(ref?:HTML5Element){
+    constructor(ref ? : HTML5Element) {
 
-		super(ref)
+        super(ref)
 
-		return {
-			link:this,
-			type:`view`,
-			id:'info-settings-view',
-			className:'slide',
-			style:`background:transparent;margin-top:10%;margin-left:10%;margin:0px auto;width:75%;`,
-			innerHTML:`
-				<h2>about</h2>
-				<h4>webpack 4.0.3</h4>
-				<h4>winstrap 0.5.12</h4>
-				<h4>babel 6.x</h4>
-				<p></p>
-			`,
-			onclick:this.click
-		}
+        return {
+            link: this,
+            type: `view`,
+            id: 'info-settings-view',
+            className: 'slide',
+            style: ``,
+            innerHTML: `
+				<column class="col-md-12">
+					<h2>about</h2>
+					<h4>webpack 4.0.3</h4>
+					<h4>winstrap 0.5.12</h4>
+					<h4>babel 6.x</h4>
+				</column>`,
+            onclick: this.click
+        }
 
-	}
+    }
 
-	click(evt){
+    click(evt) {
 
-		window.controller.goTo('settings');
-				evt.stopPropagation();
+        window.controller.goTo('settings');
+        evt.stopPropagation();
 
 
-	}
+    }
 
 }
 
 export class DefaultSettings extends View {
 
 
-	constructor(ref?:HTML5Element){
+    constructor(ref ? : HTML5Element) {
 
-		super(ref)
+        super(ref)
 
-		return {
-			link:this,
-			type:`view`,
-			id:'default-settings-view',
-			className:'slide',
-			style:`background:transparent;margin-top:10%;margin-left:10%;margin:0px auto;padding:64px;`,
-			innerHTML:`
+        return {
+            link: this,
+            type: `view`,
+            id: 'default-settings-view',
+            className: 'slide',
+            style: `background:transparent;margin-top:10%;margin-left:10%;margin:0px auto;padding:64px;`,
+            innerHTML: `
 				<column class='col-md-14'>
 									<h2>Defaults</h2>
 									<p>
@@ -262,17 +260,17 @@ export class DefaultSettings extends View {
     </div>
 			</column>
 			`,
-			onclick:this.click
-		}
+            onclick: this.click
+        }
 
-	}
+    }
 
-	click(evt){
+    click(evt) {
 
-		window.controller.goTo('settings');
-				evt.stopPropagation();
+        window.controller.goTo('settings');
+        evt.stopPropagation();
 
 
-	}
+    }
 
 }

@@ -13,42 +13,43 @@ export default class New extends View {
 			type:`view`,
 			id:'new-view',
 			className:'slide',
-			style:`margin-top:10%;margin-left:10%;margin:0px auto;width:75%;`,
+			style:``,
 			innerHTML:`
-				<h2>new project</h2>
-				<input placeholder="project0"></input>
-				<p></p>
+				<column class="col-md-12">
+					<h2 >new project</h2>
+					<br/>
+					<h3><input placeholder="project0"></input></h3>
+					<p></p>
 
-									        <div class="form-group">
-									            <p class="form-group-label">Core Properties</p>
-									            <div class="checkbox">
-									                <label>
-									                    <input type="checkbox"></input>
-									                    <span>ES6</span>
-									                </label>
-									            </div>
+			        <div class="form-group">
+			            <p class="form-group-label">Core Properties</p>
+			            <div class="checkbox">
+			                <label>
+			                    <input type="checkbox" checked disabled></input>
+			                    <span>ES6</span>
+			                </label>
+			            </div>
 
-									            <div class="checkbox">
-									                <label>
-									                    <input type="checkbox" checked></input>
-									                    <span>FlowType</span>
-									                </label>
-									            </div>
+			            <div class="checkbox">
+			                <label>
+			                    <input type="checkbox" checked disabled></input>
+			                    <span>FlowType</span>
+			                </label>
+			            </div>
 
-									            <div class="checkbox">
-									                <label>
-									                    <input type="checkbox" disabled="true"></input>
-									                    <span>Disabled</span>
-									                </label>
-									            </div>
+			            <div class="checkbox">
+			                <label>
+			                    <input type="checkbox" disabled="true"></input>
+			                    <span>Disabled</span>
+			                </label>
+			            </div>
 
-									            <div class="checkbox">
-									                <label>
-									                    <input type="checkbox" id="foo"></input>
-									                    <span>Indeterminate</span>
-									                </label>
-									            </div>
-									        </div>
+						<div class="btn-group" >
+							<a class="btn btn-primary" disabled>Create</a>
+							<a class="btn btn-default">Cancel</a>
+						</div>
+			        </div>
+				</column>
 			`,
 			onclick:this.click
 		}
