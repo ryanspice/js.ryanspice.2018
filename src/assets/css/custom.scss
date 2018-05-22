@@ -15,6 +15,8 @@ $black: rgba(25, 25, 25, 1);
 html {
     font-size: 16px;
     -webkit-text-size-adjust: none;
+
+    height: 100%;
 }
 
 body {
@@ -24,6 +26,8 @@ body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     -moz-osx-font-smoothing: grayscale;
+
+    height: 100%;
 }
 
 input,

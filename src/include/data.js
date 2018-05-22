@@ -178,16 +178,14 @@ export default new Array([
 		innerHTML:`
 			<column id="contentMiddle" class="col-md-4 hidden-sm hidden-xs" style=" opacity: 10;">
 				<br/>
-				<h4><span class="pageTitle0" >shortcuts </span></h4>
-	            <div id="sideBar">
-	                <p class="sideBarNav"><a href="#">home</a></p>
-	                <p class="sideBarNav"><a href="#">documentation</a></p>
-	                <p class="sideBarNav"><a href="#">about</a> </p>
-	                <p class="sideBarNav"><a href="#">develop</a> </p>
-	                <p class="sideBarNav"><a href="#">publish</a> </p>
-	                <p class="sideBarNav"><a href="#">community</a> </p>
-	                <p class="sideBarNav"><a href="#">download</a></p>
-	            </div>
+				<h4><span class="pageTitle0" > </span></h4>
+	                <a href="#">home</a>
+	                <a href="#">documentation</a>
+	                <a href="#">about</a> 
+	                <a href="#">develop</a> 
+	                <a href="#">publish</a> 
+	                <a href="#">community</a> 
+	                <a href="#">download</a>
 
 
 				<h4><span class="pageTitle0" >references </span></h4>
