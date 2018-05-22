@@ -3,7 +3,6 @@ import View from "../view";
 
 export default class Load extends View {
 
-
 	constructor(ref?:HTML5Element){
 
 		super(ref)
@@ -19,9 +18,7 @@ export default class Load extends View {
 					<h2 >load project</h2>
 					<br/>
 
-
-
-					<div class="entity-list entity-list-expandable" onclick="window.controller.goTo('new');">
+					<div class="entity-list entity-list-expandable" onclick="(${this.gotonew})()">
 					<div class="entity-list-item">
 					<div class="item-icon">
 					<span class="glyph glyph-mail"></span>
@@ -80,11 +77,16 @@ export default class Load extends View {
 
 	}
 
+	gotonew = ()=>{
+
+		window.controller.goTo('new');
+
+	}
+
 	click(evt){
 
+		evt.stopPropagation();
 		window.controller.goTo('settings');
-				evt.stopPropagation();
-
 
 	}
 

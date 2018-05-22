@@ -164,6 +164,11 @@ overlay {
 
 column {
     padding-bottom: 64px;
+	h2 {
+
+      padding-top: 0px;
+
+	}
     li {
         list-style: none;
     }
@@ -603,6 +608,8 @@ aside span:hover {
 
 hero {
     margin: 0px;
+      margin-bottom: -36px;
+	display:block;
     width: 100%;
     -moz-box-shadow: inset 5px 0 7px -5px #a4a4a4, inset -5px 0 7px -5px #a4a4a4;
     -webkit-box-shadow: inset 5px 0 5px -5px #a4a4a4, inset -5px 0 5px -5px #a4a4a4;

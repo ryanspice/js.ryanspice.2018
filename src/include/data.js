@@ -138,6 +138,15 @@ export default new Array([
 		type:`style`,
 		value:css
 	},
+	{
+		type:`hero`,
+	//	renderTo:`#primary-view`,
+		id:`page-home`,
+		style:`background:transparent;`,
+		innerHTML:`<div style="background-position:0 100%;width:100%;" >
+
+		</div>`
+	},
 	...controller.views,
 	{type:`overlay`},
 
@@ -160,15 +169,6 @@ export default new Array([
 </ul>`
 	},
 
-	{
-		type:`hero`,
-		renderTo:`#primary-view`,
-		id:`page-home`,
-		style:`background:transparent;`,
-		innerHTML:`<div style="background-position:0 100%;width:100%;" >
-
-		</div>`
-	},
 
 	{
 		type:`section`,
