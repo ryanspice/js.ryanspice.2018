@@ -196,9 +196,11 @@ ribbon {
 view {
     opacity: 1;
     transition: all 0.2s;
+    transition: all 0.2s;
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
     transform: scale(1);
     transform-origin: center;
+
     display: block;
     position: relative;
     top: 0px;
@@ -215,8 +217,9 @@ view {
         display: inline;
         visibility: hidden;
 		overflow:none;
-        transform: scale(0), translateX(-10);
+        transform: scale(0.5), translateX(-10);
         transform-origin: center;
+        transition: all 0.2s;
         transition: all 0.2s;
         transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
     }
@@ -366,7 +369,6 @@ iframe {
 }
 
 #primary-view {
-	margin:0px;
 }
 
 #primary-view,

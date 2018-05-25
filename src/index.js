@@ -26,5 +26,6 @@ context.onreadystatechange = async function(evt){
 	await document.body.onresize();
 	window.controller.goTo('primary');
 
+	document.querySelectorAll('loader')[0].className = 'hidden';
 	state++;
 };
