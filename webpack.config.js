@@ -60,8 +60,7 @@ module.exports = {
 	plugins:[
 		new CopyWebpackPlugin([
 	        { from: './src/index.html' },
-	        { from: './src/assets', to:'./assets/' },
-	        { from: './src/images', to:'./images/' }
+	        { from: './src/assets', to:'./assets/' }
 	    ]),
 		new webpack.NamedModulesPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(true),
