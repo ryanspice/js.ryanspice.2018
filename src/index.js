@@ -10,21 +10,31 @@ const FeatherIcons = require('feather-icons');
 const context:HTMLDocument = document;
 
 let template;
-let state = 0;
+
+let state:number = 0;
 context.onreadystatechange = async function(evt){
 
-	if (state==0)
-		template = await new Template.AsyncRenderPipe(evt);
+	switch(state){
 
-	if (state==1)
-		return;
+		case 0:
 
-	document.body.onresize = async ()=>{
-		document.getElementById('scroll').style.height = (window.innerHeight - (48*6)) + "px";
-		await FeatherIcons.replace();
-	};
-	await document.body.onresize();
-	window.controller.goTo('primary');
+			template = await new Template.AsyncRenderPipe(evt);
+
+			document.body.onresize = async ()=>{
+				document.getElementById('scroll').style.height = (window.innerHeight - (48*6)) + "px";
+				await FeatherIcons.replace();
+			};
+			await document.body.onresize();
+			window.controller.goTo('primary');
+
+		break;
+		case 1:
+
+			return;
+
+		break;
+	}
+
 
 	state++;
 };
