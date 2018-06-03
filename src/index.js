@@ -4,6 +4,13 @@
 
 import * as Template from "./render/template";
 
+// import * as Tim from "async.2018";
+
+
+import * as Async2018 from "../node_modules/async.2018/dist/index"
+
+console.log(Async2018.default);
+
 require(`./assets/css/global.scss`);
 
 const FeatherIcons = require('feather-icons');
@@ -12,6 +19,7 @@ const context:HTMLDocument = document;
 let template;
 
 let state:number = 0;
+
 context.onreadystatechange = async function(evt){
 
 	switch(state){
