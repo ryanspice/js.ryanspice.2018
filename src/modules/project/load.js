@@ -3,6 +3,8 @@ import View from "../view";
 
 export default class Load extends View {
 
+	test:any = 'test'
+
 	constructor(ref?:HTML5Element){
 
 		super(ref)
@@ -57,7 +59,7 @@ export default class Load extends View {
 					</div>
 					<div class="item-content-primary">
 					<div class="content-text-primary">Demo (F)</div>
-					<div class="content-text-secondary">Team Spice</div>
+					<div class="content-text-secondary">${this.test}</div>
 					<div class="progress hidden">
 					<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
 					<span class="sr-only hidden">60%</span>
