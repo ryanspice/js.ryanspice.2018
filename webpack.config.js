@@ -11,7 +11,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 /* */
 
 module.exports = {
-	mode:'development',
+	mode:'production',
 	entry: './src/index.js',
 	output: {
 		filename: filename,

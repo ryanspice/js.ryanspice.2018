@@ -363,6 +363,7 @@ iframe {
     //overflow:hidden;
     overflow-x: hidden;
     overflow-y: auto;
+		height: calc(100% - 288px);
 }
 
 #primary-view {

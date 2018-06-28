@@ -1,11 +1,12 @@
 //@flow
 
-//import * as bootstrap from 'bootstrap.native/dist/bootstrap-native-v4';
+/*
+	Template Data
+		TODO: build async method to load DATA
+*/
 
-//import * as Template from "./render/template";
-
-// import * as Tim from "async.2018";
 import data from "./include/data";
+
 import Async2018 from "../node_modules/async.2018/src/index";
 
 require(`./assets/css/global.scss`);
@@ -13,34 +14,34 @@ require(`./assets/css/global.scss`);
 const FeatherIcons = require('feather-icons');
 const context:HTMLDocument = document;
 
-let state:number = 0;
+const renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
 
+let state:number = 0;
+let loader;
 context.onreadystatechange = async function(evt:Event){
 
 	switch(state){
 
 		case 0:
 
-			Async2018.core.template.AsyncRenderPipe.prototype.template = data;
-			console.log(Async2018.core.template.AsyncRenderPipe.prototype.template)
-			let template = await new Async2018.core.template.AsyncRenderPipe(evt);
+			renderer.prototype.template = data;
 
-			document.body.onresize = async ()=>{
-				document.getElementById('scroll').style.height = (window.innerHeight - (48*6)) + "px";
-				await FeatherIcons.replace();
-			};
+			let template = await new renderer(evt);
 
-			await document.body.onresize();
-			window.controller.goTo('primary'); //
+			loader = document.getElementById('loader');
 
 		break;
+
 		case 1:
 
-			return;
+			await FeatherIcons.replace();
+
+			await window.controller.goTo('primary');
+
+			loader.style.display = "none";
 
 		break;
 	}
-
 
 	state++;
 };
