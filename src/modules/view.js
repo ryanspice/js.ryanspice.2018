@@ -3,7 +3,7 @@
 import {
 	ViewSchema,
 	HTML5Element
-} from "../render/interfaces";
+} from "../../node_modules/async.2018/src/core/def/interfaces";
 
 export default class View {
 

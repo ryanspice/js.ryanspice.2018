@@ -3,7 +3,7 @@
 //var css = require("style-loader??css-loader??./style.scss");
 //var css = require("./style.js");
 
-import {default as loop} from '../render/loop';
+import {default as loop} from '../../node_modules/async.2018/src/core/def/loop';
 //console.log(css);
 
 import {default as css} from "./style.js";
@@ -181,10 +181,10 @@ export default new Array([
 				<h4><span class="pageTitle0" > </span></h4>
 	                <a href="#">home</a>
 	                <a href="#">documentation</a>
-	                <a href="#">about</a> 
-	                <a href="#">develop</a> 
-	                <a href="#">publish</a> 
-	                <a href="#">community</a> 
+	                <a href="#">about</a>
+	                <a href="#">develop</a>
+	                <a href="#">publish</a>
+	                <a href="#">community</a>
 	                <a href="#">download</a>
 
 
