@@ -9,7 +9,6 @@ import data from "./include/data";
 
 import Async2018 from "../node_modules/async.2018/src/index";
 
-require(`./assets/css/global.scss`);
 
 const FeatherIcons = require('feather-icons');
 const context:HTMLDocument = document;
@@ -18,11 +17,14 @@ const renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
 
 let state:number = 0;
 let loader;
+
 context.onreadystatechange = async function(evt:Event){
 
 	switch(state){
 
 		case 0:
+
+			await require(`./assets/css/global.scss`);
 
 			renderer.prototype.template = data;
 
