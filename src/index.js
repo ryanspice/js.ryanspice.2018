@@ -9,16 +9,16 @@ import data from "./include/data";
 
 import Async2018 from "../node_modules/async.2018/src/index";
 
+interface AsyncRenderer {};
 
-const FeatherIcons = require('feather-icons');
-const context:HTMLDocument = document;
-
-const renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
+let renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
+let template:AsyncRenderer;
+let loader:Element;
+let icons:any;
 
 let state:number = 0;
-let loader;
 
-context.onreadystatechange = async function(evt:Event){
+renderer.prototype.context.onreadystatechange = async function(evt:Event){
 
 	switch(state){
 
@@ -27,20 +27,19 @@ context.onreadystatechange = async function(evt:Event){
 			await require(`./assets/css/global.scss`);
 
 			renderer.prototype.template = data;
+			template = await new renderer(evt);
 
-			let template = await new renderer(evt);
-
-			loader = document.getElementById('loader');
+			icons = await require('feather-icons');
 
 		break;
 
 		case 1:
 
-			await FeatherIcons.replace();
+			await icons.replace();
 
-			await window.controller.goTo('primary');
+			await window.controller.goTo('engine');
 
-			loader.style.display = "none";
+			(document.getElementById('loader')).remove();
 
 		break;
 	}

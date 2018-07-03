@@ -8,31 +8,11 @@ import {default as loop} from '../../node_modules/async.2018/src/core/def/loop';
 
 import {default as css} from "./style.js";
 
-const switchView = (str,str2)=>{
+import {
 
-	document.getElementById(str).classList.toggle('hidden');
-	document.getElementById(str2).classList.toggle('hidden');
+	switchView, toggleExpand
 
-};
-
-const toggleExpand = (evt)=>{
-
-	let data = Array.from(document.querySelectorAll('.highlight'));
-	let column = document.querySelectorAll('#secondary-column')[0];
-	let view = document.querySelectorAll('view')[0];
-
-	loop([data],elm=>{
-		console.log(elm.value.className = "");
-	});
-
-	if (evt){
-
-		evt.toElement.className = "highlight";
-		column.classList.toggle("expand");
-
-	}
-
-};
+} from "./util";
 
 //import Home from "../modules/Home/Home";
 import Documentation from "../modules/documentation/documentation";
@@ -50,6 +30,7 @@ class Controller {
 	_column;
 
 	views:Array<any> = [
+
 		{
 			link:this,
 			type:`view`,
@@ -61,7 +42,9 @@ class Controller {
 				controller.clearColumn();
 					let data = Array.from(document.querySelectorAll('.highlight'));
 						loop([data],elm=>{
-							console.log(elm.value.className = "");
+							//console.log(
+								elm.value.className = "";
+							//);
 						});
 
 				//controller.each(e=>e.value.classList.add('hidden'));
@@ -72,7 +55,7 @@ class Controller {
 		{
 			link:this,
 			type:`view`,
-			id:'secondary-view',
+			id:'engine-view',
 			className:'slide',
 			style:`background:transparent;`,
 			innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
@@ -107,7 +90,7 @@ class Controller {
 	goTo = (str) => {
 
 		controller.each(e=>{
-			console.log(e.value.id==str+'-view')
+			//console.log(e.value.id==str+'-view')
 			if (e.value.id==str+'-view')
 			e.value.classList.remove('slide');
 			else
@@ -138,6 +121,9 @@ export default new Array([
 		type:`style`,
 		value:css
 	},
+
+
+	/*
 	{
 		type:`hero`,
 	//	renderTo:`#primary-view`,
@@ -147,8 +133,10 @@ export default new Array([
 
 		</div>`
 	},
+	*/
 	...controller.views,
-	{type:`overlay`},
+
+	//{type:`overlay`},
 
 	{
 		type:`ribbon`,
@@ -162,13 +150,26 @@ export default new Array([
 		renderTo:`#primary-view`,
 		style:`background:transparent;display:none`,
 		innerHTML:`<ul class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Pictures</a></li>
-  <li><a href="#">Summer 15</a></li>
-  <li>Italy</li>
-</ul>`
+		  <li><a href="#">Home</a></li>
+		  <li><a href="#">Pictures</a></li>
+		  <li><a href="#">Summer 15</a></li>
+		  <li>Italy</li>
+		</ul>`
 	},
 
+	/*
+	{
+		type:`section`,
+		renderTo:`#primary-view`,
+		id:`page-engine`,
+		style:`margin: 0px 70px;`,
+		innerHTML:`
+
+			<iframe>test</iframe>
+
+		`
+	},
+	*/
 
 	{
 		type:`section`,
@@ -206,55 +207,56 @@ export default new Array([
 				<h4> setting up the app </h4>
 				<hr/>
 
-					<pre style="padding:0px !important;margin:0px !important;"><code class="js hljs javascript" style="padding:0px;margin:0px;padding-bottom:23px;margin-bottom:-15px;">
+					<pre style="padding:0px !important;margin:0px !important;">
+					<code class="js hljs javascript" style="padding:0px;margin:0px;padding-bottom:23px;margin-bottom:-15px;">
 
-	<span class="hljs-comment">//Application Load</span>
-	App.OnLoad = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+					<span class="hljs-comment">//Application Load</span>
+					App.OnLoad = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
-		<span class="hljs-comment">// Initalize Title and Resolution</span>
-		App.Init(<span class="hljs-string">"SpiceJS - Particles"</span>,<span class="hljs-number">1920</span>,<span class="hljs-number">1080</span>);
+						<span class="hljs-comment">// Initalize Title and Resolution</span>
+						App.Init(<span class="hljs-string">"SpiceJS - Particles"</span>,<span class="hljs-number">1920</span>,<span class="hljs-number">1080</span>);
 
-		<span class="hljs-comment">//Snap to top</span>
-		App.ext.top();
+						<span class="hljs-comment">//Snap to top</span>
+						App.ext.top();
 
-		<span class="hljs-comment">//Set canvas background colour</span>
-		App.canvas.background_set(<span class="hljs-string">"transparent"</span>);
+						<span class="hljs-comment">//Set canvas background colour</span>
+						App.canvas.background_set(<span class="hljs-string">"transparent"</span>);
 
-		<span class="hljs-comment">//Assign favicon</span>
-		App.ext.metatag.metaFavicon(<span class="hljs-string">"../../stan.png"</span>);
+						<span class="hljs-comment">//Assign favicon</span>
+						App.ext.metatag.metaFavicon(<span class="hljs-string">"../../stan.png"</span>);
 
-	};
+					};
 
-	<span class="hljs-comment">//Application main loop Object[init,update,draw]</span>
-	App.main= {
+					<span class="hljs-comment">//Application main loop Object[init,update,draw]</span>
+					App.main= {
 
-		name:<span class="hljs-string">"Particles"</span>,
+						name:<span class="hljs-string">"Particles"</span>,
 
-		init:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+						init:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
-			<span class="hljs-comment">//State Initilization</span>
+							<span class="hljs-comment">//State Initilization</span>
 
-			<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-		},
+							<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+						},
 
-		update:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+						update:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
-			<span class="hljs-comment">//Update logic	</span>
+							<span class="hljs-comment">//Update logic	</span>
 
-			<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-		},
+							<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+						},
 
-		draw:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+						draw:<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
-			<span class="hljs-comment">//Draw logic stored in particles.js</span>
-			particlesDraw(<span class="hljs-keyword">this</span>.app)
+							<span class="hljs-comment">//Draw logic stored in particles.js</span>
+							particlesDraw(<span class="hljs-keyword">this</span>.app)
 
-			<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-		}
+							<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+						}
 
-	};
+					};
 
-</code>
+				</code>
 					</pre>
 			</column>
 
@@ -303,7 +305,7 @@ export default new Array([
 		type:`span`,
 		id:`hamburger`,
 		renderTo:'#secondary-column',
-		className:`hidden`,
+		className:``,
 		style:`text-align:center;line-height:64px;color:white;`,
 		value:`32`,
 		innerHTML:`<i class="menu" data-feather="menu"></i>`
@@ -311,7 +313,7 @@ export default new Array([
 
 	{
 		type:`span`,
-		className:`highlight`,
+		className:``,
 		style:`max-width:48px`,
 		renderTo:'#secondary-column',
 		innerHTML:`<i class="menu " data-feather="home"></i><input class="hidden"></input>`,
@@ -371,7 +373,7 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		className:`hidden`,
+		className:``,
 		innerHTML:`<i class="menu" data-feather="layers"></i>`,
 		onclick:(evt)=>{
 
@@ -415,7 +417,7 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		className:``,
+		className:`hidden`,
 		style:`position:absolute;bottom:48px;max-width:48px;pointer-events:none;opacity:0.5;`,
 		innerHTML:`<i class="menu" data-feather="play"></i>`,
 		onclick:(evt)=>{
@@ -457,7 +459,7 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		style:`position:absolute;bottom:144px;max-width:48px;display:none;`,
+		style:`position:absolute;bottom:144px;max-width:48px;`,
 		innerHTML:`<i class="menu" data-feather="github"></i>`,
 		onclick:(evt)=>{
 
@@ -470,7 +472,7 @@ export default new Array([
 	},
 
 	/* END BOTTOM */
-
+	/*
 	{
 		type:`search`,
 		style:`font-size:2rem`,
@@ -483,4 +485,6 @@ export default new Array([
 		style:`font-size:2rem`,
 		value:`123wds`
 	}
+
+	*/
 ]);
