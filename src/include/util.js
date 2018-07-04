@@ -6,13 +6,12 @@ const cleanClass = (elm) => {
 
 	elm.value.className = "";
 
-}
+};
 
 const switchView = (str,str2)=>{
 
 	document.getElementById(str).classList.toggle('hidden');
 	document.getElementById(str2).classList.toggle('hidden');
-
 
 };
 
