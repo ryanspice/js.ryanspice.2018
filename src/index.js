@@ -5,22 +5,66 @@
 		TODO: build async method to load DATA
 */
 
-import data from "./include/data";
+//import data from "./include/data";
 
-import Async2018 from "../node_modules/async.2018/src/index";
+//import Async2018 from "../node_modules/async.2018/src/index";
 
-interface AsyncRenderer {};
+//interface AsyncRenderer {};
 
-let renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
+//let renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
 let template:AsyncRenderer;
-let icons:any;
+let pipe;
 
 let loader:Element;
 let message:Element;
+let icons:any;
+
 let state:number = 0;
 
+let requireMSG;
 
-renderer.prototype.context.onreadystatechange = async function(evt:Event){
+/* WORK LOAD */
+
+
+
+
+/* RENDERER */
+
+pipe = require('./require.js').default;
+
+/*
+	Pre-load
+*/
+
+const pre = async evt => {
+	await Promise.all([
+		await pipe.requireCSS(evt),
+		await pipe.requireHTML(evt)
+	]);
+};
+
+/*
+	Post-load
+*/
+
+const post = async evt => {
+
+	await pipe.requireMSG('icons');
+	await pipe.requireIcons();
+
+	await pipe.requireMSG('please wait');
+	setTimeout(async ()=>{
+
+		await window.controller.goTo('engine');
+		(document.getElementById('loader')	).remove();
+
+	},50);
+
+}
+
+
+//renderer.prototype.context.onreadystatechange = async function(evt:Event){
+document.onreadystatechange = async function(evt:Event){
 
 	message = document.getElementsByClassName('load-text')[0];
 
@@ -28,31 +72,13 @@ renderer.prototype.context.onreadystatechange = async function(evt:Event){
 
 		case 0:
 
-
-			await require(`./assets/css/global.scss`);
-			message.innerText = await "css";
-
-
-			renderer.prototype.template = await data;
-			template = await new renderer(evt);
-			message.innerText = await "async.2018";
-
-
-			icons = await require('feather-icons');
-			message.innerText = await "feather-icons";
+			await pre(evt);
 
 		break;
 
 		case 1:
 
-
-			await icons.replace();
-			message.innerText = await "please wait";
-
-			await window.controller.goTo('engine');
-
-			(document.getElementById('loader')).remove();
-
+			await post(evt);
 
 		break;
 	}

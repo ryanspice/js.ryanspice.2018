@@ -1,3 +1,5 @@
+//@flow
+
 //const css = require('./style.scss');//.toString();
 
 //var css = require("style-loader??css-loader??./style.scss");
@@ -115,13 +117,17 @@ class Controller {
 
 const controller = new Controller();
 window.controller = controller;
+
+/* */
+
 export default new Array([
 
+	/*
 	{
 		type:`style`,
 		value:css
 	},
-
+	*/
 
 	/*
 	{
@@ -138,12 +144,17 @@ export default new Array([
 
 	//{type:`overlay`},
 
+
+	/* Ribbon */
+
 	{
 		type:`ribbon`,
 		renderTo:`#primary-view`,
 		style:``,
 		innerHTML:`<h3">SpiceJS 0.9.0</h3>`
 	},
+
+	/* Breadcrumbs */
 
 	{
 		type:`breadcrumbs`,
