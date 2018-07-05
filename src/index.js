@@ -9,36 +9,50 @@ import data from "./include/data";
 
 import Async2018 from "../node_modules/async.2018/src/index";
 
-require(`./assets/css/global.scss`);
+interface AsyncRenderer {};
 
-const FeatherIcons = require('feather-icons');
-const context:HTMLDocument = document;
+let renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
+let template:AsyncRenderer;
+let icons:any;
 
-const renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
-
+let loader:Element;
+let message:Element;
 let state:number = 0;
-let loader;
-context.onreadystatechange = async function(evt:Event){
+
+
+renderer.prototype.context.onreadystatechange = async function(evt:Event){
+
+	message = document.getElementsByClassName('load-text')[0];
 
 	switch(state){
 
 		case 0:
 
-			renderer.prototype.template = data;
 
-			let template = await new renderer(evt);
+			await require(`./assets/css/global.scss`);
+			message.innerText = await "css";
 
-			loader = document.getElementById('loader');
+
+			renderer.prototype.template = await data;
+			template = await new renderer(evt);
+			message.innerText = await "async.2018";
+
+
+			icons = await require('feather-icons');
+			message.innerText = await "feather-icons";
 
 		break;
 
 		case 1:
 
-			await FeatherIcons.replace();
 
-			await window.controller.goTo('primary');
+			await icons.replace();
+			message.innerText = await "please wait";
 
-			loader.style.display = "none";
+			await window.controller.goTo('engine');
+
+			(document.getElementById('loader')).remove();
+
 
 		break;
 	}

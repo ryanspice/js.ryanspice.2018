@@ -2,15 +2,55 @@
 
 <head>
 
+	<style>
+
+		#loader {
+			position:absolute;
+			left:0%;top:0%;
+			margin:0px auto;
+			width:100%;
+			height:100%;
+			background:#323232;
+			z-index:100;
+		}
+
+		.load {
+      position: absolute;
+	    left: 45%;
+	    top: 35%;
+	    margin: 0px auto;
+	    width: 400px;
+	    margin-left: -25px;
+	    width: 10%;
+	    opacity: 0.5;
+			text-align:center;
+
+		}
+
+		.load-text {
+
+			margin-top:125px;
+			//font-weight:bold;
+			//text-transform: uppercase;
+			font-family: Segoe UI, Open-Sans;
+		}
+
+	</style>
+
 	<script src="ryanspice.2018.js"></script>
 
 </head>
 
 <body>
 
-	<noscript>Please Enable JavaScript</noscript>
-	<div id="loader" class="fade-in">
-		<img style="-webkit-box-shadow: 0 0 3px 3px white;box-shadow: 0 0 3px 3px white;position:absolute;left:50%;top:35%;margin:0px auto;margin-left:-25px;width:50px;" src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif" class="fade-in" />
+
+	<div id="loader" class="slide">
+
+		<img class="load fade-in" src="./assets/images/Eclipse-1s-200px-white.svg" />
+		<p class="load load-text">...</p>
+
+		<noscript>Please Enable JavaScript</noscript>
+
 	</div>
 
 </body>

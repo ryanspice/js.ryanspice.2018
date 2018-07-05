@@ -11,7 +11,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 /* */
 
 module.exports = {
-	mode:'production',
+	mode:'development',
 	entry: './src/index.js',
 	output: {
 		filename: filename,
@@ -64,7 +64,7 @@ module.exports = {
 	    ]),
 		new webpack.NamedModulesPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(true),
-		new DashboardPlugin()
+		//new DashboardPlugin()
 	],
 	devServer: {
 	  contentBase: './dist',
