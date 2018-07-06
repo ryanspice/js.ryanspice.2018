@@ -13,7 +13,7 @@ $black: rgba(25, 25, 25, 1);
 }
 
 html {
-    font-size: 16px;
+    //font-size: 16px;
     -webkit-text-size-adjust: none;
 
     height: 100%;
@@ -362,9 +362,22 @@ iframe {
 }
 
 #hamburger {
-    max-width: $icon-size;
+    max-width: $icon-size * 4;
     background: transparent;
     background: $black;
+		i, span {
+
+			max-width:48px;
+			width:48px;
+			float:left;
+			padding:10px !important;
+			&:hover {
+
+				//padding:12px !important;
+
+			}
+
+		}
 }
 
 #scroll {
@@ -650,6 +663,29 @@ hero {
         //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
     }
 }
+
+#save-view {
+
+	input {
+
+		padding:2.5%;
+		width:100%;
+		color:black;
+
+	}
+
+	h2 {
+
+		input {
+
+			background:transparent;
+			
+		}
+
+	}
+
+}
+
 
 .noselect {
     -webkit-touch-callout: none;

@@ -14,11 +14,47 @@ export default class Load extends View {
 			type:`view`,
 			id:'load-view',
 			className:'slide',
-			style:``,
+			style:`
+	      z-index: 200;
+		    position: absolute;
+		    background: black;
+		    margin: 0px;
+		    padding: 48px;
+				width:100%;
+				height:100%;
+				max-width:720px;
+				opacity:1 !important;
+				`,
 			innerHTML:`
 				<column class="col-md-12">
 					<h2 >load project</h2>
 					<br/>
+
+					<div class="entity-list entity-list-expandable">
+					<div class="entity-list-item">
+					<div class="item-icon" style="background:black;border:1px rgba(255,255,255,0.5)">
+						<span ><i class="" data-feather="plus"></i></span>
+					</div>
+					<div class="item-content-secondary">
+					<div class="content-text-primary">00.0 MB</div>
+					<div class="content-text-secondary"></div>
+					</div>
+					<div class="item-content-primary">
+					<div class="content-text-primary">No Projects</div>
+					<div class="content-text-secondary"></div>
+					<div class="progress hidden">
+					<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+					<span class="sr-only hidden">60%</span>
+					</div>
+					</div>
+					</div>
+					<div class="item-content-expanded">
+					<button class="btn btn-default" disabled="disabled">Uninstall</button>
+					<button class="btn btn-default">Move</button>
+					</div>
+					</div>
+					</div>
+
 
 					<div class="entity-list entity-list-expandable" onclick="(${this.gotonew})()">
 					<div class="entity-list-item">

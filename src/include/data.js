@@ -22,6 +22,7 @@ import Documentation from "../modules/documentation/documentation";
 import Settings from "../modules/settings/settings";
 import New from "../modules/project/new";
 import Load from "../modules/project/load";
+import Save from "../modules/project/save";
 import {
 	Info,
 	DefaultSettings
@@ -41,13 +42,30 @@ class Controller {
 
 			style:``,
 			onclick:()=>{
+
 				controller.clearColumn();
+
+
+
 					let data = Array.from(document.querySelectorAll('.highlight'));
 						loop([data],elm=>{
 							//console.log(
 								elm.value.className = "";
 							//);
 						});
+
+
+
+
+					let data2 = Array.from(document.querySelectorAll('view'));
+						loop([data2],elm=>{
+
+								if (elm.value.className!=="slide" && elm.value.id!=='primary-view')
+									elm.value.className = "slide";
+
+
+						});
+
 
 				//controller.each(e=>e.value.classList.add('hidden'));
 			},
@@ -68,7 +86,8 @@ class Controller {
 		new Info(this),
 		new DefaultSettings(this),
 		new New(this),
-		new Load(this)
+		new Load(this),
+		new Save(this)
 	]
 
 	clearColumn = ()=>{
@@ -89,14 +108,16 @@ class Controller {
 		});
 	}
 
-	goTo = (str) => {
+	goTo = (str, noRemove) => {
+
+		console.log(noRemove);
 
 		controller.each(e=>{
 			//console.log(e.value.id==str+'-view')
 			if (e.value.id==str+'-view')
 			e.value.classList.remove('slide');
 			else
-			e.value.classList.add('slide');
+			noRemove?null:e.value.classList.add('slide');
 
 		});
 		//document.getElementById(str+'-view').classList.remove('hidden');
@@ -156,17 +177,6 @@ export default new Array([
 
 	/* Breadcrumbs */
 
-	{
-		type:`breadcrumbs`,
-		renderTo:`#primary-view`,
-		style:`background:transparent;display:none`,
-		innerHTML:`<ul class="breadcrumb">
-		  <li><a href="#">Home</a></li>
-		  <li><a href="#">Pictures</a></li>
-		  <li><a href="#">Summer 15</a></li>
-		  <li>Italy</li>
-		</ul>`
-	},
 
 	/*
 	{
@@ -306,7 +316,6 @@ export default new Array([
 		id:'secondary-column',
 		className:`noselect`,
 		style:`font-size:2rem`,
-		value:`123wds`,
 		onclick:toggleExpand
 	},
 
@@ -316,10 +325,21 @@ export default new Array([
 		type:`span`,
 		id:`hamburger`,
 		renderTo:'#secondary-column',
-		className:``,
+		className:`steve`,
 		style:`text-align:center;line-height:64px;color:white;`,
 		value:`32`,
-		innerHTML:`<i class="menu" data-feather="menu"></i>`
+		innerHTML:`
+			<span><i class="" data-feather="menu"></i></span>
+			<span onclick="controller.goTo('save',true)"><i class="" data-feather="save"></i></span>
+			<span onclick="controller.goTo('load',true)"><i class="" data-feather="upload"></i></span>
+			<span onclick="controller.goTo('tertiary',false)"><i class="" data-feather="help-circle"></i>
+					</span>
+			`,
+		onclick:(evt)=>{
+
+			console.log(evt.currentTarget);
+
+		}
 	},
 
 	{
@@ -356,27 +376,15 @@ export default new Array([
 		type:`span`,
 		renderTo:'#secondary-column',
 		style:`max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="hard-drive"></i>	`,
+		innerHTML:`<i class="menu" data-feather="hard-drive"></i>`,
 		onclick:(evt)=>{
 
 			evt.stopPropagation();
-			controller.goTo('load')
+			/*controller.goTo('load')*/
 
 		}
 	},
 
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		style:`max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="plus"></i>	`,
-		onclick:(evt)=>{
-
-			evt.stopPropagation();
-			controller.goTo('new')
-
-		}
-	},
 
 	// NEW SCREEN END //
 	// INGAME //
@@ -395,6 +403,19 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
+		style:`max-width:48px;`,
+		innerHTML:`<i class="menu" data-feather="plus"></i>	`,
+		onclick:(evt)=>{
+
+			evt.stopPropagation();
+			//controller.goTo('new')
+
+		}
+	},
+
+	{
+		type:`span`,
+		renderTo:'#secondary-column',
 		style:`display:none;background:black;overflow:hidden;max-height:48px;`,
 		innerHTML:`<i class="menu" data-feather="layers"></i>
 			<h5 onclick="event.stopPropagation()" >ROOM</h5>
@@ -407,7 +428,7 @@ export default new Array([
 	{
 		type:`span`,
 		id:`scroll`,
-		style:`display:none;`,
+		style:`display:;`,
 		renderTo:'#secondary-column',
 		innerHTML:`
 			<span style=""><i class="menu" data-feather="file"></i>
@@ -418,7 +439,7 @@ export default new Array([
 
 	{
 		type:`span`,
-		style:`display:none;`,
+		style:`display:;`,
 		renderTo:'#scroll',
 		innerHTML:`<i class="menu" data-feather="file"></i>`,
 		//onclick:`console.log('eh')`
@@ -452,7 +473,7 @@ export default new Array([
 			controller.goTo('settings')
 		}
 	},
-
+/*
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
@@ -481,7 +502,7 @@ export default new Array([
 
 		}
 	},
-
+*/
 	/* END BOTTOM */
 	/*
 	{
