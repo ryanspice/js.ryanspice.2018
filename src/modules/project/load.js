@@ -1,9 +1,27 @@
 
 import View from "../view";
 
-export default class Load extends View {
 
-	test:any = 'test'
+class ListItem {
+
+	$id;
+
+	constructor(any){
+
+		return {
+
+			link:this,
+			type:`view`,
+			id:'data-async-a${this.$id++}',
+			className:'slide',
+
+		}
+
+	}
+
+}
+
+export default class Load extends View {
 
 	constructor(ref?:HTML5Element){
 
@@ -40,7 +58,7 @@ export default class Load extends View {
 					<div class="content-text-secondary"></div>
 					</div>
 					<div class="item-content-primary">
-					<div class="content-text-primary">No Projects</div>
+					<div class="content-text-primary">Add new project</div>
 					<div class="content-text-secondary"></div>
 					<div class="progress hidden">
 					<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">

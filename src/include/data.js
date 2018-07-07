@@ -1,14 +1,8 @@
 //@flow
 
-//const css = require('./style.scss');//.toString();
-
-//var css = require("style-loader??css-loader??./style.scss");
-//var css = require("./style.js");
+import {default as css} from "./style.js";
 
 import {default as loop} from '../../node_modules/async.2018/src/core/def/loop';
-//console.log(css);
-
-import {default as css} from "./style.js";
 
 import {
 
@@ -18,11 +12,13 @@ import {
 
 //import Home from "../modules/Home/Home";
 import Documentation from "../modules/documentation/documentation";
-
 import Settings from "../modules/settings/settings";
 import New from "../modules/project/new";
 import Load from "../modules/project/load";
 import Save from "../modules/project/save";
+
+import PrimaryColumn from "../modules/nav/primary-column";
+
 import {
 	Info,
 	DefaultSettings
@@ -72,6 +68,7 @@ class Controller {
 			value:`123wds`
 		},
 
+//		new PrimaryColumn(this),
 		{
 			link:this,
 			type:`view`,
@@ -192,6 +189,8 @@ export default new Array([
 	},
 	*/
 
+	//Page Home
+
 	{
 		type:`section`,
 		renderTo:`#primary-view`,
@@ -304,13 +303,7 @@ export default new Array([
 
 	//Columns
 
-	{
-		type:`aside`,
-		id:'primary-column',
-		className:`noselect hidden`,
-		style:``,
-		value:`123wds`
-	},
+
 	{
 		type:`aside`,
 		id:'secondary-column',
