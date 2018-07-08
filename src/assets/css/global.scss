@@ -5,9 +5,7 @@
 @import "../../../node_modules/winstrap/dist/css/winstrap.css";
 @import "../../../node_modules/winstrap/dist/css/winstrap-optional.css";
 
-$icon-size: 48px;
-$secondary-column-width: 420px;
-$black: rgba(25, 25, 25, 1);
+@import "./variables.scss";
 
 @import "./util.scss";
 
