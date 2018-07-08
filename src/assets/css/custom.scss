@@ -1,138 +1,4 @@
-$icon-size: 48px;
-$secondary-column-width: 420px;
-$black: rgba(25, 25, 25, 1);
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-*:after,
-*:before {
-    box-sizing: border-box;
-}
-
-html {
-    //font-size: 16px;
-    -webkit-text-size-adjust: none;
-
-    height: 100%;
-}
-
-body {
-    font-weight: light;
-    font-family: WeblySleek UI !important;
-    font-family: "Segoe UI", "Microsoft YaHei", "Open Sans", sans-serif, "Hiragino Sans GB", Arial, "Lantinghei SC", "5FAE8F6F96C59ED1", "STHeiti", "WenQuanYi Micro Hei", SimSun;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-
-    height: 100%;
-}
-
-input,
-textarea {
-    box-shadow: none;
-    border-radius: none;
-}
-
-* {
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-
-*::-webkit-scrollbar {
-    -webkit-appearance: none
-}
-
-*::-webkit-scrollbar:vertical {
-    width: 6px;
-}
-
-*::-webkit-scrollbar:horizontal {
-    height: 6px
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: rgba(95, 95, 95, 0.5);
-}
-
-@mixin respond-to($media) {
-    /* Landscape phones and down */
-    @if $media==phone {
-        @media (max-width: 480px) {
-            @content;
-        }
-    }
-    /* Landscape phone to portrait tablet */
-    @else if $media==tablet-portrait {
-        @media (max-width: 767px) {
-            @content;
-        }
-    }
-    /* Portrait tablet to landscape and desktop */
-    @else if $media==tablet-landscape-desktop {
-        @media (min-width: 768px) and (max-width: 979px) {
-            @content;
-        }
-    }
-    /* Portrait tablet and up */
-    @else if $media==general {
-        @media (min-width: 768px) {
-            @content;
-        }
-    }
-    /* Large desktop */
-    @else if $media==large-desktop {
-        @media (min-width: 1200px) {
-            @content;
-        }
-    } // Non-Retina
-    @else if $media==non-retina {
-        @media screen and (-webkit-max-device-pixel-ratio: 1) {
-            @content;
-        }
-    } // Retina Only
-    @else if $media==retina {
-        @media screen and (-webkit-min-device-pixel-ratio: 2) {
-            @content;
-        }
-    } // Specific max width
-    @else {
-        @media only screen and (max-width: #{$media}px) {
-            @content;
-        }
-    }
-}
-
-@mixin transition-default {
-    transition: width 0.2s;
-    transition: opacity 0.2s;
-    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-/** Hover **/
-
-*:hover {
-    //background:rgba(25,25,25,0.05);
-    &::-webkit-scrollbar-track {
-        //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        //background-color: #F5F5F5;
-        width: 4px;
-        background: transparent;
-    }
-    &::-webkit-scrollbar {
-        width: 4px;
-        background-color: #F5F5F5;
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: rgba(25, 25, 25, 0.25); //border: 2px solid #555555;
-    }
-}
-
-::-webkit-scrollbar {
-    width: 0px;
-    background-color: #F5F5F5;
-}
 
 .highlight:not(#scroll) {
     opacity: 1 !important;
@@ -143,27 +9,6 @@ textarea {
     transition: all 0.2s;
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); //opacity:0;
     display: none;
-}
-
-/* Elements */
-
-html,
-body {
-    background: rgba(125, 125, 125, 1);
-    background: white;
-    color: rgba(255, 255, 255, 0.85);
-    color: black; //min-height:494px;
-}
-
-overlay {
-    top: 0px;
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    opacity: 0.15;
-    pointer-events: none;
-    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
 column {
@@ -301,6 +146,7 @@ view {
 }
 
 #info-settings-view{
+
 	h2,h4{
 		width:100%;
 		@include respond-to(general) {
@@ -308,13 +154,14 @@ view {
 			width: unset;
 		}
 	}
+
 	//margin:0px;
 	//text-align:center;
 	@include respond-to(general) {
-		//margin:unset;
-	//	text-align:unset;
-	}
-		text-align:unset;
+			//margin:unset;
+		//	text-align:unset;
+		}
+			text-align:unset;
 }
 
 .rel-left-24 {
@@ -407,13 +254,6 @@ iframe {
 	margin:0px;
 }
 
-#primary-view,
-#secondary-view,
-#settings-view {
-    //	color:white;
-    //width:30%;
-    //float:left;
-}
 
 #slider-settings-view {
     color: black;
@@ -442,19 +282,7 @@ search {
     >:after {}
 }
 
-innerlay {
-    position: absolute;
-    display: block;
-    left: 0px;
-    top: 0px;
-    background: url(assets/images/acrylic.png) left top/cover no-repeat fixed;
-    width: 100%;
-    height: 100%;
-    background-attachment: fixed;
-    opacity: 0.5; //-webkit-filter: hue-rotate(222); /*sepia, hue-rotate, invert....*/
-    //-webkit-filter: brightness(50%);
-    -webkit-filter: blur(1px);
-}
+
 aside span:nth-child(1),
 aside span:nth-child(2),
 aside span:nth-child(3),
@@ -530,26 +358,36 @@ aside {
     }
     &#primary-column,
     &#secondary-column {
+
         //background:black;
         position: fIxed;
         left: 0px;
         top: 0px;
         width: $icon-size;
+
         span h5:not(.expand),
         span svg:not(.expand):nth-of-type(4n+2) {
+
             display: none;
+
         }
+
         &.expand {
+
             width: $secondary-column-width;
+
             span h5:not(.expand),
             span svg:not(.expand):nth-of-type(4n+2) {
                 display: block;
             }
+
         }
+
         height:100%; //opacity:0.5;
         transition: width 0.2s;
         transition: opacity 0.2s;
         transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); //background:transparent;
+
     }
     &#primary:hover,
     &#secondary-column:hover {
@@ -585,19 +423,23 @@ aside {
 }
 
 aside span {
+
     overflow: hidden;
+
     h5 {
-        padding: 10px 0;
-        float: left;
-        padding: 10px;
-        &:hover {
-            transition: all 0.2s;
-            transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-            opacity: 1;
-            //-webkit-filter: drop-shadow( -0px -0px 7px #FFF);
-            //filter: drop-shadow( -0px -0px 7px #FFF);
-        }
+			padding: 10px 0;
+			float: left;
+			padding: 10px;
+
+			&:hover {
+
+				@include transition-a();
+				//-webkit-filter: drop-shadow( -0px -0px 7px #FFF);
+				//filter: drop-shadow( -0px -0px 7px #FFF);
+			}
+
     }
+
     span {
         background: transparent; //max-width:$icon-size;
     } //background:rgba(125,125,125,0.25);
@@ -613,9 +455,7 @@ aside span {
     -webkit-filter: none;
     filter: none;
     &:hover {
-        transition: all 0.2s;
-        transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-        opacity: 1;
+				@include transition-a();
         -webkit-filter: drop-shadow( -0px -0px 7px #000);
         filter: drop-shadow( -0px -0px 7px #000);
     }
@@ -630,9 +470,7 @@ aside span {
         -webkit-filter: none;
         filter: none;
         &:hover {
-            transition: all 0.2s;
-            transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-            opacity: 1;
+						@include transition-a();
             -webkit-filter: drop-shadow( -0px -0px 5px #666);
             filter: drop-shadow( -0px -0px 5px #666);
         }
@@ -652,8 +490,8 @@ aside span:hover {
 
 hero {
     margin: 0px;
-      margin-bottom: -36px;
-	display:block;
+    margin-bottom: -36px;
+		display:block;
     width: 100%;
     -moz-box-shadow: inset 5px 0 7px -5px #a4a4a4, inset -5px 0 7px -5px #a4a4a4;
     -webkit-box-shadow: inset 5px 0 5px -5px #a4a4a4, inset -5px 0 5px -5px #a4a4a4;
@@ -671,7 +509,7 @@ hero {
         background-size: length;
         background-repeat: repeat;
         background-position: 50% 50%;
-		background-attachment: fixed;
+				background-attachment: fixed;
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
         //background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
         //background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -700,21 +538,4 @@ hero {
 
 	}
 
-}
-
-
-.noselect {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -khtml-user-select: none;
-    /* Konqueror HTML */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
 }
