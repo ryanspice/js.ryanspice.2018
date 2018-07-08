@@ -31,18 +31,8 @@ export default class Load extends View {
 			link:this,
 			type:`view`,
 			id:'load-view',
-			className:'slide',
-			style:`
-	      z-index: 200;
-		    position: absolute;
-		    background: black;
-		    margin: 0px;
-		    padding: 48px;
-				width:100%;
-				height:100%;
-				max-width:720px;
-				opacity:1 !important;
-				`,
+			className:'slide short',
+			style:``,
 			innerHTML:`
 				<column class="col-md-12">
 					<h2 >load project</h2>

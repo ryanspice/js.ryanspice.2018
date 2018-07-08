@@ -18,10 +18,14 @@ import Load from "../modules/project/load";
 import Save from "../modules/project/save";
 
 import PrimaryColumn from "../modules/nav/primary-column";
+import SecondaryColumn from "../modules/nav/secondary-column";
+
+import Engine from "../modules/engine";
 
 import {
-	Info,
-	DefaultSettings
+
+	Info,	DefaultSettings
+
 } from "../modules/settings/settings";
 
 class Controller {
@@ -29,6 +33,8 @@ class Controller {
 	_column;
 
 	views:Array<any> = [
+
+		//new SecondaryColumn(this),
 
 		{
 			link:this,
@@ -68,16 +74,11 @@ class Controller {
 			value:`123wds`
 		},
 
-//		new PrimaryColumn(this),
-		{
-			link:this,
-			type:`view`,
-			id:'engine-view',
-			className:'slide',
-			style:`background:transparent;`,
-			innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
+		//new PrimaryColumn(this),
 
-		},
+		new SecondaryColumn(this),
+		new Engine(this),
+
 		new Documentation(this),
 		new Settings(this),
 		new Info(this),
@@ -105,29 +106,21 @@ class Controller {
 		});
 	}
 
-	goTo = (str, noRemove) => {
-
-		console.log(noRemove);
+	goTo = (str, noRemove, canEscape) => {
 
 		controller.each(e=>{
-			//console.log(e.value.id==str+'-view')
+
 			if (e.value.id==str+'-view')
-			e.value.classList.remove('slide');
-			else
-			noRemove?null:e.value.classList.add('slide');
+				e.value.classList.remove('slide');
+			else {
+
+
+				noRemove?null:e.value.classList.add('slide');
+
+				canEscape?e.value.classList.add('escape'):null;
+			}
 
 		});
-		//document.getElementById(str+'-view').classList.remove('hidden');
-		//console.log()
-		/*
-		controller.each(e=>e.id=="#settings-view"?e.classList.add('show'):e.classList.add('hidden'));
-		*/
-		/*
-		let data = Array.from(document.querySelectorAll('#'+str+'-view'));
-		loop([data],elm=>{
-			elm.value.classList.toggle('hidden');
-		});
-		*/
 
 	}
 
@@ -139,6 +132,7 @@ window.controller = controller;
 /* */
 
 export default new Array([
+
 
 	/*
 	{
@@ -174,7 +168,15 @@ export default new Array([
 
 	/* Breadcrumbs */
 
-
+/*
+	{
+		type:`aside`,
+		id:'secondary-column',
+		className:`noselect`,
+		style:`font-size:2rem`,
+		onclick:toggleExpand
+	},
+*/
 	/*
 	{
 		type:`section`,
@@ -304,13 +306,6 @@ export default new Array([
 	//Columns
 
 
-	{
-		type:`aside`,
-		id:'secondary-column',
-		className:`noselect`,
-		style:`font-size:2rem`,
-		onclick:toggleExpand
-	},
 
 	//Hamburger
 
@@ -337,7 +332,7 @@ export default new Array([
 
 	{
 		type:`span`,
-		className:``,
+		className:`hidden`,
 		style:`max-width:48px`,
 		renderTo:'#secondary-column',
 		innerHTML:`<i class="menu " data-feather="home"></i><input class="hidden"></input>`,
@@ -392,7 +387,7 @@ export default new Array([
 			//toggleExpand(evt);
 		}
 	},
-
+/*
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
@@ -405,7 +400,7 @@ export default new Array([
 
 		}
 	},
-
+*/
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
@@ -438,6 +433,14 @@ export default new Array([
 		//onclick:`console.log('eh')`
 	},
 
+	{
+		type:`span`,
+		style:`display:;`,
+		renderTo:'#scroll',
+		innerHTML:`<i class="menu" data-feather="plus"></i>`,
+		//onclick:`console.log('eh')`
+	},
+
 	/*BOTTOM */
 	{
 		type:`span`,
@@ -466,36 +469,22 @@ export default new Array([
 			controller.goTo('settings')
 		}
 	},
-/*
+
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		style:`position:absolute;bottom:96px;max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="book"></i>`,
+		style:`position:absolute;bottom:48px;max-width:48px;`,
+		innerHTML:`<i class="menu" data-feather="play"></i>`,
 		onclick:(evt)=>{
 
-	if (evt)
-			evt.stopPropagation();
-			//toggleExpand(evt);
-			controller.goTo('tertiary')
+		if (evt)
+				evt.stopPropagation();
+				//toggleExpand(evt);
+				controller.goTo('engine')
 
-		}
+			}
 	},
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		style:`position:absolute;bottom:144px;max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="github"></i>`,
-		onclick:(evt)=>{
 
-	if (evt)
-			evt.stopPropagation();
-			//toggleExpand(evt);
-			controller.goTo('tertiary')
-
-		}
-	},
-*/
 	/* END BOTTOM */
 	/*
 	{
