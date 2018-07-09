@@ -199,7 +199,7 @@ spread {
             display: block;
             line-height: 64px;
             text-transform: lowercase;
-            font-size: 32px;
+          // font-size: 32px;
         }
         &:hover {
             cursor: pointer;
@@ -247,8 +247,46 @@ iframe {
     //overflow:hidden;
     overflow-x: hidden;
     overflow-y: auto;
-		height: calc(100% - 288px);
+
+
+		//height: calc(100% - 288px);
+		height: calc(100% - 192px);
+
+		span {
+
+			//max-width:48px;
+
+		}
+		input {
+			width:calc(100% - 48px);
+			color:white;
+
+
+		}
+		textarea {
+
+			height:200px; background:rgba(25,25,25,0.25);
+			width:calc(100% - 48px);
+		}
+
+
 }
+
+
+aside.expand span {
+		>textarea, >input {
+
+			display:inline;float:right;
+		}
+}
+
+aside span {
+		>textarea, >h5 {
+
+			display:none;
+		}
+}
+
 
 #primary-view {
 	margin:0px;
@@ -376,12 +414,36 @@ aside {
 
             width: $secondary-column-width;
 
+
+
             span h5:not(.expand),
             span svg:not(.expand):nth-of-type(4n+2) {
                 display: block;
             }
 
         }
+
+				&.expand:not(.wan) {
+
+					span:first-child {
+
+						//max-width:48px !important;
+
+					}
+
+				}
+
+				&.expand {
+				&.wan {
+
+						span:not(:first-child) {
+
+							max-width:48px !important;
+
+						}
+
+					}
+				}
 
         height:100%; //opacity:0.5;
         transition: width 0.2s;

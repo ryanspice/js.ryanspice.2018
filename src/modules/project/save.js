@@ -13,18 +13,8 @@ export default class Save extends View {
 			link:this,
 			type:`view`,
 			id:'save-view',
-			className:'slide',
-			style:`
-	      z-index: 200;
-		    position: absolute;
-		    background: black;
-		    margin: 0px;
-		    padding: 48px;
-				width:100%;
-				height:100%;
-				max-width:720px;
-				opacity:1 !important;
-				`,
+			className:'slide short',
+			style:``,
 			innerHTML:`
 				<column class="col-md-12">
 					<h2 >save project as <input type="text" placeholder="app" /></h2>

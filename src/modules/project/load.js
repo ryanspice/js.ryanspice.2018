@@ -14,6 +14,34 @@ class ListItem {
 			type:`view`,
 			id:'data-async-a${this.$id++}',
 			className:'slide',
+			innerHTML:`
+								<div class="entity-list entity-list-expandable">
+								<div class="entity-list-item">
+								<div class="item-icon" style="background:black;border:1px rgba(255,255,255,0.5)">
+									<span ><i class="" data-feather="plus"></i></span>
+								</div>
+								<div class="item-content-secondary">
+								<div class="content-text-primary"></div>
+								<div class="content-text-secondary"></div>
+								</div>
+								<div class="item-content-primary">
+									<div class="content-text-primary">
+											new project
+									</div>
+								<div class="content-text-secondary"></div>
+								<div class="progress hidden">
+								<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+								<span class="sr-only hidden">60%</span>
+								</div>
+								</div>
+								</div>
+								<div class="item-content-expanded">
+								<button class="btn btn-default" disabled="disabled">Uninstall</button>
+								<button class="btn btn-default">Move</button>
+								</div>
+								</div>
+								</div>
+			`
 
 		}
 
@@ -38,31 +66,7 @@ export default class Load extends View {
 					<h2 >load project</h2>
 					<br/>
 
-					<div class="entity-list entity-list-expandable">
-					<div class="entity-list-item">
-					<div class="item-icon" style="background:black;border:1px rgba(255,255,255,0.5)">
-						<span ><i class="" data-feather="plus"></i></span>
-					</div>
-					<div class="item-content-secondary">
-					<div class="content-text-primary">00.0 MB</div>
-					<div class="content-text-secondary"></div>
-					</div>
-					<div class="item-content-primary">
-					<div class="content-text-primary">Add new project</div>
-					<div class="content-text-secondary"></div>
-					<div class="progress hidden">
-					<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-					<span class="sr-only hidden">60%</span>
-					</div>
-					</div>
-					</div>
-					<div class="item-content-expanded">
-					<button class="btn btn-default" disabled="disabled">Uninstall</button>
-					<button class="btn btn-default">Move</button>
-					</div>
-					</div>
-					</div>
-
+					${new ListItem(this).innerHTML}
 
 					<div class="entity-list entity-list-expandable" onclick="(${this.gotonew})()">
 					<div class="entity-list-item">
@@ -125,7 +129,7 @@ export default class Load extends View {
 
 	gotonew = ()=>{
 
-		window.controller.goTo('new');
+		window.controller.goTo('new',true);
 
 	}
 

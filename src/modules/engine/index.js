@@ -16,7 +16,7 @@ export default class Engine extends View {
 			id:'engine-view',
 			className:'slide',
 			style:`background:transparent;`,
-			innerHTML:`<iframe src="${this.source}"></iframe>`
+//			innerHTML:`<iframe src="${this.source}"></iframe>`
 		}
 
 	}

@@ -24,6 +24,8 @@ export default class SecondaryColumn extends View {
 		return this._key;
 	}
 
+	/**/
+
 	constructor(ref?:HTML5Element){
 
 		super(ref)
@@ -65,10 +67,12 @@ export default class SecondaryColumn extends View {
 
 	}
 
+	/**/
+
 	click = (evt)=>{
 
 		let popout = (document.getElementsByClassName('slide short'));
-		console.log(popout)
+		console.log()
 		loop([Array.from(popout)],elm=>elm.value.className="slide short escape");
 
 	}

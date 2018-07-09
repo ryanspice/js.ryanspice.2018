@@ -180,7 +180,7 @@ export default new Array([
 	/*
 	{
 		type:`section`,
-		renderTo:`#primary-view`,
+		renderTo:`#primary-view`kfa,
 		id:`page-engine`,
 		style:`margin: 0px 70px;`,
 		innerHTML:`
@@ -313,7 +313,7 @@ export default new Array([
 		type:`span`,
 		id:`hamburger`,
 		renderTo:'#secondary-column',
-		className:`steve`,
+		className:`nav-file`,
 		style:`text-align:center;line-height:64px;color:white;`,
 		value:`32`,
 		innerHTML:`
@@ -325,7 +325,8 @@ export default new Array([
 			`,
 		onclick:(evt)=>{
 
-			console.log(evt.currentTarget);
+
+			evt.currentTarget.parentElement.classList.toggle('wan');
 
 		}
 	},
@@ -360,6 +361,7 @@ export default new Array([
 		}
 	},
 
+/*
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
@@ -368,14 +370,14 @@ export default new Array([
 		onclick:(evt)=>{
 
 			evt.stopPropagation();
-			/*controller.goTo('load')*/
 
 		}
 	},
 
-
+*/
 	// NEW SCREEN END //
 	// INGAME //
+	/*
 
 	{
 		type:`span`,
@@ -387,7 +389,6 @@ export default new Array([
 			//toggleExpand(evt);
 		}
 	},
-/*
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
@@ -404,7 +405,7 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		style:`display:none;background:black;overflow:hidden;max-height:48px;`,
+		style:`overflow:hidden;max-height:48px;`,
 		innerHTML:`<i class="menu" data-feather="layers"></i>
 			<h5 onclick="event.stopPropagation()" >ROOM</h5>
 			<h5 onclick="event.stopPropagation()" >OBJECT</h5>
@@ -420,25 +421,31 @@ export default new Array([
 		renderTo:'#secondary-column',
 		innerHTML:`
 			<span style=""><i class="menu" data-feather="file"></i>
-				<h5 onclick="event.stopPropagation()" >ROOM</h5></span>
+
+				<input type='text' onclick="event.stopPropagation()" value="ROOM000"></input>
+			</span>
+				<textarea  onclick="event.stopPropagation()" >
+new Sprite(0,0);
+new Controller();
+
+				</textarea>
 
 			`
 	},
 
-	{
-		type:`span`,
-		style:`display:;`,
-		renderTo:'#scroll',
-		innerHTML:`<i class="menu" data-feather="file"></i>`,
-		//onclick:`console.log('eh')`
-	},
 
 	{
 		type:`span`,
 		style:`display:;`,
 		renderTo:'#scroll',
 		innerHTML:`<i class="menu" data-feather="plus"></i>`,
-		//onclick:`console.log('eh')`
+		onclick:(evt)=>{
+			if (evt)
+			evt.stopPropagation();
+			controller.goTo('secondary')
+			//toggleExpand(evt);
+
+		}
 	},
 
 	/*BOTTOM */

@@ -7,12 +7,12 @@ export default class New extends View {
 	constructor(ref?:HTML5Element){
 
 		super(ref)
-
+		
 		return {
 			link:this,
 			type:`view`,
 			id:'new-view',
-			className:'slide',
+			className:'slide short',
 			style:``,
 			innerHTML:`
 				<column class="col-md-12">
