@@ -17,6 +17,8 @@ import New from "../modules/project/new";
 import Load from "../modules/project/load";
 import Save from "../modules/project/save";
 
+import HamburgerButton from "../modules/nav/hamburger-button";
+
 import PrimaryColumn from "../modules/nav/primary-column";
 import SecondaryColumn from "../modules/nav/secondary-column";
 
@@ -47,26 +49,20 @@ class Controller {
 
 				controller.clearColumn();
 
+				let data = Array.from(document.querySelectorAll('.highlight'));
+				loop([data],elm=>{
+					//console.log(
+						elm.value.className = "";
+					//);
+				});
 
+				let data2 = Array.from(document.querySelectorAll('view'));
+				loop([data2],elm=>{
 
-					let data = Array.from(document.querySelectorAll('.highlight'));
-						loop([data],elm=>{
-							//console.log(
-								elm.value.className = "";
-							//);
-						});
+					if (elm.value.className!=="slide" && elm.value.id!=='primary-view')
+						elm.value.className = "slide";
 
-
-
-
-					let data2 = Array.from(document.querySelectorAll('view'));
-						loop([data2],elm=>{
-
-								if (elm.value.className!=="slide" && elm.value.id!=='primary-view')
-									elm.value.className = "slide";
-
-
-						});
+				});
 
 
 				//controller.each(e=>e.value.classList.add('hidden'));
@@ -77,6 +73,7 @@ class Controller {
 		//new PrimaryColumn(this),
 
 		new SecondaryColumn(this),
+		new HamburgerButton(this),
 		new Engine(this),
 
 		new Documentation(this),
@@ -141,55 +138,7 @@ export default new Array([
 	},
 	*/
 
-	/*
-	{
-		type:`hero`,
-	//	renderTo:`#primary-view`,
-		id:`page-home`,
-		style:`background:transparent;`,
-		innerHTML:`<div style="background-position:0 100%;width:100%;" >
-
-		</div>`
-	},
-	*/
 	...controller.views,
-
-	//{type:`overlay`},
-
-
-	/* Ribbon */
-
-	{
-		type:`ribbon`,
-		renderTo:`#primary-view`,
-		style:``,
-		innerHTML:`<h3">SpiceJS 0.9.0</h3>`
-	},
-
-	/* Breadcrumbs */
-
-/*
-	{
-		type:`aside`,
-		id:'secondary-column',
-		className:`noselect`,
-		style:`font-size:2rem`,
-		onclick:toggleExpand
-	},
-*/
-	/*
-	{
-		type:`section`,
-		renderTo:`#primary-view`kfa,
-		id:`page-engine`,
-		style:`margin: 0px 70px;`,
-		innerHTML:`
-
-			<iframe>test</iframe>
-
-		`
-	},
-	*/
 
 	//Page Home
 
@@ -309,27 +258,6 @@ export default new Array([
 
 	//Hamburger
 
-	{
-		type:`span`,
-		id:`hamburger`,
-		renderTo:'#secondary-column',
-		className:`nav-file`,
-		style:`text-align:center;line-height:64px;color:white;`,
-		value:`32`,
-		innerHTML:`
-			<span><i class="" data-feather="menu"></i></span>
-			<span onclick="controller.goTo('save',true)"><i class="" data-feather="save"></i></span>
-			<span onclick="controller.goTo('load',true)"><i class="" data-feather="upload"></i></span>
-			<span onclick="controller.goTo('tertiary',false)"><i class="" data-feather="help-circle"></i>
-					</span>
-			`,
-		onclick:(evt)=>{
-
-
-			evt.currentTarget.parentElement.classList.toggle('wan');
-
-		}
-	},
 
 	{
 		type:`span`,
@@ -361,47 +289,6 @@ export default new Array([
 		}
 	},
 
-/*
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		style:`max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="hard-drive"></i>`,
-		onclick:(evt)=>{
-
-			evt.stopPropagation();
-
-		}
-	},
-
-*/
-	// NEW SCREEN END //
-	// INGAME //
-	/*
-
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		className:``,
-		innerHTML:`<i class="menu" data-feather="layers"></i>`,
-		onclick:(evt)=>{
-
-			//toggleExpand(evt);
-		}
-	},
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		style:`max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="plus"></i>	`,
-		onclick:(evt)=>{
-
-			evt.stopPropagation();
-			//controller.goTo('new')
-
-		}
-	},
-*/
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
@@ -424,12 +311,9 @@ export default new Array([
 
 				<input type='text' onclick="event.stopPropagation()" value="ROOM000"></input>
 			</span>
-				<textarea  onclick="event.stopPropagation()" >
-new Sprite(0,0);
+<textarea onclick="event.stopPropagation()" >new Sprite(0,0);
 new Controller();
-
-				</textarea>
-
+</textarea>
 			`
 	},
 
