@@ -19,6 +19,8 @@ import Save from "../modules/project/save";
 
 import PrimaryColumn from "../modules/nav/primary-column";
 
+import Engine from "../modules/engine"
+
 import {
 	Info,
 	DefaultSettings
@@ -69,15 +71,8 @@ class Controller {
 		},
 
 //		new PrimaryColumn(this),
-		{
-			link:this,
-			type:`view`,
-			id:'engine-view',
-			className:'slide',
-			style:`background:transparent;`,
-			innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
-
-		},
+		
+		new Engine(this),
 		new Documentation(this),
 		new Settings(this),
 		new Info(this),

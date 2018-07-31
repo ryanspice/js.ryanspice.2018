@@ -6,7 +6,7 @@
 let Async2018;
 interface AsyncRenderer {};
 
-let renderer:AsyncRenderPipe;
+let renderer;//:AsyncRenderPipe;
 let template:AsyncRenderer;
 
 let icons;
@@ -21,12 +21,13 @@ const requireMSG = async msg => {
 const requireCSS = async evt => {
 	return [
 		await requireMSG('css'),
-		await require(`./assets/css/global.scss`),
-		await require(`./assets/css/dark.scss`),
+		await import(`./assets/css/global.scss`),
+		await import(`./assets/css/dark.scss`),
 		await requireMSG('icons'),
-		icons = await require('feather-icons'),
+		icons = await import('feather-icons'),
 	];
 }
+
 
 const requireHTML = async (evt,data) => {
 
@@ -35,8 +36,8 @@ const requireHTML = async (evt,data) => {
 
 		//TODO:
 		await requireMSG('template'),
-		renderer = await require("../node_modules/async.2018/src/index").default.core.template.AsyncRenderPipe,
-		await (renderer.prototype.template = await require("./include/data").default),
+		renderer = (await import("../node_modules/async.2018/src/index")).default.core.template.AsyncRenderPipe,
+		await (renderer.prototype.template = (await import("./include/data")).default),
 
 		await requireMSG('rendering'),
 		template = await new renderer(evt)
