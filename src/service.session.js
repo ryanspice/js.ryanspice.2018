@@ -36,6 +36,8 @@ export default class ServiceSession {
 
 	constructor(){
 
+		this.session.clear();
+
 		this.session.setObject('state',this.state);
 		this.session.setObject('settings',this.settings);
 		this.session.setObject('root',this.root);

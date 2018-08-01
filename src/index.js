@@ -15,6 +15,11 @@
 
 import ServiceSession from "./service.session";
 
+//import SpiceJS from "../../spicejs/spice.js";
+//import SpiceJS from "../node_modules/ryanspice2016-spicejs/dist/";
+
+//console.log(SpiceJS)
+
 let debug = true;
 let template:AsyncRenderer;
 let pipe;
