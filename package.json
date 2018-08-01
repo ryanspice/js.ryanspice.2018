@@ -51,6 +51,7 @@
 				"env",
 				{
 					"modules": false,
+      "useBuiltIns": true,
 					"targets": {
 						"browsers": [
 							"> 1%",

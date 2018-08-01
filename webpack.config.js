@@ -6,7 +6,7 @@ const filename = "ryanspice.2018.js";
 const webpack = require('webpack');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -90,7 +90,7 @@ module.exports = {
 	    ]),
 		new webpack.NamedModulesPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(true),
-		new BundleAnalyzerPlugin()
+	//	new BundleAnalyzerPlugin()
 		//new DashboardPlugin()
 	],
 	devServer: {

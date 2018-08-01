@@ -11,7 +11,10 @@ export default class Engine {
 			id:'engine-view',
 			className:'slide',
 			style:`background:transparent;`,
-			innerHTML:`<iframe src="https://ryanspice.com/mapper/Map/vendor/index.html"></iframe>`
+			innerHTML:`
+			<canvas id="canvas_0"></canvas>
+			<canvas id="buffer_0"></canvas>
+			<canvas id="blitter_0"></canvas>`
 		}
 
 	}
