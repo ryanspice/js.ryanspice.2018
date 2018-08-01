@@ -1,8 +1,5 @@
 //@flow
 
 export default {
-
-	objects:[],
-	rooms:[]
-
+	'start':'engine'
 }

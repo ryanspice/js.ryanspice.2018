@@ -12,6 +12,10 @@
 //interface AsyncRenderer {};
 
 //let renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
+
+import ServiceSession from "./service.session";
+
+let debug = true;
 let template:AsyncRenderer;
 let pipe;
 
@@ -36,16 +40,18 @@ Storage.prototype.getObject = function(key) {
 
 /* RENDERER */
 
-pipe = require('./require.js').default;
+pipe = import('./require.js');
 
 /*
 	Pre-load
 */
 
 const pre = async evt => {
+
+	let _pipe = (await pipe).default;
 	await Promise.all([
-		await pipe.requireCSS(evt),
-		await pipe.requireHTML(evt)
+		await _pipe.requireCSS(evt),
+		await _pipe.requireHTML(evt)
 	]);
 };
 
@@ -55,13 +61,24 @@ const pre = async evt => {
 
 const post = async evt => {
 
-	await pipe.requireMSG('icons');
-	await pipe.requireIcons();
+	let _pipe = (await pipe).default;
 
-	await pipe.requireMSG('please wait');
+	await _pipe.requireMSG('icons');
+	await _pipe.requireIcons();
+
+	await _pipe.requireMSG('session');
+
+	let STORE:ServiceSession = await new ServiceSession();
+
+//	window.STORE = STORE; //TODO what to do?
+
+	let STORE_start = await STORE.settings.start;
+
+	await _pipe.requireMSG('please wait');
 	setTimeout(async ()=>{
 
-		await window.controller.goTo('engine');
+		await window.controller.goTo(STORE_start);
+		console.log(STORE_start);
 		(document.getElementById('loader')	).remove();
 
 	},50);
@@ -69,6 +86,7 @@ const post = async evt => {
 }
 
 
+//	tabs:ServiceTabs = new ServiceTabs();
 //renderer.prototype.context.onreadystatechange = async function(evt:Event){
 document.onreadystatechange = async function(evt:Event){
 
@@ -79,6 +97,7 @@ document.onreadystatechange = async function(evt:Event){
 		case 0:
 
 			await pre(evt);
+
 
 		break;
 

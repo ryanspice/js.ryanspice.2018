@@ -12,6 +12,7 @@
 		"prod": "webpack"
 	},
 	"dependencies": {
+		"async.2018": "link:../async.2018",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.4",
 		"babel-plugin-flow-runtime": "^0.17.0",
@@ -28,18 +29,52 @@
 		"flow-bin": "^0.71.0",
 		"flow-runtime": "^0.17.0",
 		"flow-runtime-cli": "^0.17.0",
+		"mini-css-extract-plugin": "^0.4.1",
 		"node-sass": "^4.9.0",
 		"sass-loader": "^7.0.1",
 		"style-loader": "^0.21.0",
 		"webpack": "^4.6.0",
+		"webpack-bundle-analyzer": "^2.13.1",
 		"webpack-cli": "^2.0.15",
 		"webpack-dashboard": "^1.1.1",
 		"webpack-dev-server": "^3.1.3",
 		"winstrap": "^0.5.12"
 	},
 	"devDependencies": {
-		"async.2018":"link:../async.2018",
 		"babel-cli": "^6.26.0",
 		"bootstrap.native-loader": "^1.0.7"
+	},
+	"babel": {
+		"presets": [
+			"flow",
+			[
+				"env",
+				{
+					"modules": false,
+					"targets": {
+						"browsers": [
+							"> 1%",
+							"last 2 versions",
+							"not ie <= 8"
+						]
+					}
+				}
+			],
+			"stage-2"
+		],
+		"plugins": [
+			"transform-decorators-legacy",
+			[
+				"flow-runtime",
+				{
+					"assert": true,
+					"annotate": true
+				}
+			],
+			"transform-class-properties",
+			"transform-flow-strip-types",
+			"syntax-flow",
+			"transform-runtime"
+		]
 	}
 }
