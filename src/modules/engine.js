@@ -9,7 +9,7 @@ export default class Engine {
 			link:this,
 			type:`view`,
 			id:'engine-view',
-			className:'slide',
+			className:'',
 			style:`background:transparent;`,
 			innerHTML:`
 			<canvas id="canvas_0"></canvas>

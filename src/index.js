@@ -15,9 +15,9 @@
 
 import ServiceSession from "./service.session";
 
-import * as Test00 from "../../spicejs/spice.js/bld/vendor";
-import * as Test01 from "../../spicejs/spice.js/bld/0.spice";
-import SpiceJS from "../../spicejs/spice.js/bld/spice";
+//import * as Test00 from "../../spicejs/spice.js/bld/vendor";
+//import * as Test01 from "../../spicejs/spice.js/bld/0.spice";
+//import SpiceJS from "../../spicejs/spice.js/bld/spice";
 /* TODO: UPDATE SPICEJS depeendencies (toolkit)
 
 require("../../spicejs/spice.js/bld/vendor")
@@ -26,48 +26,6 @@ require("../../spicejs/spice.js/bld/0.spice")
 let SpiceJS  =(require("../../spicejs	/spice.js/bld/spice")).default;
 //import SpiceJS from "../node_modules/ryanspice2016-spicejs/dist/";
 */
-
-//creating the application
-(SpiceJS.create()).OnLoad = (self) => {
-
-//	self.options.canvas.override = true;
-	/*
-	self.options.canvas.name = "canvas";
-	self.options.canvas.buffername = "buffer";
-	self.options.target.canvas = ("canvas_0");
-	self.options.target.buffer = ("buffer_0");
-	self.options.target.blitter = ("blitter_0");
-*/
-
-
-	self.main = {
-
-		    init:function() {
-
-		    },
-
-		    update:function() {
-
-		    },
-
-		    draw:function() {
-
-		       this.visuals.text_ext(this.app.fps,240,25,"#FFFFFF",0.5,1,1,"25","");
-
-		    }
-
-		};;
-
-	self.options.flags.seamless = true;
-	self.options.override.SelectStart = true;
-	self.options.override.ContextMenu = true;
-
-	self.start(240, 320);
-	//console.log('eh')
-
-	window.Application = this;
-
-};
 
 
 
@@ -133,19 +91,32 @@ const post = async evt => {
 //	window.STORE = STORE; //TODO what to do?
 
 	let STORE_start = await STORE.settings.start;
+	let STORE_resolution = await STORE.settings.resolution;
+	let STORE_options = await STORE.settings.options;
 
-	await _pipe.requireMSG('please wait');
+	//TODO: WIP SpiceJS import
+
+	await _pipe.requireMSG('spice.js');
+
+	await import("../../spicejs/spice.js/bld/vendor")
+	await import("../../spicejs/spice.js/bld/0.spice")
+	let SpiceJS  =(await import("../../spicejs/spice.js/bld/spice")).default;
+
+	let app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
+
+	await _pipe.requireMSG('( :');
+
 	setTimeout(async ()=>{
 
 		await window.controller.goTo(STORE_start);
-		console.log(STORE_start);
+		await _pipe.requireMSG(') :');
+		//console.log(STORE_start);
 		(document.getElementById('loader')	).remove();
 
 
 	},50);
 
 }
-
 
 //	tabs:ServiceTabs = new ServiceTabs();
 //renderer.prototype.context.onreadystatechange = async function(evt:Event){
@@ -158,7 +129,6 @@ document.onreadystatechange = async function(evt:Event){
 		case 0:
 
 			await pre(evt);
-
 
 		break;
 
