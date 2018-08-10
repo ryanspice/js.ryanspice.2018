@@ -1,9 +1,7 @@
 
 export default class Engine {
 
-
 	constructor(){
-
 
 		return {
 			link:this,

@@ -17,6 +17,7 @@ import New from "../modules/project/new";
 import Load from "../modules/project/load";
 import Save from "../modules/project/save";
 
+import Hamburger from "../modules/nav/hamburger";
 import PrimaryColumn from "../modules/nav/primary-column";
 
 import Engine from "../modules/engine"
@@ -71,7 +72,8 @@ class Controller {
 		},
 
 //		new PrimaryColumn(this),
-		
+
+		new Hamburger(this),
 		new Engine(this),
 		new Documentation(this),
 		new Settings(this),
@@ -307,106 +309,15 @@ export default new Array([
 		onclick:toggleExpand
 	},
 
-	//Hamburger
-
-	{
-		type:`span`,
-		id:`hamburger`,
-		renderTo:'#secondary-column',
-		className:`steve`,
-		style:`text-align:center;line-height:64px;color:white;`,
-		value:`32`,
-		innerHTML:`
-			<span><i class="" data-feather="menu"></i></span>
-			<span onclick="controller.goTo('save',true)"><i class="" data-feather="save"></i></span>
-			<span onclick="controller.goTo('load',true)"><i class="" data-feather="upload"></i></span>
-			<span onclick="controller.goTo('tertiary',false)"><i class="" data-feather="help-circle"></i>
-					</span>
-			`,
-		onclick:(evt)=>{
-
-			console.log(evt.currentTarget);
-
-		}
-	},
-
-	{
-		type:`span`,
-		className:``,
-		style:`max-width:48px`,
-		renderTo:'#secondary-column',
-		innerHTML:`<i class="menu " data-feather="home"></i><input class="hidden"></input>`,
-		onclick:(evt)=>{
-
-			evt.stopPropagation();
-			//toggleExpand(evt);
-			controller.goTo('primary')
-
-		}
-	},
-
-
-	// NEW SCREEN //
-
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		style:`max-width:48px;display:none`,
-		innerHTML:`<i class="menu" data-feather="globe"></i>	`,
-		onclick:(evt)=>{
-
-			evt.stopPropagation();
-
-		}
-	},
-
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		style:`max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="hard-drive"></i>`,
-		onclick:(evt)=>{
-
-			evt.stopPropagation();
-			/*controller.goTo('load')*/
-
-		}
-	},
-
-
 	// NEW SCREEN END //
 	// INGAME //
 
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		className:``,
-		innerHTML:`<i class="menu" data-feather="layers"></i>`,
-		onclick:(evt)=>{
-
-			//toggleExpand(evt);
-		}
-	},
-
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		style:`max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="plus"></i>	`,
-		onclick:(evt)=>{
-
-			evt.stopPropagation();
-			//controller.goTo('new')
-
-		}
-	},
-
-	{
-		type:`span`,
-		renderTo:'#secondary-column',
-		style:`display:none;background:black;overflow:hidden;max-height:48px;`,
+		style:`display:;background:rgba(25, 25, 25, 1);overflow:hidden;max-height:48px;`,
 		innerHTML:`<i class="menu" data-feather="layers"></i>
-			<h5 onclick="event.stopPropagation()" >ROOM</h5>
+			<h5 onclick="event.stopPropagation()" ><u>ROOM</u></h5>
 			<h5 onclick="event.stopPropagation()" >OBJECT</h5>
 			<h5 onclick="event.stopPropagation()" >TILE</h5>
 			<h5 onclick="event.stopPropagation()" >BACKGROUND</h5>
@@ -419,31 +330,46 @@ export default new Array([
 		style:`display:;`,
 		renderTo:'#secondary-column',
 		innerHTML:`
-			<span style=""><i class="menu" data-feather="file"></i>
-				<h5 onclick="event.stopPropagation()" >ROOM</h5></span>
 
 			`
 	},
 
-	{
-		type:`span`,
-		style:`display:;`,
-		renderTo:'#scroll',
-		innerHTML:`<i class="menu" data-feather="file"></i>`,
-		//onclick:`console.log('eh')`
-	},
+		{
+			type:`span`,
+			renderTo:'#scroll',
+			style:`max-width:48px;`,
+			innerHTML:`<i class="menu" data-feather="plus"></i>	`,
+			onclick:(evt)=>{
+
+				evt.stopPropagation();
+				//controller.goTo('new')
+
+			}
+		},
+		{
+			type:`span`,
+			renderTo:'#scroll',
+			style:`margin:10px;max-width:136px;height:96px;`,
+			innerHTML:`<i class="menu" data-feather="file" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m 0</h6>	`,
+			onclick:(evt)=>{
+
+				evt.stopPropagation();
+				//controller.goTo('new')
+
+			}
+		},
 
 	/*BOTTOM */
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
-		className:`hidden`,
-		style:`position:absolute;bottom:48px;max-width:48px;pointer-events:none;opacity:0.5;`,
-		innerHTML:`<i class="menu" data-feather="play"></i>`,
+		style:`background:rgba(25, 25, 25, 1);`,
+		className:``,
+		innerHTML:`<i class="menu" data-feather="play"></i><h3 style="margin-left:8.5rem;display:inline;line-height:3.25rem;	">p r e v i e w</h3>`,
 		onclick:(evt)=>{
 			if (evt)
 			evt.stopPropagation();
-			controller.goTo('secondary')
+			controller.goTo('engine')
 			//toggleExpand(evt);
 
 		}
@@ -452,15 +378,16 @@ export default new Array([
 	{
 		type:`span`,
 		renderTo:'#secondary-column',
+		style:`background:rgba(25, 25, 25, 1);`,
 		className:``,
-		style:`position:absolute;bottom:0px;max-width:48px;`,
-		innerHTML:`<i class="menu" data-feather="settings"></i>`,
+		innerHTML:`<i class="menu" data-feather="settings"></i><h3 style="margin-left:8rem;display:inline;line-height:3.25rem;	">s e t t i n g s</h3>`,
 		onclick:(evt)=>{
 			if (evt)
 			evt.stopPropagation();
 			controller.goTo('settings')
 		}
 	},
+
 /*
 	{
 		type:`span`,

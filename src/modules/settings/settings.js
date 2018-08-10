@@ -60,11 +60,12 @@ export class Info extends View {
             className: 'slide',
             style: ``,
             innerHTML: `
-				<column class="col-md-12">
+						<column class="col-md-24"style="text-align:center;">
 					<h2>about</h2>
-					<h4>webpack 4.0.3</h4>
+					<h4>webpack 4</h4>
 					<h4>winstrap 0.5.12</h4>
-					<h4>babel 6.x</h4>
+					<h4>babel 6</h4>
+					<h4>async.2018</h4>
 				</column>`,
             onclick: this.click
         }

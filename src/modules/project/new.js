@@ -13,7 +13,17 @@ export default class New extends View {
 			type:`view`,
 			id:'new-view',
 			className:'slide',
-			style:``,
+			style:`
+	      z-index: 200;
+		    position: absolute;
+		    background: black;
+		    margin: 0px;
+		    padding: 48px;
+				width:100%;
+				height:100%;
+				max-width:720px;
+				opacity:1 !important;
+				`,
 			innerHTML:`
 				<column class="col-md-12">
 					<h2 >new project</h2>

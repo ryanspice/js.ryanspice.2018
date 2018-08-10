@@ -88,7 +88,7 @@ const post = async evt => {
 
 	let STORE:ServiceSession = await new ServiceSession();
 
-//	window.STORE = STORE; //TODO what to do?
+	window.STORE = STORE; //TODO what to do?
 
 	let STORE_start = await STORE.settings.start;
 	let STORE_resolution = await STORE.settings.resolution;
@@ -100,7 +100,7 @@ const post = async evt => {
 
 	await import("../../spicejs/spice.js/bld/vendor")
 	await import("../../spicejs/spice.js/bld/0.spice")
-	let SpiceJS  =(await import("../../spicejs/spice.js/bld/spice")).default;
+	let SpiceJS  =(await import("../../spicejs/spice.js/bld/spice_cookiesdisabled")).default;
 
 	let app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
 
