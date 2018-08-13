@@ -1,51 +1,11 @@
 //@flow
 
-require('./include/storage.stringify');
-
-/*
-	Template Data
-		TODO: build async method to load DATA
-*/
-
-//import data from "./include/data";
-
-//import Async2018 from "../node_modules/async.2018/src/index";
-
-//interface AsyncRenderer {};
-
-//let renderer:AsyncRenderPipe = Async2018.core.template.AsyncRenderPipe;
-
 import ServiceSession from "./service.session";
-
-//import * as Test00 from "../../spicejs/spice.js/bld/vendor";
-//import * as Test01 from "../../spicejs/spice.js/bld/0.spice";
-//import SpiceJS from "../../spicejs/spice.js/bld/spice";
-/* TODO: UPDATE SPICEJS depeendencies (toolkit)
-
-require("../../spicejs/spice.js/bld/vendor")
-require("../../spicejs/spice.js/bld/0.spice")
-//let SpiceJS  =(await import("../../spicejs/spice.js/bld/spice")).default;
-let SpiceJS  =(require("../../spicejs	/spice.js/bld/spice")).default;
-//import SpiceJS from "../node_modules/ryanspice2016-spicejs/dist/";
-*/
-
-let debug = true;
-let template:AsyncRenderer;
-let pipe;
-
-let loader:Element;
-let message:Element;
-let icons:any;
-
-let state:number = 0;
-let requireMSG;
-
-/* RENDERER */
-
-pipe = import('./require.js');
+require('./include/storage.stringify');
+let pipe = import('./require.js');
 
 /*
-	Pre-load - we use this to append CSS and HTML before we require the rest of the dependencies
+	Pre-load - called onreadystatechange = 1
 */
 
 const pre = async evt => {
@@ -60,52 +20,70 @@ const pre = async evt => {
 };
 
 /*
-	Post-load
+	Post-load - called onreadystatechange = 2
 */
 
 const post = async evt => {
 
-	let _pipe = (await pipe).default;
+	// PIPING METHODS
+	let pipes = (await pipe).default;
 
-	await _pipe.requireMSG('icons');
-	await _pipe.requireIcons();
-
-	await _pipe.requireMSG('session');
-
+	// HOISTING VARIABLES;
+	await pipes.requireMSG('session');
 	let STORE:ServiceSession = await new ServiceSession();
-
-	window.STORE = STORE; //TODO what to do?
-
 	let STORE_start = await STORE.settings.start;
 	let STORE_resolution = await STORE.settings.resolution;
 	let STORE_options = await STORE.settings.options;
 
-	//TODO: WIP SpiceJS import
+	// GET ICONS
+	await pipes.requireMSG('icons');
+	await pipes.requireIcons();
 
-	await _pipe.requireMSG('spice.js');
+	// GET SPICEJS GAME FRAMEWORK
 
+	await pipes.requireMSG('spice.js');
 	await import("../../spicejs/spice.js/bld/vendor");
 	await import("../../spicejs/spice.js/bld/0.spice");
-	let SpiceJS  =(await import("../../spicejs/spice.js/bld/spice_cookiesdisabled")).default;
+	//TODO: WIP SpiceJS import
+	let SpiceJS = (await import("../../spicejs/spice.js/bld/spice_cookiesdisabled")).default;
 
-	let app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
+	// LAUNCH EVALULATE SPICEJS GAME FRAMEWORK
 
-	await _pipe.requireMSG('( :');
+	let app;
+
+	try{
+
+		app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
+
+	} catch(e) {
+
+		await pipes.requireMSG('() :');
+
+		// TODO: CATCH ERRORS
+
+	}
+
+	await pipes.requireMSG('( :');
+
+	// ARTIFICAL DELAY, APP NAVIGATE
 
 	setTimeout(async ()=>{
-
 		await window.controller.goTo(STORE_start);
-		await _pipe.requireMSG(') :');
-		//console.log(STORE_start);
-		(document.getElementById('loader')	).remove();
-
-
+		await pipes.requireMSG(') :');
+		(document.getElementById('loader')).remove(); // TODO: Hide?
 	},50);
 
 }
 
-//	tabs:ServiceTabs = new ServiceTabs();
-//renderer.prototype.context.onreadystatechange = async function(evt:Event){
+/*
+
+ 	IN
+
+*/
+
+let state:number = 0;
+let message:Element;
+
 document.onreadystatechange = async function(evt:Event){
 
 	message = document.getElementsByClassName('load-text')[0];
