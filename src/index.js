@@ -1,5 +1,7 @@
 //@flow
 
+require('./include/storage.stringify');
+
 /*
 	Template Data
 		TODO: build async method to load DATA
@@ -27,12 +29,6 @@ let SpiceJS  =(require("../../spicejs	/spice.js/bld/spice")).default;
 //import SpiceJS from "../node_modules/ryanspice2016-spicejs/dist/";
 */
 
-
-
-
-
-
-
 let debug = true;
 let template:AsyncRenderer;
 let pipe;
@@ -42,35 +38,25 @@ let message:Element;
 let icons:any;
 
 let state:number = 0;
-
 let requireMSG;
-
-/* WORK LOAD */
-
-Storage.prototype.setObject = function(key, value) {
-    this.setItem(key, JSON.stringify(value));
-}
-
-Storage.prototype.getObject = function(key) {
-    return JSON.parse(this.getItem(key));
-}
-
 
 /* RENDERER */
 
 pipe = import('./require.js');
 
 /*
-	Pre-load
+	Pre-load - we use this to append CSS and HTML before we require the rest of the dependencies
 */
 
 const pre = async evt => {
 
 	let _pipe = (await pipe).default;
+
 	await Promise.all([
 		await _pipe.requireCSS(evt),
 		await _pipe.requireHTML(evt)
 	]);
+
 };
 
 /*
@@ -98,8 +84,8 @@ const post = async evt => {
 
 	await _pipe.requireMSG('spice.js');
 
-	await import("../../spicejs/spice.js/bld/vendor")
-	await import("../../spicejs/spice.js/bld/0.spice")
+	await import("../../spicejs/spice.js/bld/vendor");
+	await import("../../spicejs/spice.js/bld/0.spice");
 	let SpiceJS  =(await import("../../spicejs/spice.js/bld/spice_cookiesdisabled")).default;
 
 	let app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
