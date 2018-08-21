@@ -1,6 +1,6 @@
 let steve = [];
 
-for(let i = 32; i>0; i--){
+for(let i = 1; i>0; i--){
 
 	let obj = 	{
 		type:`span`,

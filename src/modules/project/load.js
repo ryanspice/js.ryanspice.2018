@@ -75,28 +75,28 @@ export default class Load extends View {
 
 
 					<div class="entity-list entity-list-expandable" onclick="(${this.gotonew})()">
-					<div class="entity-list-item">
-					<div class="item-icon">
-					<span class="glyph glyph-mail"></span>
-					</div>
-					<div class="item-content-secondary">
-					<div class="content-text-primary">00.0 MB</div>
-					<div class="content-text-secondary"></div>
-					</div>
-					<div class="item-content-primary">
-					<div class="content-text-primary">No Projects</div>
-					<div class="content-text-secondary"></div>
-					<div class="progress hidden">
-					<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-					<span class="sr-only hidden">60%</span>
-					</div>
-					</div>
-					</div>
-					<div class="item-content-expanded">
-					<button class="btn btn-default" disabled="disabled">Uninstall</button>
-					<button class="btn btn-default">Move</button>
-					</div>
-					</div>
+						<div class="entity-list-item">
+							<div class="item-icon" style="background:black;">
+							<i class="menu" data-feather="map" style="margin-left:0.75rem;margin-top:0.75rem;"></i>
+							</div>
+							<div class="item-content-secondary">
+								<div class="content-text-primary">10.0 MB</div>
+							<div class="content-text-secondary"></div>
+							</div>
+							<div class="item-content-primary">
+								<div class="content-text-primary">example01.sjs</div>
+									<div class="content-text-secondary"></div>
+									<div class="progress hidden">
+										<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+											<span class="sr-only hidden">60%</span>
+									</div>
+								</div>
+							</div>
+							<div class="item-content-expanded">
+							<button class="btn btn-default" disabled="disabled">Uninstall</button>
+							<button class="btn btn-default">Move</button>
+							</div>
+						</div>
 					</div>
 
 
