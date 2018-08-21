@@ -4,7 +4,7 @@ import View from "../view";
 
 const docs = `
 
-				<div>
+				<div style="">
 
             <p>
                 </p><h1><span class="pageTitle0" style="position: relative; opacity: 11;">App</span></h1>
@@ -110,10 +110,10 @@ export default class Documentation extends View {
 			link:this,
 			type:`view`,
 			id:'tertiary-view',
-			className:'slide',
+			className:'slide ',
 			style:``,
 			innerHTML:`
-				<column class="col-md-4 hidden-sm hidden-xs pull-left">
+				<column class="col-md-4 hidden-sm hidden-xs pull-left hidden">
           <div id="sideBar">
               <p class="sideBarNav"><a href="#">home</a></p>
               <p class="sideBarNav"><a href="#">documentation</a></p>
@@ -125,7 +125,7 @@ export default class Documentation extends View {
           </div>
 
 				</column>
-				<column class="col-xl-20">
+				<column class="col-xl-22 col-md-offset-1 col-sm-offset-1">
 					<h2>documentation</h2>
 					${docs}
 				</column>`

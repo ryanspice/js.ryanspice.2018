@@ -3,35 +3,57 @@ import View from "../view";
 
 export default class New extends View {
 
+	static title='New';
+	static type=' ';
+
+	static get title(){
+
+		return this._title||'';
+	}
+
+	static set title(val){
+
+		//evt.value.children[1].children[0].innerText = this._title = val;
+	}
+
+	type = '';
+
+	/*
+	static update(e){
+
+		//e.value.children[1].children[0].innerHtml = 'eh';
+		//e.value.children[1].children[0].innerHTML = 'eh';
+		e.value.children[1].children[0].innerText = 'eh';
+
+		return true;
+
+	}
+*/
+	update = (evt)=>{
+
+		evt.value.children[0].children[0].innerText = this.title;
+
+
+	}
 
 	constructor(ref?:HTML5Element){
 
-		super(ref)
+		super(ref);
 
 		return {
 			link:this,
 			type:`view`,
 			id:'new-view',
 			className:'slide',
-			style:`
-	      z-index: 200;
-		    position: absolute;
-		    background: black;
-		    margin: 0px;
-		    padding: 48px;
-				width:100%;
-				height:100%;
-				max-width:720px;
-				opacity:1 !important;
-				`,
+			activity:this.update,
 			innerHTML:`
 				<column class="col-md-12">
-					<h2 >new project</h2>
+					<h2 >${this.title}</h2>
 					<br/>
 					<h3><input placeholder="project0"></input></h3>
 					<p></p>
 
-			        <div class="form-group">
+			        <div class="form-group hidden">
 			            <p class="form-group-label">Core Properties</p>
 			            <div class="checkbox">
 			                <label>

@@ -514,40 +514,70 @@ aside {
     }
     &#primary-column,
     &#secondary-column {
-        //background:black;
+
         position: fIxed;
         left: 0px;
         top: 0px;
         width: $icon-size;
+
         span h5:not(.expand),
         span svg:not(.expand):nth-of-type(4n+2) {
             display: none;
         }
+
         &.expand {
-            width: $secondary-column-width;
-            span h5:not(.expand),
-            span svg:not(.expand):nth-of-type(4n+2) {
-                display: block;
-            }
+
+          width: $secondary-column-width;
+
+          span h5:not(.expand),
+          span svg:not(.expand):nth-of-type(4n+2) {
+
+              display: block;
+
+          }
+
+
         }
+
+				&:not(.expand) #scroll > span:not(:nth-child(1)){
+
+							width:$icon-size!important;
+							height:$icon-size!important;
+							padding:0px!important;
+							margin:0px!important;
+
+
+
+				}
+
         height:100%; //opacity:0.5;
         transition: width 0.2s;
         transition: opacity 0.2s;
         transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); //background:transparent;
+
+
+
+
     }
+
     &#primary:hover,
     &#secondary-column:hover {
-        input {
-            display: block;
-            width: $icon-size*4.25;
-        }
-        span p {
-            display: block;
-            line-height: 0px;
-            margin: 0px;
-        }
+
+      input {
+          display: block;
+          width: $icon-size*5;
+      }
+
+      span p {
+          display: block;
+          line-height: 0px;
+          margin: 0px;
+      }
+
     }
+
     &#secondary-column:hover {
+
         opacity: 1; //width:$secondary-column-width;
         transition: opacity 0.2s;
         transition: width 0.2s;
@@ -701,4 +731,18 @@ hero {
     user-select: none;
     /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+#new-view {
+
+ z-index: 200;
+ position: absolute;
+ background: black;
+ margin: 0px;
+ padding: 48px;
+ width:100%;
+ height:100%;
+ max-width:720px;
+ opacity:1 !important;
+
 }
