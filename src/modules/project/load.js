@@ -14,18 +14,87 @@ class ListItem {
 			type:`view`,
 			id:'data-async-a${this.$id++}',
 			className:'slide',
+			innerHtml: 	``
 
 		}
 
 	}
 
 }
+let templates:Object = {
+		newListItem:(data)=>{
+			return `<div class="entity-list entity-list-expandable" onclick="(${data.action})()">
+				<div class="entity-list-item">
+				<div class="item-icon" style="background:black;border:1px rgba(255,255,255,0.5)">
+					<span ><i class="" data-feather="${data.type}"></i></span>
+				</div>
+				<div class="item-content-secondary">
+				<div class="content-text-primary"></div>
+				<div class="content-text-secondary"></div>
+				<div class="content-text-secondary"></div>
+				</div>
+				<div class="item-content-primary">
+				<div class="content-text-primary">Add new ${data.title}</div>
+				<div class="content-text-secondary"></div>
+				<div class="content-text-secondary"></div>
+				<div class="progress hidden">
+				<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+				<span class="sr-only hidden">60%</span>
+				</div>
+				</div>
+				</div>
+				<div class="item-content-expanded">
+				<button class="btn btn-default" disabled="disabled">Uninstall</button>
+				<button class="btn btn-default">Move</button>
+				</div>
+				</div>
+			</div>`
+		},
+		existingListItem:(data)=>{
+			return `<div class="entity-list entity-list-expandable" onclick="(${data.action})()">
+				<div class="entity-list-item">
+				<div class="item-icon" style="background:black;border:1px rgba(255,255,255,0.5)">
+					<span ><i class="" data-feather="${data.type}"></i></span>
+				</div>
+				<div class="item-content-secondary">
+				<div class="content-text-primary">${data.size||'0.00'} MB</div>
+				<div class="content-text-secondary" style="color:white;">25/08/2016</div>
+				<div class="content-text-secondary"></div>
+				</div>
+				<div class="item-content-primary">
+				<div class="content-text-primary">${data.title}</div>
+				<div class="content-text-secondary"></div>
+				<div class="progress hidden">
+				<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+				<span class="sr-only hidden">60%</span>
+				</div>
+				</div>
+				</div>
+				<div class="item-content-expanded">
+				<button class="btn btn-default" disabled="disabled">Uninstall</button>
+				<button class="btn btn-default">Move</button>
+				</div>
+				</div>
+			</div>`
+		},
+
+	}
+
 
 export default class Load extends View {
 
+
 	constructor(ref?:HTML5Element){
 
-		super(ref)
+		let data = {
+			title:'project',
+			action:function(){
+				console.log('eh')
+				window.controller.goTo('engine');
+			}
+
+		}
+		super(ref, data);
 
 		return {
 			link:this,
@@ -40,92 +109,19 @@ export default class Load extends View {
 		    padding: 48px;
 				width:100%;
 				height:100%;
-				max-width:720px;
+				max-width:450px;
 				opacity:1 !important;
+				border-right:1px solid white;
 				`,
 			innerHTML:`
-				<column class="col-md-12">
+				<column class="col-md-24">
 					<h2 >load project</h2>
 					<br/>
 
-					<div class="entity-list entity-list-expandable">
-					<div class="entity-list-item">
-					<div class="item-icon" style="background:black;border:1px rgba(255,255,255,0.5)">
-						<span ><i class="" data-feather="plus"></i></span>
-					</div>
-					<div class="item-content-secondary">
-					<div class="content-text-primary">00.0 MB</div>
-					<div class="content-text-secondary"></div>
-					</div>
-					<div class="item-content-primary">
-					<div class="content-text-primary">Add new project</div>
-					<div class="content-text-secondary"></div>
-					<div class="progress hidden">
-					<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-					<span class="sr-only hidden">60%</span>
-					</div>
-					</div>
-					</div>
-					<div class="item-content-expanded">
-					<button class="btn btn-default" disabled="disabled">Uninstall</button>
-					<button class="btn btn-default">Move</button>
-					</div>
-					</div>
-					</div>
+					${(templates.newListItem({'type':'plus','title':data.title, ...data}))}
 
+					${(templates.existingListItem({...data, 'type':'map','title':'example'}))}
 
-					<div class="entity-list entity-list-expandable" onclick="(${this.gotonew})()">
-						<div class="entity-list-item">
-							<div class="item-icon" style="background:black;">
-							<i class="menu" data-feather="map" style="margin-left:0.75rem;margin-top:0.75rem;"></i>
-							</div>
-							<div class="item-content-secondary">
-								<div class="content-text-primary">10.0 MB</div>
-							<div class="content-text-secondary"></div>
-							</div>
-							<div class="item-content-primary">
-								<div class="content-text-primary">example01.sjs</div>
-									<div class="content-text-secondary"></div>
-									<div class="progress hidden">
-										<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-											<span class="sr-only hidden">60%</span>
-									</div>
-								</div>
-							</div>
-							<div class="item-content-expanded">
-							<button class="btn btn-default" disabled="disabled">Uninstall</button>
-							<button class="btn btn-default">Move</button>
-							</div>
-						</div>
-					</div>
-
-
-
-
-					<div class="entity-list entity-list-expandable hidden">
-					<div class="entity-list-item">
-					<div class="item-icon">
-					<span class="glyph glyph-mail"></span>
-					</div>
-					<div class="item-content-secondary">
-					<div class="content-text-primary">25.3 MB</div>
-					<div class="content-text-secondary">25/08/2016</div>
-					</div>
-					<div class="item-content-primary">
-					<div class="content-text-primary">Demo (F)</div>
-					<div class="content-text-secondary">${this.test}</div>
-					<div class="progress hidden">
-					<div class="progress-bar hidden" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-					<span class="sr-only hidden">60%</span>
-					</div>
-					</div>
-					</div>
-					<div class="item-content-expanded">
-					<button class="btn btn-default" disabled="disabled">Uninstall</button>
-					<button class="btn btn-default">Move</button>
-					</div>
-					</div>
-					</div>
 				</column>
 			`,
 			onclick:this.click
