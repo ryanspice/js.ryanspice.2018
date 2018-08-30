@@ -1,6 +1,6 @@
 
 import View from "../view";
-
+import ServiceSession from "../../service.session";
 
 class ListItem {
 
@@ -83,23 +83,58 @@ let templates:Object = {
 
 export default class Load extends View {
 
-
 	constructor(ref?:HTML5Element){
+
+
+		super(ref, data);
+
+		let session = new ServiceSession(false);
+		let saved = session.get('saved');
+		let saveData = ``;
 
 		let data = {
 			title:'project',
 			action:function(){
-				console.log('eh')
+
+				window.controller.goTo('new',true);
+			},
+			actionLoad:function(){
+
 				window.controller.goTo('engine');
 			}
 
 		}
-		super(ref, data);
+		let savedList = [];
+		for(let i =saved.length-1; i>=0; i--){
+			saveData = `${saveData}${templates.existingListItem({'action':data.actionLoad, 'type':'map','title':'example'})}`;
+		}
+
+		this.updateList = function(){
+
+			console.log('eh')
+			let session = new ServiceSession(false);
+			let saved = session.get('saved');
+
+			let savedList = [];
+			let d = ` `;
+			for(let i =saved.length-1; i>=0; i--){
+				d = `${d}${templates.existingListItem({'action':function(){}, 'type':'map','title':'example'})}`;
+			}
+
+			document.getElementById('loaddata').innerHTML = d;
+
+			try{
+			window.icons.replace();
+			}catch(e){}
+		}
+
 
 		return {
 			link:this,
 			type:`view`,
 			id:'load-view',
+			activity:this.update,
+			activityOpen:this.update,
 			className:'slide',
 			style:`
 	      z-index: 200;
@@ -117,16 +152,20 @@ export default class Load extends View {
 				<column class="col-md-24">
 					<h2 >load project</h2>
 					<br/>
-
 					${(templates.newListItem({'type':'plus','title':data.title, ...data}))}
-
-					${(templates.existingListItem({...data, 'type':'map','title':'example'}))}
-
+					<span id="loaddata">
+					${saveData}
+					</span>
 				</column>
 			`,
 			onclick:this.click
 		}
 
+	}
+
+	update = ()=>{
+
+	console.log('fuck')
 	}
 
 	gotonew = ()=>{

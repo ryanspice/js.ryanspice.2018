@@ -28,21 +28,29 @@ export default class ServiceSession {
 		return this.get('open')||this.schema.open;
 	}
 
+	get saved():Object {
+
+		return this.get('saved')||this.schema.saved;
+	}
+
 	/*
 
 		set session 'state' object to store
 
 	*/
 
-	constructor(){
+	constructor(clear:boolean = true){
 
-		this.session.clear();
+		if (clear){
+			this.session.clear();
 
-		this.session.setObject('state',this.state);
-		this.session.setObject('settings',this.settings);
-		this.session.setObject('root',this.root);
-		this.session.setObject('open',this.open);
+			this.session.setObject('state',this.state);
+			this.session.setObject('settings',this.settings);
+			this.session.setObject('root',this.root);
+			this.session.setObject('open',this.open);
 
+			this.session.setObject('saved',this.saved);
+		}
 		//console.log(this);
 
 		return this;

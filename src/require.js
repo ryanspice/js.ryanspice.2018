@@ -24,7 +24,7 @@ const requireCSS = async evt => {
 		await import(`./assets/css/global.scss`),
 		await import(`./assets/css/dark.scss`),
 		await requireMSG('icons'),
-		icons = await import('feather-icons'),
+		window.icons = icons = await import('feather-icons'),
 	];
 }
 
@@ -40,7 +40,7 @@ const requireHTML = async (evt,data) => {
 		await (renderer.prototype.template = (await import("./include/data")).default),
 
 		await requireMSG('rendering'),
-		template = await new renderer(evt)
+		window.template = template = await new renderer(evt)
 	];
 }
 
