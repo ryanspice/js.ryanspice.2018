@@ -113,7 +113,7 @@ export default class Documentation extends View {
 			className:'slide ',
 			style:``,
 			innerHTML:`
-				<column class="col-md-4 hidden-sm hidden-xs pull-left hidden">
+				<column class="col-md-20 offset-md-2 hidden">
           <div id="sideBar">
               <p class="sideBarNav"><a href="#">home</a></p>
               <p class="sideBarNav"><a href="#">documentation</a></p>
@@ -128,7 +128,10 @@ export default class Documentation extends View {
 				<column class="col-xl-22 col-md-offset-1 col-sm-offset-1">
 					<h2>documentation</h2>
 					${docs}
-				</column>`
+				</column>`,
+			onclick:()=>{
+ 			 	document.getElementsByClassName('expand')[0].classList.remove('expand');
+		 	}
 		}
 
 	}

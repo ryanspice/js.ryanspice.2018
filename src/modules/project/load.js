@@ -80,6 +80,10 @@ let templates:Object = {
 
 	}
 
+let data = {
+	title:'project',
+	type:'map'
+}
 
 export default class Load extends View {
 
@@ -91,6 +95,9 @@ export default class Load extends View {
 		let session = new ServiceSession(false);
 		let saved = session.get('saved');
 		let saveData = ``;
+
+		if (saved){
+
 
 		let data = {
 			title:'project',
@@ -108,7 +115,7 @@ export default class Load extends View {
 		for(let i =saved.length-1; i>=0; i--){
 			saveData = `${saveData}${templates.existingListItem({'action':data.actionLoad, 'type':'map','title':'example'})}`;
 		}
-
+}
 		this.updateList = function(){
 
 			console.log('eh')

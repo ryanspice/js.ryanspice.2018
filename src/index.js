@@ -30,7 +30,7 @@ const post = async evt => {
 
 	// HOISTING VARIABLES;
 	await pipes.requireMSG('session');
-	let STORE:ServiceSession = await new ServiceSession(false);
+	let STORE:ServiceSession = await new ServiceSession(true);
 	let STORE_start = await STORE.settings.start;
 	let STORE_resolution = await STORE.settings.resolution;
 	let STORE_options = await STORE.settings.options;
@@ -63,14 +63,31 @@ const post = async evt => {
 
 	}
 
-	await pipes.requireMSG('( :');
+	await pipes.requireMSG('listeners');
+
+	document.onkeydown = function(evt) {
+
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key == "Escape" || evt.key == "Esc");
+    } else {
+        isEscape = (evt.keyCode == 27);
+    }
+    if (isEscape) {
+       window.controller.goTo('engine');
+			 document.getElementsByClassName('expand')[0].classList.remove('expand');
+    }
+
+	};
 
 	// ARTIFICAL DELAY, APP NAVIGATE
 
 	setTimeout(async ()=>{
-		await window.controller.goTo(STORE_start);
 		await pipes.requireMSG(') :');
+		await window.controller.goTo(STORE_start);
 		(document.getElementById('loader')).remove(); // TODO: Hide?
+
 	},50);
 
 }

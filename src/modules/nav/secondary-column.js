@@ -50,7 +50,7 @@ export default class SecondaryColumn extends View {
 						controller.goTo('new',true,e=>e.value.activity(e));
 					}
 				},
-				...live,
+				//...live,
 
 			/*BOTTOM */
 			{
@@ -85,13 +85,17 @@ export default class SecondaryColumn extends View {
 	constructor(ref?:HTML5Element){
 
 		super(ref)
+		let afterConstruct = function(){
 
+			console.log(window.get(false))
+		}
 		return {
 			type:`aside`,
 			id:'secondary-column',
 			className:`noselect`,
 			style:`font-size:2rem;z-index:1`,
-			onclick:this.click
+			onclick:this.click,
+			afterConstruct:afterConstruct
 		}
 
 	}
