@@ -30,7 +30,12 @@ const post = async evt => {
 
 	// HOISTING VARIABLES;
 	await pipes.requireMSG('session');
-	let STORE:ServiceSession = await new ServiceSession(true);
+
+	let STORE:ServiceSession;
+	if (!sessionStorage.getItem('saved'))
+	STORE = await new ServiceSession(true);
+	else
+	STORE = await new ServiceSession(false);
 	let STORE_start = await STORE.settings.start;
 	let STORE_resolution = await STORE.settings.resolution;
 	let STORE_options = await STORE.settings.options;
@@ -85,7 +90,12 @@ const post = async evt => {
 
 	setTimeout(async ()=>{
 		await pipes.requireMSG(') :');
+
+		//TODO MOVE?
+
+		await window.get(false);
 		await window.controller.goTo(STORE_start);
+		
 		(document.getElementById('loader')).remove(); // TODO: Hide?
 
 	},50);

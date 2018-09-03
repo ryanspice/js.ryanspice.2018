@@ -42,6 +42,7 @@ export default class SecondaryColumn extends View {
 				{
 					type:`span`,
 					renderTo:'#scroll',
+					id:'plus',
 					style:`max-width:48px;`,
 					innerHTML:`<i class="menu" data-feather="plus"></i>	`,
 					onclick:(evt)=>{
@@ -87,7 +88,8 @@ export default class SecondaryColumn extends View {
 		super(ref)
 		let afterConstruct = function(){
 
-			console.log(window.get(false))
+			
+
 		}
 		return {
 			type:`aside`,

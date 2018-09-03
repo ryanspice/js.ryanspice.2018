@@ -1,10 +1,15 @@
 
 import View from "../view";
 
+if (!window.room)
+window.room={count:0};
 
 
 import ServiceSession from "../../service.session";
 export default class New extends View {
+
+
+
 
 	static title='New';
 	title='create a new Chateau';
@@ -29,20 +34,21 @@ export default class New extends View {
 
 		super(ref);
 
+		this.session = new ServiceSession(false);
+
 		window.get = (news = true)=>{
 
-			let session = new ServiceSession(false);
-			let saved = session.get('saved') || [];
 			let saveData = ``;
 
 			let item = {'action':()=>{}, 'type':'map','title':'example'};
+			let saved = this.session.get('saved') || [item];
 
 			let save = [item, ...saved];
 
 			let a = async ()=>{
 
 				if (news)
-					session.set('saved', save);
+					this.session.set('saved', save);
 
 					for(let i = saved.length-1; i>=0; i--){
 
@@ -50,7 +56,7 @@ export default class New extends View {
 							type:`span`,
 							renderTo:'#scroll',
 							style:`margin:10px;max-width:116px;height:96px;display:inline-block;`,
-							innerHTML:`<i class="menu" data-feather="map" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m 000</h6>	`,
+							innerHTML:`<i class="menu" data-feather="map" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
 							onclick:(evt)=>{
 								//console.log('eh')
 								evt.stopPropagation();
