@@ -1,20 +1,30 @@
 //@flow
 
 import ServiceSession from "./service.session";
+
 require('./include/storage.stringify');
+
 let pipe = import('./require.js');
+
+import {
+	sleep
+} from "./include/util";
+
+
+let STORE:ServiceSession;
 
 /*
 	Pre-load - called onreadystatechange = 1
 */
 
-const pre = async evt => {
+const pre:Function = async function(evt){
 
 	let _pipe = (await pipe).default;
 
 	await Promise.all([
 		await _pipe.requireCSS(evt),
-		await _pipe.requireHTML(evt)
+		await _pipe.requireHTML(evt),
+		await _pipe.requireListeners(evt)
 	]);
 
 };
@@ -23,7 +33,7 @@ const pre = async evt => {
 	Post-load - called onreadystatechange = 2
 */
 
-const post = async evt => {
+const post:Function = async function(evt){
 
 	// PIPING METHODS
 	let pipes = (await pipe).default;
@@ -31,14 +41,15 @@ const post = async evt => {
 	// HOISTING VARIABLES;
 	await pipes.requireMSG('session');
 
-	let STORE:ServiceSession;
-	if (!sessionStorage.getItem('saved'))
-	STORE = await new ServiceSession(true);
-	else
-	STORE = await new ServiceSession(false);
-	let STORE_start = await STORE.settings.start;
-	let STORE_resolution = await STORE.settings.resolution;
-	let STORE_options = await STORE.settings.options;
+	if (!sessionStorage.getItem('saved')){
+
+		STORE = await new ServiceSession(true);
+
+	}	else {
+
+		STORE = await new ServiceSession(false);
+
+	}
 
 	// GET ICONS
 	await pipes.requireMSG('icons');
@@ -54,11 +65,10 @@ const post = async evt => {
 
 	// LAUNCH EVALULATE SPICEJS GAME FRAMEWORK
 
-	let app;
-
 	try{
 
-		app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
+		await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
+		//app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
 
 	} catch(e) {
 
@@ -68,37 +78,17 @@ const post = async evt => {
 
 	}
 
-	await pipes.requireMSG('listeners');
-
-	document.onkeydown = function(evt) {
-
-    evt = evt || window.event;
-    var isEscape = false;
-    if ("key" in evt) {
-        isEscape = (evt.key == "Escape" || evt.key == "Esc");
-    } else {
-        isEscape = (evt.keyCode == 27);
-    }
-    if (isEscape) {
-       window.controller.goTo('engine');
-			 document.getElementsByClassName('expand')[0].classList.remove('expand');
-    }
-
-	};
-
 	// ARTIFICAL DELAY, APP NAVIGATE
 
-	setTimeout(async ()=>{
-		await pipes.requireMSG(') :');
+	await pipes.requireMSG(') :');
 
-		//TODO MOVE?
+	//TODO MOVE?
 
-		await window.get(false);
-		await window.controller.goTo(STORE_start);
-		
-		(document.getElementById('loader')).remove(); // TODO: Hide?
+	await window.get(false); // TODO: Config :: IF STORE HAS FRESTSTART enabled
 
-	},50);
+	await window.controller.goTo(await STORE.settings.start);
+
+	(document.getElementById('loader')).remove(); // TODO: Hide?
 
 }
 

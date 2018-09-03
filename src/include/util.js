@@ -2,6 +2,10 @@
 
 import {default as loop} from '../../node_modules/async.2018/src/core/def/loop';
 
+export function sleep(ms = 0) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
 const cleanClass = (elm) => {
 
 	elm.value.className = "";
