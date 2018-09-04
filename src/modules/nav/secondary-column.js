@@ -1,5 +1,6 @@
 
 import View from "../view";
+import Add from "./add";
 
 import {
 
@@ -34,24 +35,10 @@ export default class SecondaryColumn extends View {
 				id:`scroll`,
 				style:`display:;`,
 				renderTo:'#secondary-column',
-				innerHTML:`
-
-					`
+				innerHTML:`	`
 			},
 
-				{
-					type:`span`,
-					renderTo:'#scroll',
-					id:'plus',
-					style:`max-width:48px;`,
-					innerHTML:`<i class="menu" data-feather="plus"></i>	`,
-					onclick:(evt)=>{
-
-						evt.stopPropagation();
-						controller.goTo('new',true,e=>e.value.activity(e));
-					}
-				},
-				//...live,
+			new Add(this),
 
 			/*BOTTOM */
 			{
@@ -86,18 +73,14 @@ export default class SecondaryColumn extends View {
 	constructor(ref?:HTML5Element){
 
 		super(ref)
-		let afterConstruct = function(){
 
-			
-
-		}
 		return {
 			type:`aside`,
 			id:'secondary-column',
 			className:`noselect`,
 			style:`font-size:2rem;z-index:1`,
 			onclick:this.click,
-			afterConstruct:afterConstruct
+			afterConstruct:this.afterConstruct
 		}
 
 	}
@@ -105,6 +88,11 @@ export default class SecondaryColumn extends View {
 	click=(evt)=>{
 
 		toggleExpand(evt);
+
+	}
+
+	afterConstruct=(evt)=>{
+
 
 	}
 
