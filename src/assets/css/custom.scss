@@ -29,7 +29,6 @@ body {
 
     height: 100%;
 }
-
 input,
 textarea {
     box-shadow: none;
@@ -403,8 +402,13 @@ iframe {
     overflow-x: hidden;
     overflow-y: auto;
 		height: calc(100% - 288px + 48px + 48px);
-}
 
+}
+#edit-view{
+
+	margin-left:48px;
+
+}
 #primary-view {
 	margin:0px;
 }

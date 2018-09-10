@@ -1,4 +1,4 @@
-let steve = [];
+let items = [];
 let data = [];
 
 let count = 0;
@@ -41,10 +41,8 @@ for(let i = count; i>=0; i--){
 		}
 	};
 
-
-
-	steve.push(obj);
+	items.push(obj);
 
 }
 
-export default steve;
+export default items;

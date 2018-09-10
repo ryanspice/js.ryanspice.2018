@@ -14,6 +14,7 @@ import Settings from "../modules/settings/settings";
 import New from "../modules/project/new";
 import Load from "../modules/project/load";
 import Save from "../modules/project/save";
+import Edit from "../modules/project/edit";
 
 import Hamburger from "../modules/nav/hamburger";
 import PrimaryColumn from "../modules/nav/primary-column";
@@ -24,6 +25,9 @@ import Engine from "../modules/engine"
 import template_home from "../modules/project/home";
 import template_search from "../modules/nav/search.js";
 import template_searchInput from "../modules/nav/search-input.js";
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
 
 import {
 	Info,
@@ -85,6 +89,36 @@ export default class Controller {
 		new New(this),
 		new Load(this),
 		new Save(this),
+		new Edit({
+			title:()=>'title',
+			type:()=>'type',
+			description:()=>'description',
+			activity:(e,data)=>{
+
+				let nodeParent = e.value.children[0];
+				let nodeA = nodeParent.children[0];
+
+				nodeA.content.querySelector('type').innerHTML = data['type'];
+				nodeA.content.querySelector('description').innerHTML = data['description'];
+				nodeA.content.querySelector('textarea').value = data['data'] || `{
+
+}`;
+				nodeA.content.querySelector('h2').innerHTML = data['title'];
+
+				nodeParent.querySelectorAll('#accept').innerHTML = "OK";
+				nodeParent.querySelectorAll('#cancel').innerHTML = "Close";
+
+				if (e.value.children[0].children[2])
+					e.value.children[0].children[1].remove();
+
+				let nodeB;
+				nodeB = document.importNode(nodeA.content,true);
+				nodeB.querySelector('*');//.rdy = true;
+
+				insertAfter(nodeB,nodeA);
+
+			}
+		}),
 
 		template_home,
 
@@ -121,7 +155,7 @@ export default class Controller {
 			if (e.value.id==str+'-view') {
 
 				e.value.classList.remove('slide');
-				activity?activity(e):null;
+				activity?activity(e):e.value.activity?e.value.activity(e):null;
 
 			}	else {
 

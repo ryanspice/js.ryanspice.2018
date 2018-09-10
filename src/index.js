@@ -1,8 +1,8 @@
 //@flow
 
-import ServiceSession from "./service.session";
-
 require('./include/storage.stringify');
+
+import ServiceSession from "./service.session";
 
 let pipe = import('./require.js');
 
@@ -10,12 +10,9 @@ import {
 	sleep
 } from "./include/util";
 
-
 let STORE:ServiceSession;
 
-/*
-	Pre-load - called onreadystatechange = 1
-*/
+/* Pre-load - called onreadystatechange = 1 */
 
 const pre:Function = async function(evt){
 
@@ -29,9 +26,7 @@ const pre:Function = async function(evt){
 
 };
 
-/*
-	Post-load - called onreadystatechange = 2
-*/
+/* Post-load - called onreadystatechange = 2 */
 
 const post:Function = async function(evt){
 
@@ -92,18 +87,13 @@ const post:Function = async function(evt){
 
 }
 
-/*
-
- 	IN
-
-*/
+/* onreadystatechange */
 
 let state:number = 0;
-let message:Element;
 
-document.onreadystatechange = async function(evt:Event){
+document.onreadystatechange = async (evt:Event)=>{
 
-	message = document.getElementsByClassName('load-text')[0];
+	let message = document.getElementsByClassName('load-text')[0];
 
 	switch(state){
 

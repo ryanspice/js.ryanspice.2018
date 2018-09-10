@@ -38,7 +38,7 @@ export default class SecondaryColumn extends View {
 				innerHTML:`	`
 			},
 
-			new Add(this),
+			new Add({}),
 
 			/*BOTTOM */
 			{

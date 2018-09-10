@@ -60,7 +60,7 @@ export default class New extends View {
 							onclick:(evt)=>{
 								//console.log('eh')
 								evt.stopPropagation();
-								//controller.goTo('new')
+								controller.goTo('edit',true);
 
 							}
 						};

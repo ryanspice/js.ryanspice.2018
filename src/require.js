@@ -1,13 +1,9 @@
 //@flow
 
-//import Async2018 from "../node_modules/async.2018/src/index";
-
-
 let Async2018;
-interface AsyncRenderer {};
 
-let renderer;//:AsyncRenderPipe;
-let template:AsyncRenderer;
+let renderer;
+let template;
 
 let icons;
 let message:Element;
@@ -75,7 +71,6 @@ const requireIcons = async res => {
 
 	return await icons;
 }
-
 
 export default {
 	requireMSG,
