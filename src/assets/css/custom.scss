@@ -1,5 +1,5 @@
 $icon-size: 48px;
-$secondary-column-width: 420px;
+$toolbar-column-width: 420px;
 $black: rgba(25, 25, 25, 1);
 * {
     margin: 0;
@@ -525,7 +525,7 @@ aside {
         pointer-events: none;
     }
     span span:hover {
-        width: $secondary-column-width;
+        width: $toolbar-column-width;
         svg {
             &:not(.feather-menu) {
                 //width:$icon-size;
@@ -533,7 +533,7 @@ aside {
         }
     }
     &#primary-column,
-    &#secondary-column {
+    &#toolbar-column {
 
         position: fIxed;
         left: 0px;
@@ -547,7 +547,7 @@ aside {
 
         &.expand {
 
-          width: $secondary-column-width;
+          width: $toolbar-column-width;
 
           span h5:not(.expand),
           span svg:not(.expand):nth-of-type(4n+2) {
@@ -581,7 +581,7 @@ aside {
     }
 
     &#primary:hover,
-    &#secondary-column:hover {
+    &#toolbar-column:hover {
 
       input {
           display: block;
@@ -596,9 +596,9 @@ aside {
 
     }
 
-    &#secondary-column:hover {
+    &#toolbar-column:hover {
 
-        opacity: 1; //width:$secondary-column-width;
+        opacity: 1; //width:$toolbar-column-width;
         transition: opacity 0.2s;
         transition: width 0.2s;
         transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -752,7 +752,12 @@ hero {
     /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+#objectedit-view,
+#mapedit-view,
+#edit-view, {
+margin-left:48px !important;
 
+}
 #new-view {
 
  z-index: 200;

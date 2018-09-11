@@ -18,7 +18,7 @@ import Edit from "../modules/project/edit";
 
 import Hamburger from "../modules/nav/hamburger";
 import PrimaryColumn from "../modules/nav/primary-column";
-import SecondaryColumn from "../modules/nav/secondary-column";
+import ToolColumn from "../modules/nav/toolbar-column";
 
 import Engine from "../modules/engine"
 
@@ -78,11 +78,11 @@ export default class Controller {
 			value:`123wds`
 		},
 
-		new SecondaryColumn(this),
+		new ToolColumn(this),
 
 		new Hamburger(this),
 		new Engine(this),
-		new Documentation(this),
+//		new Documentation(this),
 		new Settings(this),
 		new Info(this),
 		new DefaultSettings(this),
@@ -90,11 +90,43 @@ export default class Controller {
 		new Load(this),
 		new Save(this),
 		new Edit({
-			title:()=>'title',
-			type:()=>'type',
-			description:()=>'description',
+			title:'map',
+			type:'type',
+			description:'description',
 			activity:(e,data)=>{
 
+				console.log('Edit:', e, data)
+				let nodeParent = e.value.children[0];
+				let nodeA = nodeParent.children[0];
+
+				nodeA.content.querySelector('type').innerHTML = data['type'];
+				nodeA.content.querySelector('description').innerHTML = data['description'];
+				nodeA.content.querySelector('textarea').value = data['data'] || `{
+
+}`;
+				nodeA.content.querySelector('h2').innerHTML = data['title'];
+
+				nodeParent.querySelectorAll('#accept').innerHTML = "OK";
+				nodeParent.querySelectorAll('#cancel').innerHTML = "Close";
+
+				if (e.value.children[0].children[2])
+					e.value.children[0].children[1].remove();
+
+				let nodeB;
+				nodeB = document.importNode(nodeA.content,true);
+				nodeB.querySelector('*');//.rdy = true;
+
+				insertAfter(nodeB,nodeA);
+
+			}
+		}),
+		new Edit({
+			title:'object',
+			type:'type',
+			description:'description',
+			activity:(e,data)=>{
+
+				console.log('Object:', e, data)
 				let nodeParent = e.value.children[0];
 				let nodeA = nodeParent.children[0];
 
@@ -122,7 +154,7 @@ export default class Controller {
 
 		template_home,
 
-		...SecondaryColumn.Controls,
+		...ToolColumn.Controls,
 
 		template_search,
 		template_searchInput
@@ -131,7 +163,7 @@ export default class Controller {
 	clearColumn = ()=>{
 
 		if (!this._column)
-			this._column = document.querySelectorAll('#secondary-column')[0];
+			this._column = document.querySelectorAll('#toolbar-column')[0];
 
 		this._column.classList.remove("expand");
 

@@ -5,7 +5,14 @@ import ServiceSession from "../../service.session";
 String.prototype.splice = function(idx, rem, str) {
     return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
 };
-
+let getIcon = (saved)=>{
+	switch(saved.type){
+		case 'object':
+		return 'globe';
+		default:
+		return saved.type;
+	}
+}
 export default class Panel extends View {
 
 	title:string;
@@ -67,16 +74,13 @@ export default class Panel extends View {
 							type:`span`,
 							renderTo:'#scroll',
 							style:`margin:10px;max-width:116px;height:96px;display:inline-block;`,
-							innerHTML:`<i class="menu" data-feather="map" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
+							innerHTML:`<i class="menu" data-feather="${getIcon(saved[i])}" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
 							onclick:(evt)=>{
 								//console.log('eh')
 								evt.stopPropagation();
-								controller.goTo('edit',true,async (e) => {
+								controller.goTo(`${saved[i].type}edit`,true,async (e) => {
 
-									console.log(saved[i],e )
-									console.log('1')
 									await e.value.activity(e,saved[i]);
-									console.log('2')
 
 								});
 
@@ -95,7 +99,7 @@ export default class Panel extends View {
 
 			return a();
 		};
-
+		console.log(data);
 		return this.assign({
 			link:this,
 			type:`view`,
