@@ -4,8 +4,6 @@ import {
 	toggleExpand
 } from "../../include/util";
 
-import dummy from './dummy';
-
 import View from "../view";
 import Add from "./add";
 

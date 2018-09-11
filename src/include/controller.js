@@ -82,7 +82,7 @@ export default class Controller {
 
 		new Hamburger(this),
 		new Engine(this),
-//		new Documentation(this),
+		new Documentation(this),
 		new Settings(this),
 		new Info(this),
 		new DefaultSettings(this),
@@ -95,7 +95,6 @@ export default class Controller {
 			description:'description',
 			activity:(e,data)=>{
 
-				console.log('Edit:', e, data)
 				let nodeParent = e.value.children[0];
 				let nodeA = nodeParent.children[0];
 
@@ -126,7 +125,6 @@ export default class Controller {
 			description:'description',
 			activity:(e,data)=>{
 
-				console.log('Object:', e, data)
 				let nodeParent = e.value.children[0];
 				let nodeA = nodeParent.children[0];
 
