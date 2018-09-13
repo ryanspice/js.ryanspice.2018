@@ -59,9 +59,14 @@ const assign = (...args) => {
 	return Object.assign(args[0],args[1])
 }
 
+const insertAfter = function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
 export {
 	assign,
 	switchView,
+	insertAfter,
 	toggleExpand
 
 }
