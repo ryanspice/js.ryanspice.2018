@@ -18,6 +18,7 @@ import Edit from "../modules/project/edit";
 
 import Hamburger from "../modules/nav/hamburger";
 import PrimaryColumn from "../modules/nav/primary-column";
+import PrimaryView from "../modules/nav/primary-view";
 import ToolColumn from "../modules/nav/toolbar-column";
 
 import Engine from "../modules/engine"
@@ -25,7 +26,6 @@ import Engine from "../modules/engine"
 import template_home from "../modules/project/home";
 import template_search from "../modules/nav/search.js";
 import template_searchInput from "../modules/nav/search-input.js";
-
 
 import {
 	Info,
@@ -38,40 +38,21 @@ export default class Controller {
 
 	views:Array<any> = [
 
-		{
-			link:this,
-			type:`view`,
-			id:'primary-view',
-			className:'slide',
-
-			style:``,
-			onclick:()=>{
-
-				controller.clearColumn();
-
-				let data = Array.from(document.querySelectorAll('.highlight'));
-				loop([data],elm=>{
-						elm.value.className = "";
-				});
-
-				let data2 = Array.from(document.querySelectorAll('view'));
-				loop([data2],elm=>{
-						if (elm.value.className!=="slide" && elm.value.id!=='primary-view')
-							elm.value.className = "slide";
-				});
-				//controller.each(e=>e.value.classList.add('hidden'));
-			},
-			value:``
-		},
-
+		/* App Components */
+		new PrimaryView(this),
 		new ToolColumn(this),
 
+		/* Tool Components */
 		new Hamburger(this),
+
+		/* Views */
 		new Engine(this),
 		new Documentation(this),
 		new Settings(this),
 		new Info(this),
 		new DefaultSettings(this),
+
+		/* Flyout Views */
 		new New(this),
 		new New({
 			title:'map',
@@ -94,6 +75,7 @@ export default class Controller {
 			buttons:{ok:'Save Object', cancel:'Cancel'}
 		}),
 
+		/* unused */
 		template_home,
 
 		...ToolColumn.Controls,
@@ -105,7 +87,7 @@ export default class Controller {
 	clearColumn = ()=>{
 
 		if (!this._column)
-			this._column = document.querySelectorAll('#toolbar-column')[0];
+			this._column = document.getElementsByClassName('#toolbar-column')[0];
 
 		this._column.classList.remove("expand");
 
@@ -115,9 +97,9 @@ export default class Controller {
 
 		this.data = Array.from(document.querySelectorAll('view'));
 
-		let data = this.data;
+		//let data = this.data;
 
-		loop([data],elm=>{
+		loop([this.data],elm=>{
 			f(elm);
 		});
 	}

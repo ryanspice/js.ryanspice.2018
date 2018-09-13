@@ -1,11 +1,13 @@
+//@flow
+
+import {
+	assign,
+	insertAfter
+} from "../../include/util";
 
 import Panel from "./panel";
 
 import ServiceSession from "../../service.session";
-
-import {
-	assign,insertAfter
-} from "../../include/util";
 
 export default class Edit extends Panel {
 
