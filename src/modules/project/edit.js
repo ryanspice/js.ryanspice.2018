@@ -4,7 +4,7 @@ import Panel from "./panel";
 import ServiceSession from "../../service.session";
 
 import {
-	assign
+	assign,insertAfter
 } from "../../include/util";
 
 export default class Edit extends Panel {
@@ -50,7 +50,31 @@ export default class Edit extends Panel {
 	                    <span style="color:white;">Minify</span>
 	                </label>
 	            </div>
-				</column>`
+				</column>`,
+				activity:(e,data)=>{
+
+						let nodeParent = e.value.children[0];
+						let nodeA = nodeParent.children[0];
+
+						nodeA.content.querySelector('type').innerHTML = data['type'];
+						nodeA.content.querySelector('description').innerHTML = data['description'];
+						nodeA.content.querySelector('textarea').value = data['data'] || ``;
+						nodeA.content.querySelector('h2').innerHTML = data['title'];
+
+						//nodeParent.querySelectorAll('#accept').style.display = "none";
+						nodeParent.querySelectorAll('#accept').innerHTML = "OK";
+						nodeParent.querySelectorAll('#cancel').innerHTML = "Close";
+
+						if (e.value.children[0].children[2])
+							e.value.children[0].children[1].remove();
+
+						let nodeB;
+						nodeB = document.importNode(nodeA.content,true);
+						nodeB.querySelector('*');//.rdy = true;
+
+						insertAfter(nodeB,nodeA);
+
+					}
 				}
 			)
 		)

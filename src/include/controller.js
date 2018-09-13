@@ -25,9 +25,7 @@ import Engine from "../modules/engine"
 import template_home from "../modules/project/home";
 import template_search from "../modules/nav/search.js";
 import template_searchInput from "../modules/nav/search-input.js";
-function insertAfter(newNode, referenceNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-}
+
 
 import {
 	Info,
@@ -51,31 +49,19 @@ export default class Controller {
 
 				controller.clearColumn();
 
+				let data = Array.from(document.querySelectorAll('.highlight'));
+				loop([data],elm=>{
+						elm.value.className = "";
+				});
 
-
-					let data = Array.from(document.querySelectorAll('.highlight'));
-						loop([data],elm=>{
-							//console.log(
-								elm.value.className = "";
-							//);
-						});
-
-
-
-
-					let data2 = Array.from(document.querySelectorAll('view'));
-						loop([data2],elm=>{
-
-								if (elm.value.className!=="slide" && elm.value.id!=='primary-view')
-									elm.value.className = "slide";
-
-
-						});
-
-
+				let data2 = Array.from(document.querySelectorAll('view'));
+				loop([data2],elm=>{
+						if (elm.value.className!=="slide" && elm.value.id!=='primary-view')
+							elm.value.className = "slide";
+				});
 				//controller.each(e=>e.value.classList.add('hidden'));
 			},
-			value:`123wds`
+			value:``
 		},
 
 		new ToolColumn(this),
@@ -87,67 +73,25 @@ export default class Controller {
 		new Info(this),
 		new DefaultSettings(this),
 		new New(this),
+		new New({
+			title:'map',
+			type:'type',
+			description:'description',
+			buttons:{ok:'Save Map', cancel:'Cancel'}
+		}),
 		new Load(this),
 		new Save(this),
 		new Edit({
 			title:'map',
 			type:'type',
 			description:'description',
-			activity:(e,data)=>{
-
-				let nodeParent = e.value.children[0];
-				let nodeA = nodeParent.children[0];
-
-				nodeA.content.querySelector('type').innerHTML = data['type'];
-				nodeA.content.querySelector('description').innerHTML = data['description'];
-				nodeA.content.querySelector('textarea').value = data['data'] || `{
-
-}`;
-				nodeA.content.querySelector('h2').innerHTML = data['title'];
-
-				nodeParent.querySelectorAll('#accept').innerHTML = "OK";
-				nodeParent.querySelectorAll('#cancel').innerHTML = "Close";
-
-				if (e.value.children[0].children[2])
-					e.value.children[0].children[1].remove();
-
-				let nodeB;
-				nodeB = document.importNode(nodeA.content,true);
-				nodeB.querySelector('*');//.rdy = true;
-
-				insertAfter(nodeB,nodeA);
-
-			}
+			buttons:{ok:'Save Map', cancel:'Cancel'}
 		}),
 		new Edit({
 			title:'object',
 			type:'type',
 			description:'description',
-			activity:(e,data)=>{
-
-				let nodeParent = e.value.children[0];
-				let nodeA = nodeParent.children[0];
-
-				nodeA.content.querySelector('type').innerHTML = data['type'];
-				nodeA.content.querySelector('description').innerHTML = data['description'];
-				nodeA.content.querySelector('textarea').value = data['data'] || `{
-
-}`;
-				nodeA.content.querySelector('h2').innerHTML = data['title'];
-
-				nodeParent.querySelectorAll('#accept').innerHTML = "OK";
-				nodeParent.querySelectorAll('#cancel').innerHTML = "Close";
-
-				if (e.value.children[0].children[2])
-					e.value.children[0].children[1].remove();
-
-				let nodeB;
-				nodeB = document.importNode(nodeA.content,true);
-				nodeB.querySelector('*');//.rdy = true;
-
-				insertAfter(nodeB,nodeA);
-
-			}
+			buttons:{ok:'Save Object', cancel:'Cancel'}
 		}),
 
 		template_home,

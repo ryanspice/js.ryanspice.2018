@@ -19,26 +19,27 @@ export default class Panel extends View {
 	type:string;
 	description:string;
 
+	buttons:any = {
+
+		ok:'ok',
+		cancel:'cancel'
+
+	}
+
 	update:Function;
 
 	assign = (...args) => {
-
+		console.log('assign that i want to remove');
 		let h = args[1].innerHTML;
 		if (args[1].appendHTML)
 			this.appendHTML = args[1].appendHTML;
 
-
 		let test = new RegExp(/<template>(.*?)<\/template>/g);
 		let test1 = test.exec(args[0].innerHTML);
-		console.log(test1.index)
-		console.log(args[1]);
-		console.log(args[0]);
-		console.log(args[0].innerHTML = args[0].innerHTML.splice(test1.index+10,0,args[1].appendHTML));
-		//console.log(args[1].innerHTML = null);
 
-		return Object.assign(args[0],args[1])
-		//console.log(test.exec(args[0].innerHTML).index)
-		//console.log(args[0].innerHTML)
+		args[0].innerHTML = args[0].innerHTML.splice(test1.index+10,0,args[1].appendHTML);
+
+		return Object.assign(args[0],args[1]);
 	}
 
 	constructor(ref?:HTML5Element){
@@ -49,7 +50,7 @@ export default class Panel extends View {
 
 		this.update = function(){
 
-			console.log('eh')
+			console.log('PanelUpdate')
 
 		}
 		this.session = new ServiceSession(false);
@@ -58,7 +59,10 @@ export default class Panel extends View {
 
 			let saveData = ``;
 
-			let item = {'action':()=>{}, 'type':'map','title':'example'};
+			let item = {
+				'action':()=>{}, 'type':'map','title':'example'
+			};
+
 			let saved = this.session.get('saved') || [item];
 
 			let save = [item, ...saved];
@@ -100,20 +104,21 @@ export default class Panel extends View {
 			return a();
 		};
 		console.log(data);
+		console.log('eh');
 		return this.assign({
 			link:this,
 			type:`view`,
 			id:'panel-view',
-			style:`    overflow-y: scroll;z-index: 201; position: absolute; background: black; margin-top: 0px; margin-left:0px; padding: 48px; width: 100%; height: 100%; max-width: 450px; border-right: 1px solid white; opacity: 1 !important;`,
+			style:`overflow-y: scroll;z-index: 201; position: absolute; background: black; margin-top: 0px; margin-left:0px; padding: 48px; width: 100%; height: 100%; max-width: 450px; border-right: 1px solid white; opacity: 1 !important;`,
 			className:'slide',
 			activity:this.update,
 			innerHTML:`
 				<column class="col-md-24">
 					<template></template>
 					<div class="btn-group" >
-						<a id="accept" class="btn btn-primary" onclick="window.controller.goTo('engine');window.get();">Create</a>
+						<a id="accept" class="btn btn-primary" onclick="window.controller.goTo('engine');window.get();">${data.buttons.ok}</a>
 						<br/>
-						<a id="cancel" class="btn btn-default" onclick="window.controller.goTo('engine');" style="color:white; background:#920c00;">Cancel</a>
+						<a id="cancel" class="btn btn-default" onclick="window.controller.goTo('engine');" style="color:white; background:#920c00;">${data.buttons.cancel}</a>
 					</div>
 				</column>
 			`,
