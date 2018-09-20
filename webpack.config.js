@@ -7,7 +7,7 @@ const webpack = require('webpack');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const DashboardPlugin = require('webpack-dashboard/plugin');
+//const DashboardPlugin = require('webpack-dashboard/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /* */

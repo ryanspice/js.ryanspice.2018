@@ -6,6 +6,11 @@ export function sleep(ms = 0) {
   return new Promise(r => setTimeout(r, ms));
 }
 
+
+String.prototype.splice = function(idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+};
+
 const cleanClass = (elm) => {
 
 	elm.value.className = "";

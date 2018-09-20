@@ -2,9 +2,6 @@
 import View from "../view";
 import ServiceSession from "../../service.session";
 
-String.prototype.splice = function(idx, rem, str) {
-    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
-};
 let getIcon = (saved)=>{
 	switch(saved.type){
 		case 'object':
@@ -20,10 +17,8 @@ export default class Panel extends View {
 	description:string;
 
 	buttons:any = {
-
 		ok:'ok',
 		cancel:'cancel'
-
 	}
 
 	update:Function;
@@ -45,9 +40,7 @@ export default class Panel extends View {
 	constructor(ref?:HTML5Element){
 
 		super(ref);
-
-		let data = ref;
-
+		
 		this.update = function(){
 
 			console.log('PanelUpdate')
@@ -103,8 +96,7 @@ export default class Panel extends View {
 
 			return a();
 		};
-		console.log(data);
-		console.log('eh');
+
 		return this.assign({
 			link:this,
 			type:`view`,
@@ -116,14 +108,14 @@ export default class Panel extends View {
 				<column class="col-md-24">
 					<template></template>
 					<div class="btn-group" >
-						<a id="accept" class="btn btn-primary" onclick="window.controller.goTo('engine');window.get();">${data.buttons.ok}</a>
+						<a id="accept" class="btn btn-primary" onclick="window.controller.goTo('engine');window.get();">${ref.buttons.ok}</a>
 						<br/>
-						<a id="cancel" class="btn btn-default" onclick="window.controller.goTo('engine');" style="color:white; background:#920c00;">${data.buttons.cancel}</a>
+						<a id="cancel" class="btn btn-default" onclick="window.controller.goTo('engine');" style="color:white; background:#920c00;">${ref.buttons.cancel}</a>
 					</div>
 				</column>
 			`,
 			onclick:this.click
-		}, data)
+		}, ref)
 
 	}
 
