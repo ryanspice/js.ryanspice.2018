@@ -55,13 +55,14 @@ const requireHTML = async (evt,data) => {
 		await requireMSG('template'),
 		renderer = (await import("../node_modules/async.2018/src/index")).default.core.template.AsyncRenderPipe,
 
-		await (renderer.prototype.template = [
-			(window.controller = new (await import("./include/controller")).default).views
-		]),
+		//await (renderer.prototype.template = [
+//			(window.controller = new (await import("./include/controller")).default).views
+	//	]),
 		//await (renderer.prototype.template = ((await import("./include/data")).default)),
-
+		//console.log(renderer.prototype.template),
+		//console.log(renderer),
 		await requireMSG('rendering'),
-		window.template = template = await new renderer(evt)
+		window.template = template = await new renderer((window.controller = new (await import("./include/controller")).default).views)
 	];
 }
 
