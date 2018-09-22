@@ -53,11 +53,20 @@ const post:Function = async function(evt){
 	// GET SPICEJS GAME FRAMEWORK
 
 	await pipes.requireMSG('spice.js');
-	await import("../../spicejs/spice.js/bld/vendor");
-	await import("../../spicejs/spice.js/bld/0.spice");
-	//TODO: WIP SpiceJS import
-	let SpiceJS = (await import("../../spicejs/spice.js/bld/spice_cookiesdisabled")).default;
+	//await import("../../spicejs/spice.js/bld/vendor");
+	//await import("../../spicejs/spice.js/bld/0.spice");
 
+
+	await import("./sjs/vendor");
+	await import("./sjs/0.spice");
+	//TODO: WIP SpiceJS import
+	//let SpiceJS = require('../../spicejs/spice.js/bld/spice_cookiesdisabled');
+
+	//let SpiceJS = (await import("../../spicejs/spice.js/bld/spice_cookiesdisabled"));
+	//let SpiceJS = (await import("./sjs/spice")).default;
+
+	await import('./sjs/spice_cookiesdisabled')
+console.log(SpiceJS)
 	// LAUNCH EVALULATE SPICEJS GAME FRAMEWORK
 
 	try{
@@ -74,6 +83,7 @@ const post:Function = async function(evt){
 	}
 
 	// ARTIFICAL DELAY, APP NAVIGATE
+
 
 	await pipes.requireMSG(') :');
 
