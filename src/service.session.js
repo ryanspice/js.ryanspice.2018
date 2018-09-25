@@ -1,11 +1,13 @@
 //@flow
 
+require('./include/storage.stringify');
+
 import Schema from "./templates/";
 
 export default class ServiceSession {
 
-	store:LocalStorage = window.localStorage;
-	session:SessionStorage = window.sessionStorage;
+	store:Storage = window.localStorage;
+	session:Storage = window.sessionStorage;
 	schema:Schema = Schema;
 
 	get state():Object {
