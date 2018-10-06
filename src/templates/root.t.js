@@ -32,8 +32,8 @@ export default {
 
 		};
 
-		console.log(eval('app.Start(240,240)'))
-		//app.Start(Store.settings.resolution.x, Store.settings.resolution.y);//TODO: make vector compatible
+		//console.log(eval('app.Start(240,240)'))
+		app.Start(Store.settings.resolution.x, Store.settings.resolution.y);//TODO: make vector compatible
 
 		return app;
 	},

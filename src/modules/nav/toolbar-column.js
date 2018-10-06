@@ -17,7 +17,8 @@ export default class ToolColumn extends View {
 				innerHTML:`<i class="menu" data-feather="layers"></i>
 					<h5 onclick="event.stopPropagation()" ><u>main.js</u></h5>
 					<h5 style="display:none" onclick="event.stopPropagation()" ><u>ROOM</u></h5>
-					<h5 style="display:none" onclick="event.stopPropagation()" >OBJECT</h5>
+					<h5 style="display:none" onclick="event.stop
+						Propagation()" >OBJECT</h5>
 					<h5 style="display:none" onclick="event.stopPropagation()" >TILE</h5>
 					<h5 style="display:none" onclick="event.stopPropagation()" >BACKGROUND</h5>
 					`

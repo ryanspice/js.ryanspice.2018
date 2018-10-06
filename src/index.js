@@ -1,10 +1,14 @@
 //@flow
-declare var SpiceJS:SpiceJS;
-declare var document:Document;
 
-import pipe from "./require.js";
+declare var SpiceJS:SpiceJS;
+
+import pipe from "./require";
+import engine from "./engine";
 
 import ServiceSession from "./service.session";
+import ServiceMessageBundle from "./service.message.bundle";
+
+const context:Document = document;
 
 /* Pre-load - called onreadystatechange = 1 */
 
@@ -22,57 +26,39 @@ const pre:Function = async function(evt:Event){
 
 const post:Function = async function(evt:Event){
 
-	// STORAGE SESSION
-	await pipe.requireMSG('session');
-	const store:ServiceSession = await new ServiceSession(sessionStorage.getItem('saved')?false:true);
-
 	//GET ICONS
-	await pipe.requireMSG('icons');
+	await pipe.requireMSG(ServiceMessageBundle.inital.icons);
 	await pipe.requireIcons();
 
-	//GET SPICEJS GAME FRAMEWORK
-	await pipe.requireMSG('spice.js');
-
-	//LAUNCH EVALULATE SPICEJS GAME FRAMEWORK
-	try{
-
-		//TODO: WIP SpiceJS import
-		await import("./sjs/vendor");
-		await import("./sjs/0.spice");
-		await import('./sjs/spice_cookiesdisabled')
-		await eval(`(${store.root.launchScript})`)(await SpiceJS, await store);
-		//app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
-
-	} catch(e) {
-
-		await pipe.requireMSG('() :');
-
-		throw(e);
-	}
-
-	// ARTIFICAL DELAY, APP NAVIGATE
-	await pipe.requireMSG(') :');
+	// STORAGE SESSION
+	await pipe.requireMSG(ServiceMessageBundle.inital.session);
+	const store:ServiceSession = await new ServiceSession(sessionStorage.getItem('saved')?false:true);
 
 	//TODO MOVE? WINDOW??????? needs AsyncPipes
 	await window.get(false); // TODO: Config :: IF STORE HAS FRESTSTART enabled
+
+	//GET SPICEJS GAME FRAMEWORK
+	await pipe.requireMSG(ServiceMessageBundle.inital.fmrk);
+	await engine(pipe, store);
 	await window.controller.goTo(await store.settings.start);
 
-	(document.getElementById('loader')).remove(); // TODO: Hide?
+	await pipe.requireMSG(ServiceMessageBundle.inital.fail); // displays fail if something went wrong
+	(context.getElementById('loader')).remove(); // TODO: Hide?
 
 }
 
 /* Ground ZERO */
 
-document.state = 0;
-document.onreadystatechange = async function(evt:Event){
+context.state = 0;
+context.onreadystatechange = async function(evt:Event){
 
-	switch(document.state){
+	switch(context.state){
 
 		case 0:
 
 			await pre(evt);
 
-			document.state++;
+			context.state++;
 
 		break;
 
@@ -80,7 +66,7 @@ document.onreadystatechange = async function(evt:Event){
 
 			await post(evt);
 
-			document.state++;
+			context.state++;
 
 		break;
 	}

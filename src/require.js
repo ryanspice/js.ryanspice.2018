@@ -8,13 +8,16 @@ let template;
 let icons;
 let message:Element;
 
-const requireMSG = async msg => {
+/**/
 
+const requireMSG = async function(msg:string){
 	!message?message = document.getElementsByClassName('load-text')[0]:null;
 	message.innerText = await msg;
 };
 
-const requireCSS = async evt => {
+/**/
+
+const requireCSS = async function(evt:Event){
 	return [
 		await requireMSG('css'),
 		await import(`./assets/css/global.scss`),
@@ -24,9 +27,11 @@ const requireCSS = async evt => {
 	];
 }
 
-const requireListeners = async evt => {
+/**/
+
+const requireListeners = async function(evt:Event){
 	return await [
-		document.onkeydown = function(evt) {
+		document.onkeydown = function(evt:KeyboardEvent) {
 
 	    evt = evt || window.event;
 	    var isEscape = false;
@@ -46,18 +51,17 @@ const requireListeners = async evt => {
 	]
 }
 
-const requireHTML = async (evt,data) => {
+const requireHTML = async (evt:Event,data:any) => {
 
 	//renderer.prototype.template = data;
 	return await [
 
-		//TODO:
 		await requireMSG('template'),
 		renderer = (await import("../node_modules/async.2018/src/index")).default.core.template.AsyncRenderPipe,
 
 		//await (renderer.prototype.template = [
-//			(window.controller = new (await import("./include/controller")).default).views
-	//	]),
+		//			(window.controller = new (await import("./include/controller")).default).views
+		//	]),
 		//await (renderer.prototype.template = ((await import("./include/data")).default)),
 		//console.log(renderer.prototype.template),
 		//console.log(renderer),
@@ -66,7 +70,7 @@ const requireHTML = async (evt,data) => {
 	];
 }
 
-const requireIcons = async res => {
+const requireIcons = async (res) => {
 
 	await icons.replace();
 

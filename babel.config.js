@@ -8,7 +8,7 @@ module.exports = function (api) {
 				"modules": false,
 				"useBuiltIns": false,
 				"targets": {
-					"browsers": "> 1%, last 2 versions, Firefox ESR"
+					"browsers": "Chrome 69"
 				},
 				"loose": true
 			}
