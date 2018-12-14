@@ -1,6 +1,6 @@
 /* @flow */
 
-import View from "../view";
+import AsyncView from "../../entry";
 
 const docs = `
 
@@ -100,7 +100,7 @@ App.user.fbconnect(id, facebook);</code></pre><h5>.fbconnect(id, callback)</h5><
 				`;
 
 
-export default class Documentation extends View {
+export default class Documentation extends AsyncView {
 
 	constructor(ref){
 

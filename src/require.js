@@ -52,12 +52,24 @@ const requireListeners = async function(evt:Event){
 }
 
 const requireHTML = async (evt:Event,data:any) => {
-
 	//renderer.prototype.template = data;
+return await [
+	renderer = (await import('./entry')).AsyncTemplate,
+	renderer.pre = ()=>{},
+	renderer.post = ()=>{},
+	//window.controller = new (await import("./include/controller")).default,
+	window.template = renderer = await new renderer(),
+	renderer.template = await [(window.controller = new (await import("./include/controller")).default).views],
+	await renderer.iterateTemplate()
+	];
+
+	/*
 	return await [
 
 		await requireMSG('template'),
-		renderer = (await import("../node_modules/async.2018/src/index")).default.core.template.AsyncRenderPipe,
+		renderer = (await import('./entry')).AsyncTemplate,
+		await (window.controller = new (await import("./include/controller")).default).views,
+//		renderer = (await import("../node_modules/async.2018/src/index")).default.core.template.AsyncRenderPipe,
 
 		//await (renderer.prototype.template = [
 		//			(window.controller = new (await import("./include/controller")).default).views
@@ -66,8 +78,9 @@ const requireHTML = async (evt:Event,data:any) => {
 		//console.log(renderer.prototype.template),
 		//console.log(renderer),
 		await requireMSG('rendering'),
-		window.template = template = await new renderer((window.controller = new (await import("./include/controller")).default).views)
+		window.template = template = await new renderer()
 	];
+	*/
 }
 
 const requireIcons = async (res) => {

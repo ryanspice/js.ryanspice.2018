@@ -1,12 +1,12 @@
 
-import View from "../view";
+import AsyncView from "../../entry";
 
 if (!window.room)
 window.room={count:0};
 
 
 import ServiceSession from "../../service.session";
-export default class New extends View {
+export default class New extends AsyncView {
 
 
 

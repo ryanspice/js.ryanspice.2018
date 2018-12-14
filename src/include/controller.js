@@ -1,11 +1,11 @@
 import {default as css} from "./style.js";
 
-import {default as loop} from '../../node_modules/async.2018/src/core/def/loop';
+//import {default as loop} from '../../node_modules/async.2018/src/core/def/loop';
 
 import {
 
-	switchView, toggleExpand
-
+	switchView, toggleExpand,
+	_loop
 } from "./util";
 
 //import Home from "../modules/Home/Home";
@@ -99,9 +99,10 @@ export default class Controller {
 
 		//let data = this.data;
 
-		loop([this.data],elm=>{
+		_loop([this.data],elm=>{
 			f(elm);
 		});
+
 	}
 
 	goTo = (str, noRemove, activity, activityOpen) => {

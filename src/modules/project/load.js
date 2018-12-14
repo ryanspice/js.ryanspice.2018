@@ -1,5 +1,5 @@
 
-import View from "../view";
+import AsyncView from "../../entry";
 import ServiceSession from "../../service.session";
 
 class ListItem {
@@ -85,7 +85,7 @@ let data = {
 	type:'map'
 }
 
-export default class Load extends View {
+export default class Load extends AsyncView {
 
 	constructor(ref?:HTML5Element){
 

@@ -1,8 +1,8 @@
 //@flow
 
-import View from "../view";
+import AsyncView from "../../entry";
 require('./settings.scss');
-export default class Settings extends View {
+export default class Settings extends AsyncView {
 
     constructor(ref ? : HTML5Element) {
 
@@ -46,7 +46,7 @@ export default class Settings extends View {
 
 }
 
-export class Info extends View {
+export class Info extends AsyncView {
 
 
     constructor(ref ? : HTML5Element) {
@@ -82,7 +82,7 @@ export class Info extends View {
 
 }
 
-export class DefaultSettings extends View {
+export class DefaultSettings extends AsyncView {
 
 
     constructor(ref ? : HTML5Element) {

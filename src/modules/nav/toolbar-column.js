@@ -4,10 +4,10 @@ import {
 	toggleExpand
 } from "../../include/util";
 
-import View from "../view";
+import AsyncView from "../../entry";
 import Add from "./add";
 
-export default class ToolColumn extends View {
+export default class ToolColumn extends AsyncView {
 
 	static Controls:Array<any> = [
 			{

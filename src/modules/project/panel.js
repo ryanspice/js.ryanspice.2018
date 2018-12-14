@@ -1,5 +1,5 @@
 
-import View from "../view";
+import AsyncView from "../../entry";
 import ServiceSession from "../../service.session";
 
 let getIcon = (saved)=>{
@@ -10,7 +10,7 @@ let getIcon = (saved)=>{
 		return saved.type;
 	}
 }
-export default class Panel extends View {
+export default class Panel extends AsyncView {
 
 	title:string;
 	type:string;
@@ -40,7 +40,7 @@ export default class Panel extends View {
 	constructor(ref?:HTML5Element){
 
 		super(ref);
-		
+
 		this.update = function(){
 
 			console.log('PanelUpdate')

@@ -1,7 +1,7 @@
 
-import View from "../view";
+import AsyncView from "../../entry";
 
-export default class PrimaryView extends View {
+export default class PrimaryView extends AsyncView {
 
 
 	constructor(ref?:HTML5Element){

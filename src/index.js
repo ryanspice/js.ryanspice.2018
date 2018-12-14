@@ -35,7 +35,7 @@ const post:Function = async function(evt:Event){
 	const store:ServiceSession = await new ServiceSession(sessionStorage.getItem('saved')?false:true);
 
 	//TODO MOVE? WINDOW??????? needs AsyncPipes
-	await window.get(false); // TODO: Config :: IF STORE HAS FRESTSTART enabled
+	//await window.get(false); // TODO: Config :: IF STORE HAS FRESTSTART enabled
 
 	//GET SPICEJS GAME FRAMEWORK
 	await pipe.requireMSG(ServiceMessageBundle.inital.fmrk);
