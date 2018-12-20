@@ -6,6 +6,8 @@ import {
 
 import View from "../view";
 
+import Hamburger from "./hamburger";
+
 import Add from "./add";
 import Scroll from "./scroll";
 
@@ -14,6 +16,7 @@ import * as buttons from "./buttons";
 export default class ToolColumn extends View {
 
 	static Controls:Array<any> = [
+			new Hamburger(this),
 			{
 				type:`span`,
 				renderTo:'#toolbar-column',
@@ -28,7 +31,6 @@ export default class ToolColumn extends View {
 					`
 			},
 			new Scroll(),
-
 			new Add({}),
 
 			new buttons.default.play(),

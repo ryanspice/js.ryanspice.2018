@@ -16,7 +16,6 @@ import Load from "../modules/project/load";
 import Save from "../modules/project/save";
 import Edit from "../modules/project/edit";
 
-import Hamburger from "../modules/nav/hamburger";
 import PrimaryColumn from "../modules/nav/primary-column";
 import PrimaryView from "../modules/nav/primary-view";
 import ToolColumn from "../modules/nav/toolbar-column";
@@ -43,8 +42,7 @@ export default class Controller {
 		new ToolColumn(this),
 
 		/* Tool Components */
-		new Hamburger(this),
-				...ToolColumn.Controls,
+		...ToolColumn.Controls,
 
 		/* Views */
 		new Engine(this),
@@ -80,8 +78,6 @@ export default class Controller {
 
 		/* unused */
 		template_home,
-
-
 		template_search,
 		template_searchInput
 	]
