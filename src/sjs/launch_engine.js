@@ -8,9 +8,9 @@ const engine:Function = async function(pipe:AsyncPipes|null, store:ServiceSessio
 	try{
 
 		//TODO: WIP SpiceJS import
-		await import("./sjs/vendor");
-		await import("./sjs/0.spice");
-		await import('./sjs/spice_cookiesdisabled')
+		await import("./vendor");
+		await import("./0.spice");
+		await import('./spice_cookiesdisabled')
 		await eval(`(${store.root.launchScript})`)(await SpiceJS, await store);
 		//app = await eval(`(${STORE.root.launchScript})`)(await SpiceJS, await STORE);
 

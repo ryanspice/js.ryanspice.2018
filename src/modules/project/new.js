@@ -28,48 +28,6 @@ export default class New extends View {
 
 		super(ref);
 
-		window.get = (news = true)=>{
-
-			let saveData = ``;
-
-			let item = {'action':()=>{}, 'type':'map','title':'example'};
-			let saved = this.session.get('saved') || [item];
-
-			let save = [item, ...saved];
-
-			let a = async ()=>{
-
-				if (news)
-					this.session.set('saved', save);
-
-					for(let i = saved.length-1; i>=0; i--){
-
-						let obj = 	{
-							type:`span`,
-							renderTo:'#scroll',
-							style:`margin:10px;max-width:116px;height:96px;display:inline-block;`,
-							innerHTML:`<i class="menu" data-feather="map" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
-							onclick:(evt)=>{
-								//console.log('eh')
-								evt.stopPropagation();
-								controller.goTo('edit',true);
-
-							}
-						};
-
-						await template.createTemplateItem({id:2500, value:obj});
-						await template.check({id:2500, value:obj});
-
-					}
-
-
-				await window.icons.replace();
-
-			}
-
-			return a();
-		};
-
 		return {
 			link:this,
 			type:`view`,
