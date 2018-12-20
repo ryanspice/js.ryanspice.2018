@@ -1,23 +1,6 @@
 
 import View from "../view";
+import Icon from "./icon";
 
-export default class Add extends View {
-
-	constructor(any){
-		super(any);
-		return {
-			type:`span`,
-			renderTo:'#scroll',
-			id:'plus',
-			style:``,
-			innerHTML:`<i class="menu" data-feather="plus"></i>	`,
-			onclick:(evt)=>{
-
-				evt.stopPropagation();
-				controller.goTo('new',true,e=>e.value.activity(e));
-			}
-		}
-
-	}
-
+export default class Add extends Icon {
 }

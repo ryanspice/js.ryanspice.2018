@@ -121,7 +121,7 @@ export default class ServiceSession {
 		let iterate = async () => {
 
 			if (news){
-
+				Array.from(document.getElementById('scroll').children).splice(1).forEach(elm=>elm.remove())
 				save = [item, ...data];//(item);
 
 				await this.set(await this.sessionKey,await save);
@@ -134,9 +134,10 @@ export default class ServiceSession {
 
 			let i = data.length-1;
 			for(i; i>=0; i--){
+				let id = new Date().getTime()*(100+i);
 				const obj = this.sessionDataTemplate(i,data);
-				await template.createTemplateItem({id:2500, value:obj});
-				await template.check({id:2500, value:obj});
+				await template.createTemplateItem({id:id, value:obj});
+				await template.check({id:id, value:obj});
 			}
 
 			await window.icons.replace();

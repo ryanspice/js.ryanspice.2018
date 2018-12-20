@@ -5,6 +5,11 @@ declare module "SpiceJS" {
 
 }
 
+declare module "loglevel" {
+
+
+}
+
 declare module "feather-icons" {
 
 

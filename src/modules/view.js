@@ -36,6 +36,15 @@ export default class View extends ATRender.view {
 	}
 
 	constructor(ref) {
+
+		log.debug('View()')
+
+		if(ref.beforeMount){
+
+			ref.beforeMount();
+
+		}
+
 		return super(Object.assign(ref,{
 				session:session,
 				assign:assign,

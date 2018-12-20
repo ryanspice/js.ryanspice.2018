@@ -44,6 +44,7 @@ export default class Controller {
 
 		/* Tool Components */
 		new Hamburger(this),
+				...ToolColumn.Controls,
 
 		/* Views */
 		new Engine(this),
@@ -60,6 +61,8 @@ export default class Controller {
 			description:'description',
 			buttons:{ok:'Save Map', cancel:'Cancel'}
 		}),
+
+		/* Flyout (Inherited) Views */
 		new Load(this),
 		new Save(this),
 		new Edit({
@@ -78,7 +81,6 @@ export default class Controller {
 		/* unused */
 		template_home,
 
-		...ToolColumn.Controls,
 
 		template_search,
 		template_searchInput
