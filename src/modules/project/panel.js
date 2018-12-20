@@ -1,14 +1,6 @@
 
 import View from "../view";
 
-let getIcon = (saved)=>{
-	switch(saved.type){
-		case 'object':
-		return 'globe';
-		default:
-		return saved.type;
-	}
-}
 export default class Panel extends View {
 
 	title:string;
@@ -20,31 +12,9 @@ export default class Panel extends View {
 		cancel:'cancel'
 	}
 
-	update:Function;
-
-	assign = (...args) => {
-		console.log('assign that i want to remove');
-		let h = args[1].innerHTML;
-		if (args[1].appendHTML)
-			this.appendHTML = args[1].appendHTML;
-
-		let test = new RegExp(/<template>(.*?)<\/template>/g);
-		let test1 = test.exec(args[0].innerHTML);
-
-		args[0].innerHTML = args[0].innerHTML.splice(test1.index+10,0,args[1].appendHTML);
-
-		return Object.assign(args[0],args[1]);
-	}
-
 	constructor(ref?:HTML5Element){
 
 		super(ref);
-
-		this.update = function(){
-
-			console.log('PanelUpdate')
-
-		}
 
 		return this.assign({
 			link:this,
@@ -68,11 +38,17 @@ export default class Panel extends View {
 
 	}
 
+	update:Function = function(){
+
+
+			console.log('PanelUpdate')
+
+	};
+
 	click(evt){
 
 		window.controller.goTo('settings');
-				evt.stopPropagation();
-
+		evt.stopPropagation();
 
 	}
 

@@ -4,15 +4,17 @@ declare var SpiceJS:SpiceJS;
 import pipe from "./require";
 
 import log from "./log";
-
 import engine from "./engine";
-
-let store;
 
 const context:Document = document;
 
 context.state = 0;
 context.log = log;
+
+/*
+ * Pre-load - called onreadystatechange = 1
+ */
+
 context.pre = async function(evt:Event){
 
 	context.log.debug('context.pre');
@@ -36,26 +38,25 @@ context.pre = async function(evt:Event){
 
 context.post = async function(evt:Event):Promise<void> {
 
-	const text = require('./service.message.bundle').default;
-
 	context.log.debug('post');
 	context.log.trace();
 
+	const text = require('./service.message.bundle').default;
 
 	//GET ICONS
-
 	await pipe.requireMSG(text.inital.icons);
 	await pipe.requireIcons();
 
 	// STORAGE SESSION
 	await pipe.requireMSG(text.inital.session);
-
 	await sessionUpdateData(false);
+
 	//GET SPICEJS GAME FRAMEWORK
 	await pipe.requireMSG(text.inital.fmrk);
 	await engine(pipe, context.store);
 	await window.controller.goTo(await context.store.settings.start);
 
+	//REMOVE LOADING
 	await pipe.requireMSG(text.inital.fail); // displays fail if something went wrong
 	(context.getElementById('loader')).remove(); // TODO: Hide?
 

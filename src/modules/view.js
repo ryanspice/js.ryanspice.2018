@@ -11,13 +11,12 @@ let getIcon = (saved)=>{
 		return saved.type;
 	}
 }
-const session = new ServiceSession(false);
+const session = new ServiceSession(true);
 const assign = ATRender.view.prototype.assign;
 const log = loglevel;
 
 window.sessionUpdateData = (news = true)=>{
-	console.trace('eh')
-	console.log(this);
+
 	let saveData = ``;
 
 	let item = {
@@ -68,6 +67,20 @@ window.sessionUpdateData = (news = true)=>{
 window.session = session;
 
 export default class View extends ATRender.view {
+
+	assign = (...args) => {
+		log.debug('View.assign() assign that i want to remove');
+		let h = args[1].innerHTML;
+		if (args[1].appendHTML)
+			this.appendHTML = args[1].appendHTML;
+
+		let test = new RegExp(/<template>(.*?)<\/template>/g);
+		let test1 = test.exec(args[0].innerHTML);
+
+		args[0].innerHTML = args[0].innerHTML.splice(test1.index+10,0,args[1].appendHTML);
+
+		return Object.assign(args[0],args[1]);
+	}
 
 	constructor(ref) {
 		return super(Object.assign(ref,{
