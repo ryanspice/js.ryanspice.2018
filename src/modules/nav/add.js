@@ -1,7 +1,7 @@
 
-import AsyncView from "../../entry";
+import View from "../view";
 
-export default class Add extends AsyncView {
+export default class Add extends View {
 
 	constructor(any){
 		super(any);

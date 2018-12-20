@@ -121,7 +121,7 @@ const toggleExpand = (evt)=>{
 	let column = document.querySelectorAll('#toolbar-column')[0];
 	let view = document.querySelectorAll('view')[0];
 
-	loop([data],cleanClass);
+	_loop([data],cleanClass);
 
 	if (evt){
 

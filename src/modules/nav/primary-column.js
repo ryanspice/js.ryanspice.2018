@@ -1,7 +1,8 @@
+//@flow
 
-import AsyncView from "../../entry";
+import View from "../view";
 
-export default class PrimaryColumn extends AsyncView {
+export default class PrimaryColumn extends View {
 
 
 	constructor(ref?:HTML5Element){

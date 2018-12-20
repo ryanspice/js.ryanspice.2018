@@ -1,6 +1,5 @@
 
-import AsyncView from "../../entry";
-import ServiceSession from "../../service.session";
+import View from "../view";
 
 let getIcon = (saved)=>{
 	switch(saved.type){
@@ -10,7 +9,7 @@ let getIcon = (saved)=>{
 		return saved.type;
 	}
 }
-export default class Panel extends AsyncView {
+export default class Panel extends View {
 
 	title:string;
 	type:string;
@@ -46,56 +45,6 @@ export default class Panel extends AsyncView {
 			console.log('PanelUpdate')
 
 		}
-		this.session = new ServiceSession(false);
-
-		window.get = (news = true)=>{
-
-			let saveData = ``;
-
-			let item = {
-				'action':()=>{}, 'type':'map','title':'example'
-			};
-
-			let saved = this.session.get('saved') || [item];
-
-			let save = [item, ...saved];
-
-			let a = async ()=>{
-
-				if (news)
-					this.session.set('saved', save);
-
-					for(let i = saved.length-1; i>=0; i--){
-
-						let obj = 	{
-							type:`span`,
-							renderTo:'#scroll',
-							style:`margin:10px;max-width:116px;height:96px;display:inline-block;`,
-							innerHTML:`<i class="menu" data-feather="${getIcon(saved[i])}" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
-							onclick:(evt)=>{
-								//console.log('eh')
-								evt.stopPropagation();
-								controller.goTo(`${saved[i].type}edit`,true,async (e) => {
-
-									await e.value.activity(e,saved[i]);
-
-								});
-
-							}
-						};
-
-						await template.createTemplateItem({id:2500, value:obj});
-						await template.check({id:2500, value:obj});
-
-					}
-
-
-				await window.icons.replace();
-
-			}
-
-			return a();
-		};
 
 		return this.assign({
 			link:this,
@@ -108,7 +57,7 @@ export default class Panel extends AsyncView {
 				<column class="col-md-24">
 					<template></template>
 					<div class="btn-group" >
-						<a id="accept" class="btn btn-primary" onclick="window.controller.goTo('engine');window.get();">${ref.buttons.ok}</a>
+						<a id="accept" class="btn btn-primary" onclick="window.controller.goTo('engine');sessionUpdateData();">${ref.buttons.ok}</a>
 						<br/>
 						<a id="cancel" class="btn btn-default" onclick="window.controller.goTo('engine');" style="color:white; background:#920c00;">${ref.buttons.cancel}</a>
 					</div>

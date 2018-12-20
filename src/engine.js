@@ -1,7 +1,5 @@
 //@flow
 
-import ServiceSession from "./service.session";
-
 declare var SpiceJS:SpiceJS;
 
 const engine:Function = async function(pipe:AsyncPipes, store:ServiceSession){

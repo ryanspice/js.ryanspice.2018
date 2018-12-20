@@ -1,8 +1,8 @@
 //@flow
 
-import AsyncView from "../../entry";
+import View from "../view";
 
-export default class Hamburger extends AsyncView {
+export default class Hamburger extends View {
 
 	constructor(ref?:HTML5Element){
 

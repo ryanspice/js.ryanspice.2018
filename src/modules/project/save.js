@@ -1,7 +1,7 @@
 
-import AsyncView from "../../entry";
+import View from "../view";
 
-export default class Save extends AsyncView {
+export default class Save extends View {
 
 	test:any = 'test'
 

@@ -971,23 +971,12 @@ async-limiter@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
 
-async.2018@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/async.2018/-/async.2018-1.1.0.tgz#fd9c0a453d83749e5051c93a8ccbf19d29fe6f8c"
-  integrity sha512-ZA2fyFVpK0NhWsGmkq6tAm7GixyKtolPrVd1A9jRlcklVN3068L+9DEkWY9i/wjwOfVDEMjRRzaSseWFNwBOhQ==
+async.2018@^1.1.0-RC4:
+  version "1.1.0-RC4"
+  resolved "https://registry.yarnpkg.com/async.2018/-/async.2018-1.1.0-RC4.tgz#556d0cb825144aa8629a29d9aebe50021f287b74"
+  integrity sha512-SCI6LTclWDikS0HZEwFjO4C43ZBWNfK2Tv8/8U1Ja5HVkLKKiJEskVtmxbXsVYA6zxbYHSEyqJUXVF/O/YW68A==
   dependencies:
-    babel-loader "^8.0.0"
-    babel-plugin-flow-runtime "^0.17.0"
-    babel-upgrade "^0.0.23"
-    copy-webpack-plugin "^4.5.1"
-    css-loader "^0.28.11"
-    flow-bin "^0.81.0"
-    flow-runtime "^0.17.0"
-    flow-runtime-cli "^0.17.0"
-    mini-css-extract-plugin "^0.4.1"
-    node-sass "^4.9.0"
-    sass-loader "^7.0.1"
-    style-loader "^0.21.0"
+    loglevel latest
 
 async@^1.4.0, async@^1.5.0, async@^1.5.2:
   version "1.5.2"
@@ -3390,11 +3379,6 @@ flow-bin@^0.71.0:
   version "0.71.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.71.0.tgz#fd1b27a6458c3ebaa5cb811853182ed631918b70"
 
-flow-bin@^0.81.0:
-  version "0.81.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.81.0.tgz#7f0a733dce1dad3cb1447c692639292dc3d60bf5"
-  integrity sha512-5e8oL3/5rm3G0Eet3yDCne2R/TLo5Fkn+Z5MtHd4wtz+1miLC35Sgo8XvnbTmiZ9epdTZ1q6GLmJWYh7tUlfGg==
-
 flow-config-parser@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/flow-config-parser/-/flow-config-parser-0.3.0.tgz#704916efba88cd2518ab4d8f933079571276138f"
@@ -4864,7 +4848,12 @@ log-update@^1.0.2:
     ansi-escapes "^1.0.0"
     cli-cursor "^1.0.2"
 
-loglevel@^1.4.1:
+loglevel-plugin-prefix@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/loglevel-plugin-prefix/-/loglevel-plugin-prefix-0.8.4.tgz#2fe0e05f1a820317d98d8c123e634c1bd84ff644"
+  integrity sha512-WpG9CcFAOjz/FtNht+QJeGpvVl/cdR6P0z6OcXSkr8wFJOsV2GRj2j10JLfjuA4aYkcKCNIEqRGCyTife9R8/g==
+
+loglevel@^1.4.1, loglevel@latest:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
 

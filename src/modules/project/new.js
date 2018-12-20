@@ -1,24 +1,19 @@
 
-import AsyncView from "../../entry";
-
 if (!window.room)
 window.room={count:0};
 
+import View from "../view";
 
 import ServiceSession from "../../service.session";
-export default class New extends AsyncView {
 
-
-
+export default class New extends View {
 
 	static title='New';
+	static type=' ';
+
 	title='create a new Chateau';
 	type='project';
 	description='a project file';
-	static type=' ';
-
-
-	type = '';
 
 	update = (evt)=>{
 
@@ -33,8 +28,6 @@ export default class New extends AsyncView {
 	constructor(ref?:HTML5Element){
 
 		super(ref);
-
-		this.session = new ServiceSession(false);
 
 		window.get = (news = true)=>{
 

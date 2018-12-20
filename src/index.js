@@ -1,18 +1,22 @@
 //@flow
 
 declare var SpiceJS:SpiceJS;
-
 import pipe from "./require";
+
+import log from "./log";
+
 import engine from "./engine";
 
-import ServiceSession from "./service.session";
-import ServiceMessageBundle from "./service.message.bundle";
+let store;
 
 const context:Document = document;
 
-/* Pre-load - called onreadystatechange = 1 */
+context.state = 0;
+context.log = log;
+context.pre = async function(evt:Event){
 
-const pre:Function = async function(evt:Event){
+	context.log.debug('context.pre');
+	context.log.trace();
 
 	await Promise.all([
 		await pipe.requireCSS(evt),
@@ -20,43 +24,57 @@ const pre:Function = async function(evt:Event){
 		await pipe.requireListeners(evt)
 	]);
 
+	context.store = window.session;
+	context.log.debug('context.pre complete');
+	context.log.trace();
+
 };
 
-/* Post-load - called onreadystatechange = 2 */
+/*
+ * Post-load - called onreadystatechange = 2
+ */
 
-const post:Function = async function(evt:Event){
+context.post = async function(evt:Event):Promise<void> {
+
+	const text = require('./service.message.bundle').default;
+
+	context.log.debug('post');
+	context.log.trace();
+
 
 	//GET ICONS
-	await pipe.requireMSG(ServiceMessageBundle.inital.icons);
+
+	await pipe.requireMSG(text.inital.icons);
 	await pipe.requireIcons();
 
 	// STORAGE SESSION
-	await pipe.requireMSG(ServiceMessageBundle.inital.session);
-	const store:ServiceSession = await new ServiceSession(sessionStorage.getItem('saved')?false:true);
+	await pipe.requireMSG(text.inital.session);
 
-	//TODO MOVE? WINDOW??????? needs AsyncPipes
-	//await window.get(false); // TODO: Config :: IF STORE HAS FRESTSTART enabled
-
+	await sessionUpdateData(false);
 	//GET SPICEJS GAME FRAMEWORK
-	await pipe.requireMSG(ServiceMessageBundle.inital.fmrk);
-	await engine(pipe, store);
-	await window.controller.goTo(await store.settings.start);
+	await pipe.requireMSG(text.inital.fmrk);
+	await engine(pipe, context.store);
+	await window.controller.goTo(await context.store.settings.start);
 
-	await pipe.requireMSG(ServiceMessageBundle.inital.fail); // displays fail if something went wrong
+	await pipe.requireMSG(text.inital.fail); // displays fail if something went wrong
 	(context.getElementById('loader')).remove(); // TODO: Hide?
 
-}
+	context.log.debug('post complete');
+	context.log.trace('');
+
+};
 
 /* Ground ZERO */
 
-context.state = 0;
-context.onreadystatechange = async function(evt:Event){
+context.onreadystatechange = async function(evt:Event):Promise<void> {
 
 	switch(context.state){
 
 		case 0:
 
-			await pre(evt);
+			context.log.debug('context.onreadystatechange');
+
+			await context.pre(evt);
 
 			context.state++;
 
@@ -64,7 +82,9 @@ context.onreadystatechange = async function(evt:Event){
 
 		case 1:
 
-			await post(evt);
+			context.log.debug('context.onreadystatechange');
+
+			await context.post(evt);
 
 			context.state++;
 

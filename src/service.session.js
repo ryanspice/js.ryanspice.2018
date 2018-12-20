@@ -4,10 +4,14 @@ require('./include/storage.stringify');
 
 import Schema from "./templates/";
 
+import Log from 'loglevel';
+
 export default class ServiceSession {
 
 	store:Storage = window.localStorage;
 	session:Storage = window.sessionStorage;
+
+	log:Log = Log;
 	schema:Schema = Schema;
 
 	get state():Object {
@@ -43,8 +47,9 @@ export default class ServiceSession {
 
 	constructor(clear:boolean = true){
 
-		if (clear){
-			this.session.clear();
+		if (clear?this.session.clear():true){
+
+			this.log.debug('ServiceSession.clear()');
 
 			this.session.setObject('state',this.state);
 			this.session.setObject('settings',this.settings);
@@ -52,9 +57,11 @@ export default class ServiceSession {
 			this.session.setObject('open',this.open);
 
 			this.session.setObject('saved',this.saved);
-		}
-		//console.log(this);
 
+			this.log.debug('ServiceSession()');
+			this.log.trace('');
+
+		}
 		return this;
 	}
 

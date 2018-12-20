@@ -1,6 +1,5 @@
 
-import AsyncView from "../../entry";
-import ServiceSession from "../../service.session";
+import View from "../view";
 
 class ListItem {
 
@@ -85,42 +84,40 @@ let data = {
 	type:'map'
 }
 
-export default class Load extends AsyncView {
+export default class Load extends View {
 
 	constructor(ref?:HTML5Element){
 
+		let self = super(ref, data);
 
-		super(ref, data);
-
-		let session = new ServiceSession(false);
-		let saved = session.get('saved');
+		let saved = this.session.get('saved');
 		let saveData = ``;
+
 
 		if (saved){
 
+			let data = {
+				title:'project',
+				action:function(){
 
-		let data = {
-			title:'project',
-			action:function(){
+					window.controller.goTo('new',true);
+				},
+				actionLoad:function(){
 
-				window.controller.goTo('new',true);
-			},
-			actionLoad:function(){
+					window.controller.goTo('engine');
+				}
 
-				window.controller.goTo('engine');
 			}
+			let savedList = [];
+			for(let i =saved.length-1; i>=0; i--){
+				saveData = `${saveData}${templates.existingListItem({'action':data.actionLoad, 'type':'map','title':'example'})}`;
+			}
+		}
 
-		}
-		let savedList = [];
-		for(let i =saved.length-1; i>=0; i--){
-			saveData = `${saveData}${templates.existingListItem({'action':data.actionLoad, 'type':'map','title':'example'})}`;
-		}
-}
 		this.updateList = function(){
 
 			console.log('eh')
-			let session = new ServiceSession(false);
-			let saved = session.get('saved');
+			let saved = this.session.get('saved');
 
 			let savedList = [];
 			let d = ` `;
@@ -135,8 +132,7 @@ export default class Load extends AsyncView {
 			}catch(e){}
 		}
 
-
-		return {
+		return Object.assign(self,{
 			link:this,
 			type:`view`,
 			id:'load-view',
@@ -166,13 +162,12 @@ export default class Load extends AsyncView {
 				</column>
 			`,
 			onclick:this.click
-		}
+		});
 
 	}
 
 	update = ()=>{
 
-	console.log('fuck')
 	}
 
 	gotonew = ()=>{
