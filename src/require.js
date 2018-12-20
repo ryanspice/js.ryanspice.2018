@@ -8,6 +8,9 @@ let template;
 let icons;
 let message:Element;
 
+window.template = null;
+window.controller = null;
+
 /**/
 
 const requireMSG = async function(msg:string){

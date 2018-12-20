@@ -11,60 +11,13 @@ let getIcon = (saved)=>{
 		return saved.type;
 	}
 }
-const session = new ServiceSession(true);
+const session = new ServiceSession(false);
 const assign = ATRender.view.prototype.assign;
 const log = loglevel;
 
-window.sessionUpdateData = (news = true)=>{
-
-	let saveData = ``;
-
-	let item = {
-		'action':()=>{}, 'type':'map','title':'example'
-	};
-
-	let saved = session.get('saved') || [item];
-
-	let save = [item, ...saved];
-
-	let a = async ()=>{
-
-		if (news)
-			session.set('saved', save);
-
-			for(let i = saved.length-1; i>=0; i--){
-
-				let obj = 	{
-					type:`span`,
-					renderTo:'#scroll',
-					style:`margin:10px;max-width:116px;height:96px;display:inline-block;`,
-					innerHTML:`<i class="menu" data-feather="${getIcon(saved[i])}" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
-					onclick:(evt)=>{
-						//console.log('eh')
-						evt.stopPropagation();
-						controller.goTo(`${saved[i].type}edit`,true,async (e) => {
-
-							await e.value.activity(e,saved[i]);
-
-						});
-
-					}
-				};
-
-				await template.createTemplateItem({id:2500, value:obj});
-				await template.check({id:2500, value:obj});
-
-			}
-
-
-		await window.icons.replace();
-
-	}
-
-	return a();
-};
-
 window.session = session;
+
+window.sessionUpdateData = news => window.session.updateSessionData(news);
 
 export default class View extends ATRender.view {
 

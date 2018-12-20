@@ -3,8 +3,10 @@
 declare var SpiceJS:SpiceJS;
 import pipe from "./require";
 
-import log from "./log";
-import engine from "./engine";
+import log from "./include/log";
+
+//import engine from "./engine";
+//engine(null, store);
 
 const context:Document = document;
 
@@ -17,8 +19,8 @@ context.log = log;
 
 context.pre = async function(evt:Event){
 
-	context.log.debug('context.pre');
-	context.log.trace();
+	await context.log.debug('context.pre');
+	await context.log.trace();
 
 	await Promise.all([
 		await pipe.requireCSS(evt),
@@ -26,9 +28,9 @@ context.pre = async function(evt:Event){
 		await pipe.requireListeners(evt)
 	]);
 
-	context.store = window.session;
-	context.log.debug('context.pre complete');
-	context.log.trace();
+	context.store = await window.session;
+	await context.log.debug('context.pre complete');
+	await context.log.trace();
 
 };
 
@@ -38,10 +40,10 @@ context.pre = async function(evt:Event){
 
 context.post = async function(evt:Event):Promise<void> {
 
-	context.log.debug('post');
-	context.log.trace();
+	await context.log.debug('post');
+	await context.log.trace();
 
-	const text = require('./service.message.bundle').default;
+	const text = await require('./service.message.bundle').default;
 
 	//GET ICONS
 	await pipe.requireMSG(text.inital.icons);
@@ -49,19 +51,20 @@ context.post = async function(evt:Event):Promise<void> {
 
 	// STORAGE SESSION
 	await pipe.requireMSG(text.inital.session);
+
 	await sessionUpdateData(false);
 
 	//GET SPICEJS GAME FRAMEWORK
 	await pipe.requireMSG(text.inital.fmrk);
-	await engine(pipe, context.store);
+
 	await window.controller.goTo(await context.store.settings.start);
 
 	//REMOVE LOADING
 	await pipe.requireMSG(text.inital.fail); // displays fail if something went wrong
-	(context.getElementById('loader')).remove(); // TODO: Hide?
+	await (context.getElementById('loader')).remove(); // TODO: Hide?
 
-	context.log.debug('post complete');
-	context.log.trace('');
+	await context.log.debug('post complete');
+	await context.log.trace('');
 
 };
 

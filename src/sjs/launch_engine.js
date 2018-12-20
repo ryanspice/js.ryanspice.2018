@@ -2,7 +2,7 @@
 
 declare var SpiceJS:SpiceJS;
 
-const engine:Function = async function(pipe:AsyncPipes, store:ServiceSession){
+const engine:Function = async function(pipe:AsyncPipes|null, store:ServiceSession){
 
 	//LAUNCH EVALULATE SPICEJS GAME FRAMEWORK
 	try{
@@ -16,7 +16,8 @@ const engine:Function = async function(pipe:AsyncPipes, store:ServiceSession){
 
 	} catch(e) {
 
-		await pipe.requireMSG('() :');
+		if (pipe)
+			await pipe.requireMSG('() :');
 
 		throw(e);
 	}

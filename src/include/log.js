@@ -1,5 +1,5 @@
 const log = require('loglevel');
-const pkg = require('../package.json');
+const pkg = require('../../package.json');
 const prefix = require('loglevel-plugin-prefix');
 
 prefix.reg(log);

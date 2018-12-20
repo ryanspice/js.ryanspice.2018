@@ -4,7 +4,16 @@ require('./include/storage.stringify');
 
 import Schema from "./templates/";
 
-import Log from 'loglevel';
+import Log from './include/log';
+
+let getIcon = (saved)=>{
+	switch(saved.type){
+		case 'object':
+		return 'globe';
+		default:
+		return saved.type;
+	}
+}
 
 export default class ServiceSession {
 
@@ -72,7 +81,69 @@ export default class ServiceSession {
 
 	set(str,obj){
 
-		return this.session.setObject(str,Object.assign(this.session.getObject(str),obj));
+		return this.session.setObject(str,Object.assign(this.session.getObject(str) || {},obj));
+	}
+
+	sessionKey = 'saved';
+
+	get sessionData(){
+		return {'action':()=>{}, 'type':'map','title':'example'};
+	};
+
+	sessionDataTemplate = (i, data) => {
+
+		return {
+			type:`span`,
+			renderTo:'#scroll',
+			style:`margin:10px;max-width:116px;height:96px;display:inline-block;`,
+			innerHTML:`<i class="menu" data-feather="${getIcon(data[i])}" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
+			onclick:(evt)=>{
+				//console.log('eh')
+				evt.stopPropagation();
+				controller.goTo(`${data[i].type}edit`,true,async (e) => {
+
+					await e.value.activity(e,data[i]);
+
+				});
+
+			}
+		};
+	};
+
+	updateSessionData = async function(news:boolean = true){
+
+		let item = this.sessionData;
+
+		let data = this.get(this.sessionKey) || item;
+
+		let save = [...data];
+
+		let iterate = async () => {
+
+			if (news){
+
+				save = [item, ...data];//(item);
+
+				await this.set(await this.sessionKey,await save);
+
+				data = await this.get(this.sessionKey);
+
+			}
+
+			//TOOD: reset current ListItem
+
+			let i = data.length-1;
+			for(i; i>=0; i--){
+				const obj = this.sessionDataTemplate(i,data);
+				await template.createTemplateItem({id:2500, value:obj});
+				await template.check({id:2500, value:obj});
+			}
+
+			await window.icons.replace();
+
+		}
+
+		return iterate();
 	}
 
 }

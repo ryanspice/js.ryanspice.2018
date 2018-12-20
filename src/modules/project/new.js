@@ -22,7 +22,6 @@ export default class New extends View {
 		evt.value.children[0].children[3].innerText = this.type;
 		evt.value.children[0].children[4].innerText = this.description;
 
-
 	}
 
 	constructor(ref?:HTML5Element){
@@ -110,7 +109,7 @@ export default class New extends View {
 	            </div>
 
 						<div class="btn-group" >
-							<a class="btn btn-primary" onclick="window.controller.goTo('engine');window.get();">Create</a>
+							<a class="btn btn-primary" onclick="window.controller.goTo('engine');sessionUpdateData();">Create</a>
 							<br/>
 							<a class="btn btn-default" onclick="window.controller.goTo('engine');" style="color:white; background:#920c00;">Cancel</a>
 						</div>
