@@ -52,7 +52,6 @@ context.post = async function(evt:Event):Promise<void> {
 	// STORAGE SESSION
 	await pipe.requireMSG(text.inital.session);
 
-	await sessionUpdateData(false);
 
 	//GET SPICEJS GAME FRAMEWORK
 	await pipe.requireMSG(text.inital.fmrk);

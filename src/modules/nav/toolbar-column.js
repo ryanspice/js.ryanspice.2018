@@ -7,6 +7,7 @@ import {
 import View from "../view";
 
 import Add from "./add";
+import Scroll from "./scroll";
 
 export default class ToolColumn extends View {
 
@@ -24,14 +25,7 @@ export default class ToolColumn extends View {
 					<h5 style="display:none" onclick="event.stopPropagation()" >BACKGROUND</h5>
 					`
 			},
-
-			{
-				type:`span`,
-				id:`scroll`,
-				style:`display:;`,
-				renderTo:'#toolbar-column',
-				innerHTML:`	`
-			},
+			new Scroll(),
 
 			new Add({}),
 
