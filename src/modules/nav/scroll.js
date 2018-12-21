@@ -2,8 +2,6 @@
 
 import View from "../view";
 
-import Add from "./add";
-
 import engine from "../../sjs/launch_engine";
 
 export default class Scroll extends View {

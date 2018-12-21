@@ -5,18 +5,15 @@ export default class Icon extends View {
 
 	constructor(any){
 		super(any);
-		return {
+		return Object.assign({
 			type:`span`,
-			renderTo:'#scroll',
-			id:'plus',
-			style:``,
-			innerHTML:`<i class="menu" data-feather="plus"></i>	`,
+			innerHTML:`<i class="menu" data-feather="${any.id || 'question'}"></i>`,
 			onclick:(evt)=>{
 
 				evt.stopPropagation();
 				controller.goTo('new',true,e=>e.value.activity(e));
 			}
-		}
+		},any)
 
 	}
 

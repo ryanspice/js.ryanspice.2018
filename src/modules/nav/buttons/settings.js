@@ -1,12 +1,16 @@
+//@flow
 
-import View from "../../view";
+declare var controller;
 
-export default class Settings extends View {
+import Icon from "../icon";
 
-	constructor(any){
+export default class Settings extends Icon {
+
+	constructor(any:TemplateScheme){
 
 		return super({
 						type:`span`,
+						id:`settings`,
 						renderTo:'#toolbar-column',
 						style:`background:rgba(25, 25, 25, 1);`,
 						className:``,

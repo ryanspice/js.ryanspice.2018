@@ -1,5 +1,7 @@
 //@flow
 
+declare var ATRender;
+
 const AsyncTemplate = ATRender.pipe;
 const AsyncView = ATRender.view;
 const AsyncController = ATRender.mvc;
