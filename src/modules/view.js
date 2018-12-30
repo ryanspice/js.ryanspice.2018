@@ -3,6 +3,8 @@
 import ServiceSession from "../service.session";
 import loglevel from "loglevel";
 
+import {controller} from "../require";
+
 const session = new ServiceSession(false);
 const assign = ATRender.view.prototype.assign;
 const log = loglevel;
@@ -38,6 +40,7 @@ export default class View extends ATRender.view {
 		}
 
 		return super(Object.assign(ref,{
+				controller:controller,
 				session:session,
 				assign:assign,
 				log:log

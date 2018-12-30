@@ -116,11 +116,11 @@ export default class Load extends View {
 
 		this.updateList = function(){
 
-			console.log('eh')
 			let saved = this.session.get('saved');
-
 			let savedList = [];
+
 			let d = ` `;
+
 			for(let i =saved.length-1; i>=0; i--){
 				d = `${d}${templates.existingListItem({'action':function(){}, 'type':'map','title':'example'})}`;
 			}

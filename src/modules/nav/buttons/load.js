@@ -10,10 +10,13 @@ export default class LoadProject extends Icon {
 			renderTo:`#hamburger`,
 			id:'upload',
 			onclick:(evt)=>{
-				console.log(evt,this);
-				controller.goTo('load',true, (e)=>{
-					console.log(e.value);
-					window.controller.views[9].link.updateList()});
+
+				this.controller.goTo('load',true, (e)=>{
+
+					window.layout.views[19].value.value.value.link.updateList();
+
+				});
+
 			}
 
 		});
