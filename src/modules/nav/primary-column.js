@@ -4,7 +4,6 @@ import View from "../view";
 
 export default class PrimaryColumn extends View {
 
-
 	constructor(ref?:HTML5Element){
 
 		super(ref)
@@ -14,8 +13,6 @@ export default class PrimaryColumn extends View {
 			type:`aside`,
 			id:'primary-column',
 			className:'noselect hidden',
-			style:``,
-			innerHTML:``,
 			onclick:this.click
 		}
 
@@ -24,8 +21,7 @@ export default class PrimaryColumn extends View {
 	click(evt){
 
 		window.controller.goTo('settings');
-				evt.stopPropagation();
-
+		evt.stopPropagation();
 
 	}
 

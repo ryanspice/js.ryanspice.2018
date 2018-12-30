@@ -39,8 +39,7 @@ export default class ToolColumn extends View {
 			id:'toolbar-column',
 			className:`noselect`,
 			style:`font-size:2rem;z-index:1`,
-			onclick:this.click,
-			afterConstruct:this.afterConstruct
+			onclick:this.click
 		}
 
 	}
@@ -48,11 +47,6 @@ export default class ToolColumn extends View {
 	click=(evt)=>{
 
 		toggleExpand(evt);
-
-	}
-
-	afterConstruct=(evt)=>{
-
 
 	}
 

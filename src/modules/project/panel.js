@@ -1,3 +1,4 @@
+//@flow
 
 import View from "../view";
 
@@ -22,7 +23,6 @@ export default class Panel extends View {
 			id:'panel-view',
 			style:`overflow-y: scroll;z-index: 201; position: absolute; background: black; margin-top: 0px; margin-left:0px; padding: 48px; width: 100%; height: 100%; max-width: 450px; border-right: 1px solid white; opacity: 1 !important;`,
 			className:'slide',
-			activity:this.update,
 			innerHTML:`
 				<column class="col-md-24">
 					<template></template>
@@ -37,13 +37,6 @@ export default class Panel extends View {
 		}, ref)
 
 	}
-
-	update:Function = function(){
-
-
-			console.log('PanelUpdate')
-
-	};
 
 	click(evt){
 

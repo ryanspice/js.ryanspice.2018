@@ -6,15 +6,6 @@ import Schema from "./templates/";
 
 import Log from './include/log';
 
-let getIcon = (saved)=>{
-	switch(saved.type){
-		case 'object':
-		return 'globe';
-		default:
-		return saved.type;
-	}
-}
-
 export default class ServiceSession {
 
 	store:Storage = window.localStorage;
@@ -90,13 +81,22 @@ export default class ServiceSession {
 		return {'action':()=>{}, 'type':'map','title':'example'};
 	};
 
+	getIcon = (saved)=>{
+		switch(saved.type){
+			case 'object':
+			return 'globe';
+			default:
+			return saved.type;
+		}
+	};
+
 	sessionDataTemplate = (i, data) => {
 
 		return {
 			type:`span`,
 			renderTo:'#scroll',
 			style:`margin:10px;max-width:116px;height:96px;display:inline-block;`,
-			innerHTML:`<i class="menu" data-feather="${getIcon(data[i])}" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
+			innerHTML:`<i class="menu" data-feather="${this.getIcon(data[i])}" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
 			onclick:(evt)=>{
 				//console.log('eh')
 				evt.stopPropagation();

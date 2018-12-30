@@ -37,7 +37,7 @@ export default class View extends ATRender.view {
 
 	constructor(ref) {
 
-		log.debug('View()')
+		log.debug(`View(${ref.constructor.name})`)
 
 		if(ref.beforeMount){
 
