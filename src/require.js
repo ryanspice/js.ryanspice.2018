@@ -62,7 +62,9 @@ const requireHTML = async (evt:Event,data:any) => {
 		renderer.pre = ()=>{},
 		renderer.post = ()=>{},
 		window.template = renderer = await new renderer(),
-		renderer.template = await [(window.controller = new (await import("./include/controller")).default).views],
+		(window.controller = new (await import("./include/controller")).default),
+		(window.layout = new (await import("./layout")).default),
+		renderer.template = await [window.layout.views],
 		await renderer.iterateTemplate()
 	];
 }

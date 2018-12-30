@@ -9,9 +9,13 @@ export default class LoadProject extends Icon {
 			style:`padding:0px !important;`,
 			renderTo:`#hamburger`,
 			id:'upload',
-			onclick:()=>{
-				controller.goTo('load',true, (e)=>{console.log(e.value);window.controller.views[9].link.updateList()});
+			onclick:(evt)=>{
+				console.log(evt,this);
+				controller.goTo('load',true, (e)=>{
+					console.log(e.value);
+					window.controller.views[9].link.updateList()});
 			}
+
 		});
 
 	}

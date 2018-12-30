@@ -3,14 +3,6 @@
 import ServiceSession from "../service.session";
 import loglevel from "loglevel";
 
-let getIcon = (saved)=>{
-	switch(saved.type){
-		case 'object':
-		return 'globe';
-		default:
-		return saved.type;
-	}
-}
 const session = new ServiceSession(false);
 const assign = ATRender.view.prototype.assign;
 const log = loglevel;
