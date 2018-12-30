@@ -2,6 +2,8 @@
 
 require('./include/storage.stringify');
 
+import {controller} from "./require";
+
 import Schema from "./templates/";
 
 import Log from './include/log';

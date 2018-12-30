@@ -1,7 +1,10 @@
 //@flow
 
 declare var SpiceJS:SpiceJS;
+
 import pipe from "./require";
+
+import {controller} from "./require";
 
 import log from "./include/log";
 
@@ -56,7 +59,7 @@ context.post = async function(evt:Event):Promise<void> {
 	//GET SPICEJS GAME FRAMEWORK
 	await pipe.requireMSG(text.inital.fmrk);
 
-	await window.controller.goTo(await context.store.settings.start);
+	await controller.goTo(await context.store.settings.start);
 
 	//REMOVE LOADING
 	await pipe.requireMSG(text.inital.fail); // displays fail if something went wrong

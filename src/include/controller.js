@@ -3,16 +3,18 @@ import {default as css} from "./style.js";
 //import {default as loop} from '../../node_modules/async.2018/src/core/def/loop';
 
 import {
-
-	switchView, toggleExpand,
+	switchView,
+	toggleExpand,
 	_loop
 } from "./util";
 
-
+let ref = null;
 export default class Controller {
 
 	_column;
-
+	constructor(){
+		ref = this;
+	}
 	clearColumn = ()=>{
 
 		if (!this._column)
@@ -34,9 +36,9 @@ export default class Controller {
 
 	}
 
-	goTo = (str, noRemove, activity, activityOpen) => {
+	goTo(str, noRemove, activity, activityOpen){
 
-		controller.each(e=>{
+				_loop([Array.from(document.querySelectorAll('view'))],e=>{
 
 			if (e.value.id==str+'-view') {
 

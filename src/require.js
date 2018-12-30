@@ -8,6 +8,8 @@ let template;
 let icons;
 let message:Element;
 
+const controller = new (require("./include/controller").default)();
+
 window.template = null;
 window.controller = null;
 
@@ -44,7 +46,7 @@ const requireListeners = async function(evt:Event){
 	        isEscape = (evt.keyCode == 27);
 	    }
 	    if (isEscape) {
-	       window.controller.goTo('engine');
+	       controller.goTo('engine');
 				 if (document.getElementsByClassName('expand')[0])
 				 if (document.getElementsByClassName('expand')[0].classList)
 				 document.getElementsByClassName('expand')[0].classList.remove('expand');
@@ -60,9 +62,10 @@ const requireHTML = async (evt:Event,data:any) => {
 	return await [
 		renderer = (await import('./entry')).AsyncTemplate,
 		renderer.pre = ()=>{},
-		renderer.post = ()=>{},
+		renderer.post = ()=>{
+
+		},
 		window.template = renderer = await new renderer(),
-		(window.controller = new (await import("./include/controller")).default),
 		(window.layout = new (await import("./layout")).default),
 		renderer.template = await [window.layout.views],
 		await renderer.iterateTemplate()
@@ -80,6 +83,7 @@ const requireIcons = async (res) => {
 
 /**/
 
+export {controller};
 export default {
 	requireMSG,
 	requireCSS,
