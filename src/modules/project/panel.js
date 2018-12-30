@@ -8,9 +8,17 @@ export default class Panel extends View {
 	type:string;
 	description:string;
 
+	previous:Array<string> = null;
+
 	buttons:any = {
 		ok:'ok',
 		cancel:'cancel'
+	}
+
+	last = ()=>{
+
+		return this.previous?this.previous[0]:'engine';
+
 	}
 
 	constructor(ref?:HTML5Element){
@@ -21,15 +29,14 @@ export default class Panel extends View {
 			link:this,
 			type:`view`,
 			id:'panel-view',
-			style:`overflow-y: scroll;z-index: 201; position: absolute; background: black; margin-top: 0px; margin-left:0px; padding: 48px; width: 100%; height: 100%; max-width: 450px; border-right: 1px solid white; opacity: 1 !important;`,
 			className:'slide',
 			innerHTML:`
 				<column class="col-md-24">
 					<template></template>
 					<div class="btn-group" >
-						<a id="accept" class="btn btn-primary" onclick="window.controller.goTo('engine');sessionUpdateData();">${ref.buttons.ok}</a>
+						<a id="accept" class="btn btn-primary" onclick="(${this.onclick});sessionUpdateData();">${ref.buttons.ok}</a>
 						<br/>
-						<a id="cancel" class="btn btn-default" onclick="window.controller.goTo('engine');" style="color:white; background:#920c00;">${ref.buttons.cancel}</a>
+						<a id="cancel" class="btn btn-default" onclick="(${this.onclick});" style="color:white; background:#920c00;">${ref.buttons.cancel}</a>
 					</div>
 				</column>
 			`,
@@ -38,9 +45,10 @@ export default class Panel extends View {
 
 	}
 
-	click(evt){
+	click=(evt)=>{
 
-		window.controller.goTo('settings');
+		this.controller.goTo(this.last());
+
 		evt.stopPropagation();
 
 	}

@@ -1,3 +1,4 @@
+//@flow
 
 import Icon from "../icon";
 
@@ -8,9 +9,11 @@ export default class LoadProject extends Icon {
 		return super({
 			renderTo:`#hamburger`,
 			id:'upload',
-			onclick:(evt)=>{
+			onclick:(evt:Event)=>{
 
-				this.controller.goTo('load',true, (e)=>{
+				this.controller.goTo('load',true, (e:Event)=>{
+
+					this.log.debug(`LoadProject.onclick(${e})`);
 
 					window.layout.views[19].value.value.value.link.updateList();
 

@@ -40,14 +40,14 @@ export default class Save extends View {
 
 	goto = ()=>{
 
-		window.controller.goTo('engine');
+		this.controller.goTo('engine');
 
 	}
 
 	click(evt){
 
 		evt.stopPropagation();
-		window.controller.goTo('settings');
+		this.controller.goTo('settings');
 
 	}
 

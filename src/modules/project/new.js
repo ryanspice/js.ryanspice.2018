@@ -71,9 +71,9 @@ export default class New extends View {
 	            </div>
 
 						<div class="btn-group" >
-							<a class="btn btn-primary" onclick="window.controller.goTo('engine');sessionUpdateData();">Create</a>
+							<a class="btn btn-primary" onclick="this.controller.goTo('engine');sessionUpdateData();">Create</a>
 							<br/>
-							<a class="btn btn-default" onclick="window.controller.goTo('engine');" style="color:white; background:#920c00;">Cancel</a>
+							<a class="btn btn-default" onclick="this.controller.goTo('engine');" style="color:white; background:#920c00;">Cancel</a>
 						</div>
 			        </div>
 				</column>
@@ -85,7 +85,7 @@ export default class New extends View {
 
 	click(evt){
 
-		window.controller.goTo('settings');
+		this.controller.goTo('settings');
 				evt.stopPropagation();
 
 

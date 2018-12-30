@@ -100,11 +100,11 @@ export default class Load extends View {
 				title:'project',
 				action:function(){
 
-					window.controller.goTo('new',true);
+					this.controller.goTo('new',true);
 				},
 				actionLoad:function(){
 
-					window.controller.goTo('engine');
+					this.controller.goTo('engine');
 				}
 
 			}
@@ -172,14 +172,14 @@ export default class Load extends View {
 
 	gotonew = ()=>{
 
-		window.controller.goTo('new');
+		this.controller.goTo('new');
 
 	}
 
 	click(evt){
 
 		evt.stopPropagation();
-		window.controller.goTo('settings');
+		this.controller.goTo('settings');
 
 	}
 

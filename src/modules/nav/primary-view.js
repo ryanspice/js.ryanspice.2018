@@ -38,7 +38,7 @@ export default class PrimaryView extends AsyncView {
 
 	click(evt){
 
-		window.controller.goTo('settings');
+		this.controller.goTo('settings');
 				evt.stopPropagation();
 
 

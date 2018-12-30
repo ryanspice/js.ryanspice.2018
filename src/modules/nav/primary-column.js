@@ -20,7 +20,7 @@ export default class PrimaryColumn extends View {
 
 	click(evt){
 
-		window.controller.goTo('settings');
+		this.controller.goTo('settings');
 		evt.stopPropagation();
 
 	}

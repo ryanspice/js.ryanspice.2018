@@ -11,7 +11,6 @@ let message:Element;
 const controller = new (require("./include/controller").default)();
 
 window.template = null;
-window.controller = null;
 
 /**/
 

@@ -23,12 +23,12 @@ export default class Settings extends AsyncView {
 				<spread>
 					${Setting('sliders', '<strike style="opacity:0.5;">Defaults</strike>',function(){
 
-						window.controller.goTo('default-settings');
+						this.controller.goTo('default-settings');
 
 					})}
 					${Setting('info', 'About',()=>{
 
-						window.controller.goTo('info-settings');
+						this.controller.goTo('info-settings');
 					})}
 				</spread>
 			`,
@@ -74,7 +74,7 @@ export class Info extends AsyncView {
 
     click(evt) {
 
-        window.controller.goTo('settings');
+        this.controller.goTo('settings');
         evt.stopPropagation();
 
 
@@ -268,7 +268,7 @@ export class DefaultSettings extends AsyncView {
 
     click(evt) {
 
-        window.controller.goTo('settings');
+        this.controller.goTo('settings');
         evt.stopPropagation();
 
 
