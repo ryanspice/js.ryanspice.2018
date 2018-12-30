@@ -10,7 +10,8 @@ export default class Clear_Session extends Icon {
 			renderTo:`#hamburger`,
 			id:'help-circle',
 			onclick:()=>{
-				controller.goTo('tertiary',false);
+				this.log.debug('Clear_Session.onclick()');
+				this.controller.goTo('tertiary',false);
 			}
 		});
 

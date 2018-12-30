@@ -82,9 +82,9 @@ export default class Edit extends Panel {
 		)
 	}
 
-	click(evt){
+	click=(evt)=>{
 
-		window.controller.goTo('settings');
+		this.controller.goTo('settings');
 		evt.stopPropagation();
 
 	}

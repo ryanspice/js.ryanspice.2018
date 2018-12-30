@@ -6,8 +6,8 @@ export default class Clear_Session extends Icon {
 	constructor(){
 
 		return super({
-			style:`padding:0px !important; float:right;`,
 			renderTo:`#hamburger`,
+			className:`right`,
 			id:'cloud-off',
 			onclick:()=>{
 				sessionStorage.clear();window.location = window.location;

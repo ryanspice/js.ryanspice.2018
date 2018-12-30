@@ -6,7 +6,6 @@ export default class LoadProject extends Icon {
 	constructor(){
 
 		return super({
-			style:`padding:0px !important;`,
 			renderTo:`#hamburger`,
 			id:'upload',
 			onclick:(evt)=>{

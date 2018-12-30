@@ -411,12 +411,23 @@ iframe {
 		text-align:center;line-height:64px;color:white;
     background: transparent;
     background: $black;
+
+		#cloud-off {
+			float:right;
+		}
+
 		i, span {
 
 			max-width:48px;
 			width:48px;
 			float:left;
-			padding:10px !important;
+
+			&:not(#scroll){
+			&:first-child {
+				padding:10px !important;
+			}
+			}
+
 			&:hover {
 
 				//padding:12px !important;
