@@ -1,3 +1,4 @@
+//@flow
 
 import Icon from "../icon";
 
@@ -7,11 +8,13 @@ export default class Clear_Session extends Icon {
 
 		return super({
 			renderTo:`#hamburger`,
-			className:`right`,
 			id:'cloud-off',
 			onclick:()=>{
+
 				sessionStorage.clear();window.location = window.location;
+
 			}
+
 		});
 
 	}

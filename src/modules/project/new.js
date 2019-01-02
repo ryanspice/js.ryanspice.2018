@@ -30,6 +30,7 @@ export default class New extends View {
 
 		return {
 			link:this,
+			ref:ref,
 			type:`view`,
 			id:'new-view',
 			style:``,
@@ -71,9 +72,9 @@ export default class New extends View {
 	            </div>
 
 						<div class="btn-group" >
-							<a class="btn btn-primary" onclick="this.controller.goTo('engine');sessionUpdateData();">Create</a>
+							<a class="btn btn-primary"  onclick="(${this.onclick});">Create</a>
 							<br/>
-							<a class="btn btn-default" onclick="this.controller.goTo('engine');" style="color:white; background:#920c00;">Cancel</a>
+							<a class="btn btn-default" onclick="(${this.onclick});" style="color:white; background:#920c00;">Cancel</a>
 						</div>
 			        </div>
 				</column>
@@ -83,11 +84,24 @@ export default class New extends View {
 
 	}
 
-	click(evt){
+	click=(evt)=>{
 
-		this.controller.goTo('settings');
-				evt.stopPropagation();
+		console.log(evt.target.className,this);
 
+		switch(evt.target.innerText){
+
+			case 'Create':
+				this.session.updateSessionData();
+				this.controller.goTo(this.session.get('view_previous')||'engine');
+			break;
+			case 'Cancel':
+
+				this.controller.goTo(this.session.get('view_previous')||'engine');
+			break;
+
+		}
+
+		evt.stopPropagation();
 
 	}
 
