@@ -11,18 +11,17 @@ export default class LoadProject extends Icon {
 			id:'upload',
 			onclick:(evt:Event)=>{
 
-				this.controller.goTo('load',true, (e:Event)=>{
+				this.controller.goTo('load',true, (evt:Event)=>{
 
-					this.log.debug(`LoadProject.onclick(${e})`);
+					this.log.debug(`LoadProject.onclick(${evt})`);
 
-					window.layout.views[19].value.value.value.link.updateList();
+					window.layout.views[18].value.value.value.link.updateList();
 
 				});
 
 			}
 
 		});
-
 	}
 
 }
