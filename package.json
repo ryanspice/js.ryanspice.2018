@@ -1,18 +1,20 @@
 {
 	"name": "js.ryanspice.2018",
-	"version": "1.1.0",
+	"version": "1.0.0-beta-0",
 	"debug_level": "DEBUG",
 	"description": "",
 	"private": true,
-	"author": "Ryan Tyler Spice-Finnie",
 	"scripts": {
 		"boom": "sudo rm -rf node_modules && yarn && yarn dev",
 		"dev": "webpack-dev-server",
+		"start": "webpack-dev-server",
 		"watch": "webpack --watch",
 		"dash": "webpack-dashboard -- webpack-dev-server",
 		"prod": "webpack"
 	},
+	"author": "Ryan Tyler Spice-Finnie",
 	"dependencies": {
+		"async.2018": "^1.1.0-RC4",
 		"@babel/core": "^7.0.0",
 		"@babel/plugin-proposal-class-properties": "^7.0.0",
 		"@babel/plugin-proposal-decorators": "^7.0.0",
@@ -30,7 +32,6 @@
 		"@babel/preset-flow": "^7.0.0",
 		"@babel/preset-stage-2": "^7.0.0",
 		"@babel/runtime": "^7.0.0",
-		"async.2018": "^1.1.0-RC4",
 		"babel-loader": "^8.0.0",
 		"babel-plugin-flow-runtime": "^0.17.0",
 		"babel-upgrade": "^0.0.23",

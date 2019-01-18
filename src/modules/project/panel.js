@@ -46,6 +46,7 @@ export default class Panel extends View {
 	}
 
 	click(evt){
+		
 		console.log(this);
 
 		this.controller.goTo(this.session.get('view_previous')||'engine');

@@ -6,7 +6,9 @@ import loglevel from "loglevel";
 import {controller} from "../require";
 
 const session = new ServiceSession(false);
+
 const assign = ATRender.view.prototype.assign;
+
 const log = loglevel;
 
 window.session = session;
@@ -30,6 +32,9 @@ export default class View extends ATRender.view {
 	}
 
 	constructor(ref) {
+
+		log.debug = e => log.warn(`%c${e}`, ' color: #bada55;');
+		//log.debug = e => console.trace(e,{});
 
 		log.debug(`View(${ref.constructor.name})`)
 

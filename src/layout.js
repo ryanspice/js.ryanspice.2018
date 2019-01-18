@@ -34,13 +34,16 @@ export default class layout {
 		views:Array<any> = [
 
 			/* App Components */
+
 			new PrimaryView(this),
 			new ToolColumn(this),
 
 			/* Tool Components */
+
 			...ToolColumn.Controls,
 
 			/* Views */
+
 			new Engine(this),
 			new Documentation(this),
 			new Settings(this),
@@ -48,23 +51,29 @@ export default class layout {
 			new DefaultSettings(this),
 
 			/* Flyout Views */
+
 			new New(this),
+
+			/*
 			new New({
 				title:'map',
 				type:'type',
 				description:'description',
 				buttons:{ok:'Save Map', cancel:'Cancel'}
 			}),
+			*/
 
 			/* Flyout (Inherited) Views */
 			new Load(this),
 			new Save(this),
+
 			new Edit({
 				title:'map',
 				type:'type',
 				description:'description',
 				buttons:{ok:'Save Map', cancel:'Cancel'}
 			}),
+
 			new Edit({
 				title:'object',
 				type:'type',

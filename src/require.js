@@ -62,7 +62,7 @@ const requireHTML = async (evt:Event,data:any) => {
 		renderer = (await import('./entry')).AsyncTemplate,
 		renderer.pre = ()=>{},
 		renderer.post = ()=>{
-
+			console.log(renderer);
 		},
 		window.template = renderer = await new renderer(),
 		(window.layout = new (await import("./layout")).default),

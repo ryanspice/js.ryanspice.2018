@@ -32,16 +32,18 @@ export default class ToolColumn extends View {
 
 	constructor(ref?:HTML5Element){
 
-		super(ref)
-
-		return {
+		return super({
 			type:`aside`,
 			id:'toolbar-column',
 			className:`noselect`,
 			style:`font-size:2rem;z-index:1`,
-			onclick:this.click
-		}
+			onclick:(evt)=>{this.click(evt)}
+		})
 
+	}
+
+	mounted=(evt)=>{
+		console.log(evt)
 	}
 
 	click=(evt)=>{
