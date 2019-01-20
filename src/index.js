@@ -46,15 +46,14 @@ context.post = async function(evt:Event):Promise<void> {
 	await context.log.debug('post');
 	await context.log.trace();
 
-	const text = await require('./service.message.bundle').default;
-
+	const text = (await import('./service.message.bundle')).default;
+	
 	//GET ICONS
 	await pipe.requireMSG(text.inital.icons);
 	await pipe.requireIcons();
 
 	// STORAGE SESSION
 	await pipe.requireMSG(text.inital.session);
-
 
 	//GET SPICEJS GAME FRAMEWORK
 	await pipe.requireMSG(text.inital.fmrk);

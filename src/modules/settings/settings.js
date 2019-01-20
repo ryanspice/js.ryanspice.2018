@@ -1,14 +1,16 @@
 //@flow
 
-import AsyncView from "../../entry";
+import View from "../view";
 require('./settings.scss');
-export default class Settings extends AsyncView {
+
+
+export default class Settings extends View {
+
+		test = null
 
     constructor(ref ? : HTML5Element) {
 
-        super(ref)
-
-        const Setting = (Setting, Text, Action) => `<section onclick="(${Action})()"><i data-feather="${Setting}" ></i><span><h3>${Text}</h3></span></section>`;
+        super(ref);
 
         return {
             link: this,
@@ -17,36 +19,31 @@ export default class Settings extends AsyncView {
             className: 'slide',
             style: `margin-top:10%;margin-left:10%;margin:0px auto;text-align: center;`,
             innerHTML: `
-					<h2>settings</h2>
-					<input style="opacity:0;"></input>
-				<br/>
-				<spread>
-					${Setting('sliders', '<strike style="opacity:0.5;">Defaults</strike>',function(){
-
-						this.controller.goTo('default-settings');
-
-					})}
-					${Setting('info', 'About',()=>{
-
-						this.controller.goTo('info-settings');
-					})}
-				</spread>
-			`,
-            onclick: this.click
+							<h2>settings</h2>
+							<input style="opacity:0;"></input>
+							<br/>
+							<spread></spread>
+						`
         }
-
     }
-
-    click(evt) {
-
-        evt.stopPropagation();
-
-
-    }
-
 }
 
-export class Info extends AsyncView {
+export class SettingsIcon extends View {
+	 constructor(ref,settings){
+		 super(ref);
+		 return {
+			 type:'section',
+	 			renderTo:'#settings-view spread',
+			 innerHTML:`<i data-feather="${settings.icon}" >23123</i><span><h3>${settings.title}</h3></span>`,
+			 onclick:()=>{
+				 this.controller.goTo(settings.path);
+			 }
+		 }
+	 }
+}
+
+
+export class Info extends View {
 
 
     constructor(ref ? : HTML5Element) {
@@ -82,7 +79,7 @@ export class Info extends AsyncView {
 
 }
 
-export class DefaultSettings extends AsyncView {
+export class DefaultSettings extends View {
 
 
     constructor(ref ? : HTML5Element) {

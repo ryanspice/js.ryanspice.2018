@@ -25,8 +25,9 @@ import template_search from "./modules/nav/search.js";
 import template_searchInput from "./modules/nav/search-input.js";
 
 import {
+	SettingsIcon,
 	Info,
-	DefaultSettings
+	DefaultSettings,
 } from "./modules/settings/settings";
 
 export default class layout {
@@ -46,9 +47,23 @@ export default class layout {
 
 			new Engine(this),
 			new Documentation(this),
+
 			new Settings(this),
+
+			new SettingsIcon(this,{
+					title:'<strike style="opacity:0.5;">Defaults</strike>',
+					icon:'sliders',
+					path:'default-settings'
+			}),
+
+			new SettingsIcon(this,{
+					title:'about',
+					icon:'info',
+					path:'info-settings'
+			}),
 			new Info(this),
 			new DefaultSettings(this),
+
 
 			/* Flyout Views */
 

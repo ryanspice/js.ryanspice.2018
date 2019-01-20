@@ -18,7 +18,7 @@ export default class Settings extends Icon {
 						onclick:(evt)=>{
 							if (evt)
 							evt.stopPropagation();
-							controller.goTo('settings')
+							this.controller.goTo('settings')
 						}
 			});
 

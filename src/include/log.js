@@ -18,5 +18,5 @@ prefix.apply(log, {
     return date.toISOString();
   },
 });
-
+console.trace = e => console.log(e);
 export default log;
