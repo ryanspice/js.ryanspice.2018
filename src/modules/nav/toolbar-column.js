@@ -43,7 +43,7 @@ export default class ToolColumn extends View {
 	}
 
 	mounted=(evt)=>{
-		console.log(evt)
+		//console.log(evt)
 	}
 
 	click=(evt)=>{

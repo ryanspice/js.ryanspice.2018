@@ -1,7 +1,6 @@
 //@flow
 
 import View from "../view";
-require('./settings.scss');
 
 
 export default class Settings extends View {
@@ -9,41 +8,85 @@ export default class Settings extends View {
 		test = null
 
     constructor(ref ? : HTML5Element) {
-
         super(ref);
-
+				require('./settings.scss');
         return {
-            link: this,
-            type: `view`,
-            id: 'settings-view',
-            className: 'slide',
-            style: `margin-top:10%;margin-left:10%;margin:0px auto;text-align: center;`,
-            innerHTML: `
-							<h2>settings</h2>
-							<input style="opacity:0;"></input>
-							<br/>
-							<spread></spread>
-						`
+          link: this,
+          type: `view`,
+          id: 'settings-view',
+          className: 'slide',
+          innerHTML: `
+						<h2>settings</h2>
+						<input style="opacity:0;"></input>
+						<br/>
+						<spread></spread>
+					`,
+					mounted:async ()=>{
+
+							template.defer.push(new SettingsIcon(this,{
+									title:'<strike style="opacity:0.5;">Defaults</strike>',
+									icon:'sliders',
+									path:'default-settings',
+									action:SettingsDefaults
+							}));
+
+							template.defer.push(new SettingsIcon(this,{
+									title:'about',
+									icon:'info',
+									path:'info-settings',
+									action:SettingsInfo
+							}));
+
+					}
+
         }
+
     }
-}
 
+}
+class EmptyAction {
+
+}
 export class SettingsIcon extends View {
+
+	test:any = null;
+
 	 constructor(ref,settings){
+
 		 super(ref);
+
 		 return {
-			 type:'section',
-	 			renderTo:'#settings-view spread',
-			 innerHTML:`<i data-feather="${settings.icon}" >23123</i><span><h3>${settings.title}</h3></span>`,
-			 onclick:()=>{
-				 this.controller.goTo(settings.path);
-			 }
+			type:'section',
+			renderTo:'#settings-view spread',
+			innerHTML:`<i data-feather="${settings.icon}" >23123</i><span><h3>${settings.title}</h3></span>`,
+			onclick:async ()=>{
+
+					if (!this.test){
+
+						this.test = new settings.action(this);
+						template.defer = await [];
+						template.template[0] = await [this.test];
+						await template.a();
+						await template.iterateTemplate();
+						await this.controller.goTo(settings.path);
+
+				} else {
+
+					await this.controller.goTo(settings.path);
+
+				}
+
 		 }
+
 	 }
+
+	}
+
 }
 
+let info = null;
 
-export class Info extends View {
+export class SettingsInfo extends View {
 
 
     constructor(ref ? : HTML5Element) {
@@ -79,7 +122,7 @@ export class Info extends View {
 
 }
 
-export class DefaultSettings extends View {
+export class SettingsDefaults extends View {
 
 
     constructor(ref ? : HTML5Element) {

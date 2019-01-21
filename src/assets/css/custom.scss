@@ -823,3 +823,14 @@ hero {
     /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+
+
+#canvas_0:nth-child(2),
+#buffer_0:nth-child(2),
+#blitter_0:nth-child(2)
+ {
+
+	display:none;
+
+}
