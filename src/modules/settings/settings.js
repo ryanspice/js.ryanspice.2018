@@ -1,7 +1,7 @@
 //@flow
 
 import View from "../view";
-require('./settings.scss');
+
 export default class Settings extends View {
 
 		test = null
@@ -20,6 +20,8 @@ export default class Settings extends View {
 						<spread></spread>
 					`,
 					mounted:async ()=>{
+
+						require('./settings.scss');
 
 						await template.defer.push(new SettingsIcon(this,{
 								title:'<strike style="opacity:0.5;">Defaults</strike>',

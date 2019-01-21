@@ -19,12 +19,13 @@ export default class Settings extends Icon {
 
 								if (!this.test){
 
-									let Settings = (await require("../../settings/settings")).default;
+									let Settings = (await import("../../settings/settings")).default;
 									this.test = new Settings(this);
 									template.defer = await [];
 									template.template[0] = await [this.test];
 									await template.a();
 									await template.iterateTemplate();
+
 									await this.controller.goTo('settings');
 
 							} else {
