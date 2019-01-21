@@ -23,7 +23,7 @@ import template_home from "./modules/project/home";
 import template_search from "./modules/nav/search.js";
 import template_searchInput from "./modules/nav/search-input.js";
 
-import Settings from "./modules/settings/settings";
+//import Settings from "./modules/settings/settings";
 
 export default class layout {
 
@@ -45,7 +45,7 @@ export default class layout {
 
 			/* Settings View */
 
-			new Settings(this),
+	//		new Settings(this),
 
 
 			/* Flyout Views */

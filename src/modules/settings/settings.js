@@ -1,15 +1,13 @@
 //@flow
 
 import View from "../view";
-
-
+require('./settings.scss');
 export default class Settings extends View {
 
 		test = null
 
     constructor(ref ? : HTML5Element) {
         super(ref);
-				require('./settings.scss');
         return {
           link: this,
           type: `view`,
@@ -23,20 +21,21 @@ export default class Settings extends View {
 					`,
 					mounted:async ()=>{
 
-							template.defer.push(new SettingsIcon(this,{
-									title:'<strike style="opacity:0.5;">Defaults</strike>',
-									icon:'sliders',
-									path:'default-settings',
-									action:SettingsDefaults
-							}));
+						await template.defer.push(new SettingsIcon(this,{
+								title:'<strike style="opacity:0.5;">Defaults</strike>',
+								icon:'sliders',
+								path:'default-settings',
+								action:SettingsDefaults
+						}));
 
-							template.defer.push(new SettingsIcon(this,{
-									title:'about',
-									icon:'info',
-									path:'info-settings',
-									action:SettingsInfo
-							}));
+						await template.defer.push(new SettingsIcon(this,{
+								title:'about',
+								icon:'info',
+								path:'info-settings',
+								action:SettingsInfo
+						}));
 
+						await template.iterateTemplate();
 					}
 
         }
@@ -44,10 +43,8 @@ export default class Settings extends View {
     }
 
 }
-class EmptyAction {
 
-}
-export class SettingsIcon extends View {
+class SettingsIcon extends View {
 
 	test:any = null;
 
@@ -76,6 +73,9 @@ export class SettingsIcon extends View {
 
 				}
 
+		 },
+		 mounted:()=>{
+			 window.icons.replace();
 		 }
 
 	 }
@@ -84,9 +84,7 @@ export class SettingsIcon extends View {
 
 }
 
-let info = null;
-
-export class SettingsInfo extends View {
+class SettingsInfo extends View {
 
 
     constructor(ref ? : HTML5Element) {
@@ -122,7 +120,7 @@ export class SettingsInfo extends View {
 
 }
 
-export class SettingsDefaults extends View {
+class SettingsDefaults extends View {
 
 
     constructor(ref ? : HTML5Element) {
