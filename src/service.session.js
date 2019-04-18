@@ -80,13 +80,17 @@ export default class ServiceSession {
 	sessionKey = 'saved';
 
 	get sessionData(){
-		return {'action':()=>{}, 'type':'map','title':'example'};
+		return {'action':()=>{}, 'type':'x-octagon','title':'UNKNOWN'};
 	};
 
 	getIcon = (saved)=>{
 		switch(saved.type){
 			case 'object':
 			return 'globe';
+			case 'sprite':
+			return 'star';
+			case 'script':
+			return 'code';
 			default:
 			return saved.type;
 		}
@@ -94,11 +98,23 @@ export default class ServiceSession {
 
 	sessionDataTemplate = (i, data) => {
 
+		const element = data[i];
+		const title = element.title;
+		console.log(element,title)
 		return {
 			type:`span`,
 			renderTo:'#scroll',
 			style:`margin:10px;max-width:116px;height:96px;display:inline-block;`,
-			innerHTML:`<i class="menu" data-feather="${this.getIcon(data[i])}" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i><br/><h6 style="width:100%;text-align:center;	">r o o m ${window.room.count++}</h6>	`,
+			innerHTML:`
+				<data ${window.room.count++}></data>
+				<i class="menu" data-feather="${this.getIcon(data[i])}" style="margin:0px;margin-top:10px;width:100%;text-align:center;"></i>
+
+<i class="menu ${element['~']=='scr'?'hidden':''}" data-feather="x-circle" style="color:rgba(255,25,25,0.8);position:absolute;right:0px;top:0px;font-size:0.75rem;"></i>
+				<br/>
+
+				<h6 style="width:100%;text-align:center;	" >${title} </h6>
+
+			`,
 			onclick:(evt)=>{
 				//console.log('eh')
 				evt.stopPropagation();
@@ -112,9 +128,9 @@ export default class ServiceSession {
 		};
 	};
 
-	updateSessionData = async function(news:boolean = true){
+	updateSessionData = async function(news:boolean = true, _data_){
 
-		let item = this.sessionData;
+		let item = _data_ || this.sessionData;
 
 		let data = this.get(this.sessionKey) || item;
 

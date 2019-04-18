@@ -25,6 +25,7 @@ export default class ToolColumn extends View {
 			new buttons.default.settings(),
 
 			new buttons.default.save(),
+			new buttons.default.saveas(),
 			new buttons.default.load(),
 			new buttons.default.help(),
 			new buttons.default.clear_session()

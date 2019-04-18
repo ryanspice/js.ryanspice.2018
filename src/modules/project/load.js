@@ -1,6 +1,8 @@
 
 import View from "../view";
 
+import File from "../../include/file";
+
 class ListItem {
 
 	$id;
@@ -138,7 +140,7 @@ export default class Load extends View {
 			id:'load-view',
 			activity:this.update,
 			activityOpen:this.update,
-			className:'slide',
+			className:'slide button-e',
 			style:`
 	      z-index: 200;
 		    position: absolute;
@@ -149,13 +151,20 @@ export default class Load extends View {
 				height:100%;
 				max-width:450px;
 				opacity:1 !important;
-				border-right:1px solid white;
+				//border-right:1px solid white;
 				`,
 			innerHTML:`
 				<column class="col-md-24">
+
+					<i style="opacity:0.8;position:relative;left:-18px;top:-18px;font-size:2rem;cursor:pointer;" onclick="con.goTo('engine')" class="menu" data-feather="arrow-left-circle"></i>
 					<h2 >load project</h2>
+					<button onclick="openFile(dispFile)" id="openFile" class="hidden"></button>
+					<pre id="openFileContent"></pre>
 					<br/>
-					${(templates.newListItem({'type':'plus','title':data.title, ...data}))}
+					${(templates.newListItem({'type':'plus','title':data.title,'action':()=>{
+						//document.getElementById('openFile').click();
+						window.clickElem(document.getElementById('openFile'));
+					}, ...data}))}
 					<span id="loaddata">
 					${saveData}
 					</span>

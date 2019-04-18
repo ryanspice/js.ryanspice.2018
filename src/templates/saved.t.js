@@ -1,7 +1,9 @@
 //@flow
 
-let i = '00';
+let i = 0;
 
 export default [
-	{'action':'', 'type':'map','title':'project 00'}
+	{
+		'~':'scr',
+		'action':'', 'type':'map','title':`instance ${i++}`}
 ]

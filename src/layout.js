@@ -43,10 +43,6 @@ export default class layout {
 			new Engine(this),
 			new Documentation(this),
 
-			/* Settings View */
-
-	//		new Settings(this),
-
 
 			/* Flyout Views */
 

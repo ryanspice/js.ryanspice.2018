@@ -35,13 +35,13 @@ export default class Controller {
 		});
 
 	}
-
+	previousGoTo:string = '';
 	goTo(str, noRemove, activity, activityOpen){
-
 				_loop([Array.from(document.querySelectorAll('view'))],e=>{
 
 			if (e.value.id==str+'-view') {
 
+				this.previousGoTo = str;
 				e.value.classList.remove('slide');
 				activity?activity(e):e.value.activity?e.value.activity(e):null;
 
@@ -51,6 +51,13 @@ export default class Controller {
 
 			}
 		});
+
+	}
+
+
+	navigate(name, noRemove = false, activity = ()=>{}, activityOpen = () => {}){
+
+		this.goTo(name,noRemove,activity,activityOpen);
 
 	}
 

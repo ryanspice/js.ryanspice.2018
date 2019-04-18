@@ -15,13 +15,12 @@ export default class LoadProject extends Icon {
 
 					this.log.debug(`LoadProject.onclick(${evt})`);
 
-					window.layout.views[18].value.value.value.link.updateList();
-
 				});
 
 			}
 
 		});
+
 	}
 
 }

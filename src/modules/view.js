@@ -54,6 +54,30 @@ export default class View extends ATRender.view {
 	}
 
 	click(){
+		console.log('eh')
+	}
+
+	onclick(){
+		console.log('eh')
+	}
+
+	append = async (path) => {
+
+		if (!this.test){
+
+			let m = (await import(path)).default;
+			this.test = new m(this);
+			template.defer = await [];
+			template.template[0] = await [this.test];
+			await template.a();
+			await template.iterateTemplate();
+
+			return true;
+
+		} else {
+
+			return false;
+		}
 
 	}
 

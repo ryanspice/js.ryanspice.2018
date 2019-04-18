@@ -20,7 +20,6 @@ export default class Settings extends View {
 						<spread></spread>
 					`,
 					mounted:async ()=>{
-
 						require('./settings.scss');
 
 						await template.defer.push(new SettingsIcon(this,{
@@ -29,6 +28,8 @@ export default class Settings extends View {
 								path:'default-settings',
 								action:SettingsDefaults
 						}));
+
+						await template.iterateTemplate();
 
 						await template.defer.push(new SettingsIcon(this,{
 								title:'about',
@@ -56,7 +57,7 @@ class SettingsIcon extends View {
 
 		 return {
 			type:'section',
-			renderTo:'#settings-view spread',
+			appendTo:'spread',
 			innerHTML:`<i data-feather="${settings.icon}" >23123</i><span><h3>${settings.title}</h3></span>`,
 			onclick:async ()=>{
 
